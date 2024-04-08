@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Lexend";
+  font-family: "Lexend" !important;
   line-height: 1.5;
   font-weight: 400;
  

@@ -7,6 +7,16 @@ import {
 import './index.css'
 import HeaderFooter from './layout/HeaderFooter'
 import Home from './layout/home'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'lexend',
+      'calibri',
+    ].join(','),
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -18,12 +28,18 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home />,
       },
+      {
+        path: '/livreur',
+        element: <div>Livreur</div>,
+      },
     ]
   },
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+   <ThemeProvider theme={theme}>
+      <React.StrictMode>
+        <RouterProvider router={router} />
+      </React.StrictMode>
+  </ThemeProvider>
+);
