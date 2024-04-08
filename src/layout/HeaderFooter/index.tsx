@@ -8,9 +8,9 @@ function HeaderFooter(props: any) {
 
     return (
         <div ref={ref}>
-            <Header />
+            <Header test={ref}/>
             <Outlet />
-            <Footer test={ref}/>
+            <Footer />
         </div>
     );
 }

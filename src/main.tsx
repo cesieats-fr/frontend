@@ -5,9 +5,14 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 import './index.css'
-import HeaderFooter from './layout/HeaderFooter'
-import Home from './layout/home'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import HeaderFooter from './layout/headerFooter'
+import Home from './layout/home'
+import Order from './layout/order'
+import Orders from './layout/orders'
+import Favorites from './layout/favorites'
+import Account from './layout/account'
+import Parameters from './layout/parameters'
 
 const theme = createTheme({
   typography: {
@@ -29,8 +34,24 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/livreur',
-        element: <div>Livreur</div>,
+        path: '/Order',
+        element: <Order />,
+      },
+      {
+        path: '/Orders',
+        element: <Orders />,
+      },
+      {
+        path: '/Favorite',
+        element: <Favorites />,
+      },
+      {
+        path: '/Account',
+        element: <Account />,
+      },
+      {
+        path: '/Parameters',
+        element: <Parameters />,
       },
     ]
   },
