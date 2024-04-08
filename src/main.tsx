@@ -6,6 +6,8 @@ import {
 } from 'react-router-dom'
 import './index.css'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Provider } from 'react-redux'
+import store from './store'
 import HeaderFooter from './layout/headerFooter'
 import Home from './layout/home'
 import Order from './layout/order'
@@ -60,7 +62,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
    <ThemeProvider theme={theme}>
       <React.StrictMode>
-        <RouterProvider router={router} />
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
       </React.StrictMode>
   </ThemeProvider>
 );
