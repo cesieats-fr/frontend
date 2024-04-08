@@ -1,4 +1,4 @@
-function Order(props: any) {
+function Order() {
     return (
         <div>
             Commander

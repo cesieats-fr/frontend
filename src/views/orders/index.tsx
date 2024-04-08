@@ -1,4 +1,4 @@
-function Orders(props: any) {
+function Orders() {
     return (
         <div>
             Commandes

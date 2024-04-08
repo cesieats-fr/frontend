@@ -1,4 +1,4 @@
-function Account(props: any) {
+function Account() {
     return (
         <div>
             Compte

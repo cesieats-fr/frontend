@@ -1,4 +1,4 @@
-function Favorites(props: any) {
+function Favorites() {
     return (
         <div>
             Favoris

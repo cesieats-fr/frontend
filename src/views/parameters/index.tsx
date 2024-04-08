@@ -1,4 +1,4 @@
-function Parameters(props: any) {
+function Parameters() {
     return (
         <div>
             Paramètres

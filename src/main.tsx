@@ -10,11 +10,11 @@ import { Provider } from 'react-redux'
 import store from './store'
 import HeaderFooter from './layout/headerFooter'
 import Home from './layout/home'
-import Order from './layout/order'
-import Orders from './layout/orders'
-import Favorites from './layout/favorites'
-import Account from './layout/account'
-import Parameters from './layout/parameters'
+import Order from './views/order'
+import Orders from './views/orders'
+import Favorites from './views/favorites'
+import Account from './views/account'
+import Parameters from './views/parameters'
 
 const theme = createTheme({
   typography: {

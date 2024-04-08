@@ -3,7 +3,7 @@ import Header from "../header";
 import Footer from "../footer";
 import { Outlet } from 'react-router-dom';
 
-function HeaderFooter(props: any) {
+function HeaderFooter() {
     const ref = React.useRef<HTMLDivElement>(null);
 
     return (
