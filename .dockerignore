@@ -1,0 +1,17 @@
+node_modules
+build
+.dockerignore
+Dockerfile
+.git
+.gitignore
+
+.DS_Store
+k8s-react-template.yml
+Jenkinsfile
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+README.md
+.eslintrc.cjs
+
+.env
