@@ -9,7 +9,7 @@ import Parameters from '../views/parameters'
 import Deliveries from '../views/Deliveries';
 import Register from '../views/register';
 import Login from '../views/login';
-import DeliveryView from '../views/Delivery'
+import DeliveryView from '../views/delivery'
 
 const router = createBrowserRouter([
     {

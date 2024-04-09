@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { accountAPI } from './api';
 import { useEffect } from 'react';
 import { setAccount } from './store/reducers/account';
+import router from './routers';
 
 const theme = createTheme({
   typography: {
