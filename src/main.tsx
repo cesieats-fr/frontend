@@ -17,6 +17,7 @@ import Account from './views/account'
 import Parameters from './views/parameters'
 import Delivery from './views/Delivery';
 import Register from './views/register';
+import Login from './views/login';
 
 const theme = createTheme({
   typography: {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />
+      },
+      {
+        path: '/login',
+        element: <Login />
       }
     ]
   },
