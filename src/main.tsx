@@ -55,6 +55,7 @@ const router = createBrowserRouter([
         path: '/parameters',
         element: <Parameters />,
       },
+      
     ]
   },
 ]);
