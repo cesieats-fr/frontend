@@ -6,10 +6,11 @@ import Orders from '../views/orders'
 import Favorites from '../views/favorites'
 import Account from '../views/account'
 import Parameters from '../views/parameters'
-import Deliveries from '../views/Deliveries';
+import Deliveries from '../views/deliveries';
 import Register from '../views/register';
 import Login from '../views/login';
 import DeliveryView from '../views/delivery'
+import Restaurant from '../views/restaurant'
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             path: "/deliveries",
             element: <Deliveries />,
         },
+        {
+          path: "/restaurant",
+          element: <Restaurant />,
+      },
         {
           path: '/register',
           element: <Register />

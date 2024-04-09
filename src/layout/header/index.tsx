@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, createSvgIcon } from '@mui/material';
+import { NavLink } from 'react-router-dom';
+import { createSvgIcon } from '@mui/material';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
@@ -9,7 +10,6 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import DeliveryDiningRoundedIcon from '@mui/icons-material/DeliveryDiningRounded';
 import StorefrontRoundedIcon from '@mui/icons-material/StorefrontRounded';
-import { NavLink } from 'react-router-dom';
 
 const CesiEatsBanner = createSvgIcon(
     <svg width="768" height="434" viewBox="0 0 768 434" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,15 +36,8 @@ const BottomNavigationStyle = {
 }
 
 const userHeader = (props: any) => {
-    const [view, setView] = React.useState('recents');
-
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        if (!!props.test.current) (props.test.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
-        setView(newValue);
-    };
-
     return (
-        <BottomNavigation value={view} onChange={handleChange}  className="bg-gray-200">
+        <BottomNavigation className="bg-gray-200">
             <NavLink to='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></NavLink>
             <NavLink to='/Order'/><BottomNavigationAction label="Commander" value="Commander" icon={<ShoppingCartRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
             <NavLink to='/Orders'/><BottomNavigationAction label="Commandes" value="Commandes" icon={<ReceiptRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
@@ -56,15 +49,8 @@ const userHeader = (props: any) => {
 }
 
 const deliveryHeader = (props: any) => {
-    const [view, setView] = React.useState('recents');
-
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        if (!!props.test.current) (props.test.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
-        setView(newValue);
-    };
-
     return (
-        <BottomNavigation value={view} onChange={handleChange}  className="bg-gray-200">
+        <BottomNavigation className="bg-gray-200">
             <NavLink to='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></NavLink>
             <NavLink to='/Delivery'/><BottomNavigationAction label="Livraison" value="Livraison" icon={<DeliveryDiningRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
             <NavLink to='/Deliveries'/><BottomNavigationAction label="Livraisons" value="Livraisons" icon={<ReceiptRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
@@ -76,15 +62,8 @@ const deliveryHeader = (props: any) => {
 }
 
 const restaurantHeader = (props: any) => {
-    const [view, setView] = React.useState('recents');
-
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        if (!!props.test.current) (props.test.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
-        setView(newValue);
-    };
-
     return (
-        <BottomNavigation value={view} onChange={handleChange}  className="bg-gray-200">
+        <BottomNavigation className="bg-gray-200">
             <NavLink to='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></NavLink>
             <NavLink to='/Restaurant'/><BottomNavigationAction label="Restaurant" value="Restaurant" icon={<StorefrontRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
             <NavLink to='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
