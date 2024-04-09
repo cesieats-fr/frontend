@@ -1,11 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import accountReducer from './reducers/account';
+import deliveryReducer from './reducers/delivery';
 import orderReducer from './reducers/order';
 // import restaurantReducer from './reducers/restaurant';
 
 const rootReducer = combineReducers({
     account: accountReducer,
+    delivery: deliveryReducer,
     order: orderReducer,
     // restaurant: restaurantReducer,
 });
