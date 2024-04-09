@@ -1,5 +1,9 @@
-// import * as account from './services/account';
+import * as accountAPI from './services/account';
+import * as identityAPI from './services/identity';
+import * as restaurantAPI from './services/restaurant';
 
-// export {
-//     account,
-// };
+export {
+    accountAPI,
+    identityAPI,
+    restaurantAPI,
+};
