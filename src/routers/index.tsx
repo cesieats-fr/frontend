@@ -6,7 +6,7 @@ import Orders from '../views/orders'
 import Favorites from '../views/favorites'
 import Account from '../views/account'
 import Parameters from '../views/parameters'
-import Deliveries from '../views/deliveries';
+import Deliveries from '../views/delivery';
 import Register from '../views/register';
 import Login from '../views/login';
 import DeliveryView from '../views/delivery'
