@@ -3,19 +3,22 @@ import { useEffect } from 'react';
 import { login } from '../../store/reducers/identity';
 import { AppDispatch } from '../../store';
 import { Button } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 function Home() {
     const dispatch = useDispatch<AppDispatch>();
-    const identity = useSelector((state: any) => state.identity);
-
+    const account = useSelector((state: any) => state.account.account);
+    console.log(account);
     useEffect(() => {
-        console.log(identity);
-    }, [identity]);
+        console.log(account);
+    }, [account]);
 
     return (
         <div>
             HOME mattmerde
-            <Button variant="contained" href="/login">Se connecter</Button>
+            <NavLink to={'/login'}>
+                <Button variant="contained">Se connecter</Button>
+            </NavLink>
         </div>
     );
 }

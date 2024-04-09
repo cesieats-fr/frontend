@@ -27,13 +27,9 @@ function Register() {
     const [typeAccount, setTypeAccount] = useState('0');
 
     const handleRegister = async () => {
-        const { token, account } = await register(email, password, forname, name);
-        console.log(token);
-        console.log(account);
-        console.log(typeAccount);
+        const { token, account } = await register(email, password, forname, name, typeAccount);
         localStorage.setItem('token', token);
         dispatch(setAccount(account));
-        
     }
     return (
         <div className="w-full items-center flex flex-col">

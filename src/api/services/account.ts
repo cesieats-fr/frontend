@@ -4,9 +4,9 @@ import { IAccount } from 'cesieats-service-types/src/account';
 const BASE_URL = import.meta.env.VITE_API_ACCOUNT_URL;
 
 // Public
-export const register = async (email: string, password: string, forname?: string, name?: string) => {
+export const register = async (email: string, password: string, forname?: string, name?: string, typeAccount?: string) => {
     const response = await axios.post(`${BASE_URL}/register`, {
-        email, password, forname, name
+        email, password, forname, name, typeAccount
     }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -23,7 +23,7 @@ export const login = async (email: string, password: string) => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     });
-    return response.data;
+    return response;
 };
 
 export const loginWithToken = async () => {
