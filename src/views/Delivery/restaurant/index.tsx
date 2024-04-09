@@ -1,6 +1,5 @@
 import { IOrder } from "cesieats-service-types/src/order";
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -13,15 +12,6 @@ interface IDeleveryProps {
   order: IOrder;
 }
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline", mx: "4px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
-
 const Restaurant: React.FC<IDeleveryProps> = ({ order }) => {
   return (
     <div className="justify-center flex flex-wrap gap-4 flex-col">
@@ -33,10 +23,10 @@ const Restaurant: React.FC<IDeleveryProps> = ({ order }) => {
           </span>
         }
         variant="outlined"
-        style={{ backgroundColor: "black", color: "white" }}
+        style={{ backgroundColor: "black", color: "white"  }}
       />
-      <div>
-        <div>
+      <div className="flex flex-wrap justify-center gap-4">
+        <div >
           <Card sx={{ minWidth: 275, border: "2px solid black" }}>
             <CardContent>
               <Typography

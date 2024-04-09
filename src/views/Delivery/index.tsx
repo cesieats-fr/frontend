@@ -18,7 +18,7 @@ const orders: IOrder[] = [
 function Delivery() {
   return (
     <>      
-      <div className="">
+      <div >
         {orders && orders.map((Order, index) => {
             return (
               <Restaurant key={index} order={Order} />
