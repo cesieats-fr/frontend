@@ -31,7 +31,6 @@ function Register() {
         const { token, account } = await register({ email, password, forname, name, accountType });
         localStorage.setItem('token', token);
         dispatch(setAccount(account));
-        
     }
     return (
         <div className="w-full items-center flex flex-col">

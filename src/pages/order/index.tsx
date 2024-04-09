@@ -1,52 +1,61 @@
-import Paper from "@mui/material/Paper";
-import InputBase from "@mui/material/InputBase";
-import IconButton from "@mui/material/IconButton";
-
-import SearchIcon from "@mui/icons-material/Search";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
 function OrderPage() {
   return (
-    <>
-      <div>
-        <Card sx={{ minWidth: 275 }}>
+    <div>
+      <Typography
+        className="p-4 background-color-grey-100 border-b-2 border-black color-black-100" 
+        sx={{ fontSize: 14 }}
+        color="text.primary"
+        gutterBottom
+      >
+        Livrer à l'adresse : Adresse dans le compte du pélo
+      </Typography>
+
+      <div className="flex flex-wrap justify-center gap-4">
+        <Card className="border-2 min-w-[275px]">
           <CardContent>
-            <Typography
-              sx={{ fontSize: 14}}
-              color="text.primary"
-              gutterBottom>Livrer à l'adresse</Typography>
-               <Typography
-              sx={{ fontSize: 12 }}
-              color="text.primary"
-              gutterBottom>Adresse dans le compte du pélo</Typography>
+            <Typography color="text.primary" gutterBottom>
+              Photo Restaurant
+            </Typography>
+            <Typography sx={{ fontSize: 12 }} color="text.primary" gutterBottom>
+              NOM RESTAUT
+            </Typography>
+            <Typography sx={{ fontSize: 12 }} color="text.primary" gutterBottom>
+              TEMPS LIVRAISON RESTAU
+            </Typography>
           </CardContent>
-
-          <Paper
-          component="form"
-          sx={{
-            p: "2px 4px",
-            display: "flex",
-            alignItems: "center",
-            width: 400,
-          }}
-        >
-      
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="Rechercher dans l'aide Cesi Eats"
-            inputProps={{ "aria-label": "Rechercher dans l'aide Cesi Eats" }}
-          />
-          <IconButton type="button" sx={{ p: "10px"}} aria-label="search">
-            <SearchIcon />
-          </IconButton>
-        </Paper>
         </Card>
-
-       
+        <Card className="border-2 min-w-[275px]">
+          <CardContent>
+            <Typography color="text.primary" gutterBottom>
+              Photo Restaurant
+            </Typography>
+            <Typography sx={{ fontSize: 12 }} color="text.primary" gutterBottom>
+              NOM RESTAUT
+            </Typography>
+            <Typography sx={{ fontSize: 12 }} color="text.primary" gutterBottom>
+              TEMPS LIVRAISON RESTAU
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card className="border-2 min-w-[275px]">
+          <CardContent>
+            <Typography color="text.primary" gutterBottom>
+              Photo Restaurant
+            </Typography>
+            <Typography sx={{ fontSize: 12 }} color="text.primary" gutterBottom>
+              NOM RESTAUT
+            </Typography>
+            <Typography sx={{ fontSize: 12 }} color="text.primary" gutterBottom>
+              TEMPS LIVRAISON RESTAU
+            </Typography>
+          </CardContent>
+        </Card>
       </div>
-    </>
+    </div>
   );
 }
 

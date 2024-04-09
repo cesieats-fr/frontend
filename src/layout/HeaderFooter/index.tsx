@@ -15,9 +15,8 @@ function HeaderFooter({ children }: HeaderFooterProps) {
             <div className='flex-1 p-10'>
                 { children }
             </div>
-            <Footer />
-        </div>
-    );
+        );
+    }
 }
 
 export default HeaderFooter;
