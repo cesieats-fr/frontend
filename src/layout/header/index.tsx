@@ -23,7 +23,7 @@ const CesiEatsBanner = createSvgIcon(
 
 const largeIcon = {
     width: 180,
-    height: 180,
+    height: 90,
 };
 
 function Header(props: any) {
