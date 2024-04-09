@@ -24,6 +24,12 @@ function Login() {
                     <Button variant="contained" onClick={() => { handleLogin() }}>Valider</Button>
                 </div>
             </div>
+            <div className="w-75 items-center flex flex-col">
+                <h1 className="m-2">Pas encore inscrit?</h1>
+                <div className="w-full items-center flex flex-col">
+                    <Button variant="contained" href="/register">S'inscrire</Button>
+                </div>
+            </div>
         </div>
     );
 }

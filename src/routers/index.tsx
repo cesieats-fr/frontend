@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import HeaderFooter from '../layout/headerFooter'
 import Home from '../views/home'
-import Order from '../views/order'
+import OrderView from '../views/order'
 import Orders from '../views/orders'
 import Favorites from '../views/favorites'
 import Account from '../views/account'
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         },
         {
           path: '/order',
-          element: <Order />,
+          element: <OrderView />,
         },
         {
           path: '/orders',
