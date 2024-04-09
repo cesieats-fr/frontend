@@ -17,13 +17,9 @@ const orders: IOrder[] = [
 
 function Delivery() {
   return (
-    <>
-      <div className="logo">
-        <img src="/vite.svg" alt="Vite Logo" />
-      </div>
+    <>      
       <div className="flex flex-row">
-        {orders &&
-          orders.map((Order, index) => {
+        {orders && orders.map((Order, index) => {
             return (
               <Restaurant key={index} order={Order} />
             );
