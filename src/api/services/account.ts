@@ -38,6 +38,16 @@ export const edit = async (account: IAccount) => {
     return response.data;
 };
 
+export const deleteAccount = async () => {
+    const response = await axios.delete(`${BASE_URL}/delete`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+    return response.data;
+
+}
+
 export const createApiKey = async () => {
     const response = await axios.post(`${BASE_URL}/createApiKey`, {}, {
         headers: {

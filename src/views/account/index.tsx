@@ -1,11 +1,4 @@
-import { useDispatch } from "react-redux";
-import store from "../../store";
-
-
-
 function Account() {
-    const dispatch = useDispatch();
-
     
     return (
         <div>
