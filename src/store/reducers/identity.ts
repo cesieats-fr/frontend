@@ -23,7 +23,7 @@ const register = createAsyncThunk('account/register', async ({email, password, f
 });
 
 export const login = createAsyncThunk('account/login', async ({email, password}: ICredentials) => {
-    const response = await accountAPI.login(localStorage.getItem('token'), email, password);
+    const response = await accountAPI.login(email, password);
     return response.data;
 });
 
