@@ -6,7 +6,7 @@ import { edit } from "../../api/services/account";
 import { setAccount } from "../../store/reducers/account";
 import { IAccount } from 'cesieats-service-types/src/account';
 
-const type = ['Client','Restaurant','Livreur'];
+const type = ['Client','Livreur','Restaurant'];
 function Account() {
     
     const dispatch = useDispatch<AppDispatch>();

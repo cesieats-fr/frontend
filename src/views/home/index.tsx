@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { login } from '../../store/reducers/identity';
 import { AppDispatch } from '../../store';
+import { Button } from '@mui/material';
 
 function Home() {
     const dispatch = useDispatch<AppDispatch>();
@@ -11,15 +12,10 @@ function Home() {
         console.log(identity);
     }, [identity]);
 
-    const handleLogin = () => {
-        console.log('dispatch !')
-        dispatch(login({ email: 'keanuharrell@hotmail.fr' , password: 'azerty123' }));
-    }
-
     return (
         <div>
-            HOME
-            <button onClick={handleLogin}>Login</button>
+            HOME mattmerde
+            <Button variant="contained" href="/login">Se connecter</Button>
         </div>
     );
 }
