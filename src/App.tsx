@@ -1,7 +1,5 @@
 import React from 'react'
 import { RouterProvider } from 'react-router';
-import { Provider } from 'react-redux'
-import store from './store'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 import { accountAPI } from './api';
@@ -21,7 +19,7 @@ const theme = createTheme({
 function App(): React.ReactElement {
   const dispatch = useDispatch();
   useEffect(() => {
-    accountAPI.login(localStorage.getItem('token'))
+    accountAPI.login()
       .then((response) => {
         dispatch(setAccount(response.account));
         localStorage.setItem('token', response.token);
@@ -30,11 +28,7 @@ function App(): React.ReactElement {
   
     return (
       <ThemeProvider theme={theme}>
-        <React.StrictMode>
-          <Provider store={store}>
-            <RouterProvider router={router} />
-          </Provider>
-        </React.StrictMode>
+        <RouterProvider router={router} />
       </ThemeProvider>
     );
   }
