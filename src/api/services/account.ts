@@ -15,7 +15,7 @@ export const register = async (email: string, password: string, forname?: string
     return response.data;
 };
 
-export const login = async (email: string, password: string) => {
+export const login = async (email?: string, password?: string) => {
     const response = await axios.post(`${BASE_URL}/login`, {
         email, password
     }, {

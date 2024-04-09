@@ -5,11 +5,11 @@ import Chip from "@mui/material/Chip";
 import { IDelivery } from "cesieats-service-types/src/delivery";
 import { getDeliveries } from "../../store/reducers/delivery";
 import { useEffect } from "react";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 
 function DeliveryView() {
   const dispatch = useDispatch<AppDispatch>();
-  const deliveries = useSelector((state: any) => state.deliveries);
+  const deliveries = useSelector((state: RootState) => state.delivery.deliveries);
 
   useEffect(() => {
     dispatch(getDeliveries());
