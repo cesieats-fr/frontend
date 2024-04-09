@@ -6,9 +6,10 @@ import Orders from '../views/orders'
 import Favorites from '../views/favorites'
 import Account from '../views/account'
 import Parameters from '../views/parameters'
-import Delivery from '../views/Delivery';
+import Deliveries from '../views/Deliveries';
 import Register from '../views/register';
 import Login from '../views/login';
+import DeliveryView from '../views/Delivery'
 
 const router = createBrowserRouter([
     {
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/delivery",
-          element: <Delivery />,
+          element: <DeliveryView />,
         },
         {
             path: "/deliveries",
