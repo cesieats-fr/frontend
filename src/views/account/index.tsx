@@ -2,6 +2,7 @@ function Account() {
     return (
         <div>
             Compte
+            
         </div>
     );
 }

@@ -7,7 +7,8 @@ function HeaderFooter() {
     const ref = React.useRef<HTMLDivElement>(null);
 
     return (
-        <div ref={ref}>
+        <div className="w-full h-full
+        absolute top-0 left-0" ref={ref}>
             <Header test={ref}/>
             <Outlet />
             <Footer />

@@ -15,6 +15,8 @@ import Orders from './views/orders'
 import Favorites from './views/favorites'
 import Account from './views/account'
 import Parameters from './views/parameters'
+import Delivery from './views/Delivery';
+import Register from './views/register';
 
 const theme = createTheme({
   typography: {
@@ -55,6 +57,14 @@ const router = createBrowserRouter([
         path: '/parameters',
         element: <Parameters />,
       },
+      {
+        path: "/delivery",
+        element: <Delivery />,
+      },
+      {
+        path: '/register',
+        element: <Register />
+      }
     ]
   },
 ]);
