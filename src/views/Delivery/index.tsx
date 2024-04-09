@@ -18,7 +18,7 @@ const orders: IOrder[] = [
 function Delivery() {
   return (
     <>      
-      <div className="flex flex-row">
+      <div className="">
         {orders && orders.map((Order, index) => {
             return (
               <Restaurant key={index} order={Order} />
