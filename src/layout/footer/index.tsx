@@ -2,7 +2,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
-import { Facebook, Instagram, Twitter } from "@mui/icons-material";
+import { Facebook, Instagram, Twitter, LinkedIn } from "@mui/icons-material";
 import { Box } from "@mui/material";
 
 function Footer(props: any) {
@@ -12,16 +12,16 @@ function Footer(props: any) {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={4}>
                         <Typography variant="h6" className="text-primaryClassic" gutterBottom>
-                        About Us
+                        À propos de cesieats
                         </Typography>
                         <Typography variant="body2">
-                        We are CesiEats company, dedicated to providing the best service to our
-                        customers.
+                        cesieats, votre solution de livraison de repas méditerranéens préférée. 
+                        Des saveurs authentiques livrées directement chez vous, rapidement et avec soin.
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Typography variant="h6" className="text-primaryClassic" gutterBottom>
-                        Contact Us
+                        Nous contacter
                         </Typography>
                         <Typography variant="body2">
                         1 rue des cristalleries, 54000 Nancy
@@ -35,28 +35,16 @@ function Footer(props: any) {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Typography variant="h6" className="text-primaryClassic" gutterBottom>
-                        Follow Us
+                        Nous suivre
                         </Typography>
-                        <Link href="https://www.facebook.com/" color="inherit">
-                        <Facebook />
-                        </Link>
-                        <Link
-                        href="https://www.instagram.com/"
-                        color="inherit"
-                        sx={{ pl: 1, pr: 1 }}
-                        >
-                        <Instagram />
-                        </Link>
-                        <Link href="https://www.twitter.com/" color="inherit">
-                        <Twitter />
-                        </Link>
+                        <Link href="https://www.linkedin.com/in/tolgabeylik" color="inherit"><LinkedIn /></Link>
                     </Grid>
                 </Grid>
                 <Box mt={2}>
                     <Typography variant="body2" color="text.secondary" align="center">
                         {"Copyright © "}
                         <Link color="inherit" href="https://cesieats.fr/}">
-                        CesiEats 
+                        cesieats 
                         </Link>
                         {" "}
                         {new Date().getFullYear()}
