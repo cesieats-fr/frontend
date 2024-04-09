@@ -9,7 +9,9 @@ import { getAllOrders } from "../../api/services/order";
 
 function Orders() {
     const dispatch = useDispatch();
-    const account = useSelector((state: RootState) => state.account.account);
+
+    // const account = useSelector((state: RootState) => state.account.account);
+
     //Nécessite l'id du compte
     const resultListeOrders = async () => {    
         const {status, data} = await getAllOrders(1, undefined, undefined);

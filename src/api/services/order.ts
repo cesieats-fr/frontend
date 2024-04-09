@@ -5,9 +5,9 @@ const BASE_URL = import.meta.env.VITE_API_ORDER_URL;
 
 export const addOrder = async (idClient: number, idRestaurant: number, idDelivery?: number) => {
     const response = await axios.post(`${BASE_URL}/addOrder`, {
-      idClient,
-      idRestaurant,
-      idDelivery
+        idClient,
+        idRestaurant,
+        idDelivery
     }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -36,10 +36,9 @@ export const getOrder = async (id: number) => {
     return response.data;
 };
 
-export const getAllOrders = async (idUser?: number, idRestaurant?: number, orderState?: number) => {
+export const getAllOrders = async (idRestaurant?: number, orderState?: number) => {
     const response = await axios.get(`${BASE_URL}/getAllOrders`, {
         params: {
-            user: idUser,
             restaurant: idRestaurant,
             state: orderState
         },
