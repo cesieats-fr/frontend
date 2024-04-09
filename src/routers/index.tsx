@@ -3,7 +3,6 @@ import HeaderFooter from '../layout/headerFooter'
 import Home from '../views/home'
 import OrderView from '../views/order'
 import Orders from '../views/orders'
-import Favorites from '../views/favorites'
 import Account from '../views/account'
 import Parameters from '../views/parameters'
 import Deliveries from '../views/delivery';
@@ -31,10 +30,6 @@ const router = createBrowserRouter([
           element: <Orders />,
         },
         {
-          path: '/favorites',
-          element: <Favorites />,
-        },
-        {
           path: '/account',
           element: <Account />,
         },
@@ -53,7 +48,7 @@ const router = createBrowserRouter([
         {
           path: "/restaurant",
           element: <Restaurant />,
-      },
+        },
         {
           path: '/register',
           element: <Register />
