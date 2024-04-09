@@ -36,39 +36,58 @@ const BottomNavigationStyle = {
 }
 
 const userHeader = (props: any) => {
+    const [view, setView] = React.useState('recents');
+
+    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+        setView(newValue);
+    };
+
     return (
-        <BottomNavigation className="bg-gray-200">
+        <BottomNavigation value={view} onChange={handleChange}  className="bg-gray-200">
             <NavLink to='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></NavLink>
-            <NavLink to='/Order'/><BottomNavigationAction label="Commander" value="Commander" icon={<ShoppingCartRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
-            <NavLink to='/Orders'/><BottomNavigationAction label="Commandes" value="Commandes" icon={<ReceiptRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-            <NavLink to='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-            <NavLink to='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-            <NavLink to='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Order'><BottomNavigationAction label="Commander" value="Commander" icon={<ShoppingCartRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Orders'><BottomNavigationAction label="Commandes" value="Commandes" icon={<ReceiptRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Favorites'><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Account'><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Parameters'><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
         </BottomNavigation>
     );
 }
 
 const deliveryHeader = (props: any) => {
+    const [view, setView] = React.useState('recents');
+
+    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+        setView(newValue);
+    };
+
     return (
-        <BottomNavigation className="bg-gray-200">
+        <BottomNavigation value={view} onChange={handleChange}  className="bg-gray-200">
             <NavLink to='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></NavLink>
-            <NavLink to='/Delivery'/><BottomNavigationAction label="Livraison" value="Livraison" icon={<DeliveryDiningRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
-            <NavLink to='/Deliveries'/><BottomNavigationAction label="Livraisons" value="Livraisons" icon={<ReceiptRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-            <NavLink to='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-            <NavLink to='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-            <NavLink to='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Delivery'><BottomNavigationAction label="Livraison" value="Livraison" icon={<DeliveryDiningRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Deliveries'><BottomNavigationAction label="Livraisons" value="Livraisons" icon={<ReceiptRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Favorites'><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Account'><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Parameters'><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
         </BottomNavigation>
     );
 }
 
 const restaurantHeader = (props: any) => {
+    const [view, setView] = React.useState('recents');
+
+    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+        if (!!props.test.current) (props.test.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
+        setView(newValue);
+    };
+
     return (
-        <BottomNavigation className="bg-gray-200">
+        <BottomNavigation value={view} onChange={handleChange}  className="bg-gray-200">
             <NavLink to='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></NavLink>
-            <NavLink to='/Restaurant'/><BottomNavigationAction label="Restaurant" value="Restaurant" icon={<StorefrontRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
-            <NavLink to='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-            <NavLink to='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-            <NavLink to='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Restaurant'><BottomNavigationAction label="Restaurant" value="Restaurant" icon={<StorefrontRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Favorites'><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Account'><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
+            <NavLink to='/Parameters'><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} /></NavLink>
         </BottomNavigation>
     );
 }
