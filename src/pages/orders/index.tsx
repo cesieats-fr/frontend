@@ -7,12 +7,13 @@ import { NavLink, redirect } from "react-router-dom";
 import { RootState } from "../../store";
 import { getAllOrders } from "../../api/services/order";
 
-async function Orders() {
+function Orders() {
     const dispatch = useDispatch();
     const account = useSelector((state: RootState) => state.account.account);
     //Nécessite l'id du compte
-    const {status, data} = await getAllOrders(1, undefined, undefined);
-    const resultListeOrders = () => {
+    const resultListeOrders = async () => {    
+        const {status, data} = await getAllOrders(1, undefined, undefined);
+
         if(status === 200) {
             return(
                 <div className="w-full items-center flex flex-col">
@@ -27,7 +28,7 @@ async function Orders() {
     return (
         <div className="w-full items-center flex flex-col">
         <h1 className="m-2">Historiques des commandes</h1>
-            { resultListeOrders() }
+            {}
         </div>
     );
 }

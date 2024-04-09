@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import { login } from "../../api/services/account";
-import { setAccount } from "../../store/reducers/account";
+import { removeAccount, setAccount } from "../../store/reducers/account";
 import { NavLink, redirect } from "react-router-dom";
 import { RootState } from "../../store";
 
@@ -30,6 +30,9 @@ function Login() {
             return (
                 <div className="w-full items-center flex flex-col">
                     <h1 className="m-2">Vous êtes déjà connecté.e</h1>
+                    <NavLink to={'/'}>
+                        <Button variant="contained">Retour à la page d'accueil</Button>
+                    </NavLink>
                 </div>
             );
         }else{

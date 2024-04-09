@@ -3,7 +3,7 @@ import HeaderFooter from '../layout/headerFooter'
 import Home from '../pages/home'
 import OrderPage from '../pages/order'
 import Orders from '../pages/orders'
-import Favorites from '../pages/favorites'
+//import Favorites from '../pages/favorites'
 import Account from '../pages/account'
 import Parameters from '../pages/parameters'
 import Deliveries from '../pages/delivery';
@@ -41,7 +41,7 @@ const RouterPage: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/order" element={<ProtectedRoute element={OrderPage} requiredAccountType={EAccountType.RESTAURANT} />} />
           <Route path="/orders" element={<ProtectedRoute element={Orders} requiredAccountType={EAccountType.CLIENT} />} />
-          <Route path="/favorites" element={<ProtectedRoute element={Favorites} />} />
+          {/* <Route path="/favorites" element={<ProtectedRoute element={Favorites} />} /> */}
           <Route path="/account" element={<ProtectedRoute element={Account} />} />
           <Route path="/parameters" element={<ProtectedRoute element={Parameters} />} />
           <Route path="/delivery" element={<ProtectedRoute element={DeliveryPage} />} />
