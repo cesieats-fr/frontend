@@ -1,15 +1,15 @@
 import React from 'react';
-
-// import Avatar from '@mui/material/Avatar';
-import { Box, Link, createSvgIcon } from '@mui/material';
+import { Link, createSvgIcon } from '@mui/material';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import ReceiptRoundedIcon from '@mui/icons-material/ReceiptRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import DeliveryDiningRoundedIcon from '@mui/icons-material/DeliveryDiningRounded';
+import StorefrontRoundedIcon from '@mui/icons-material/StorefrontRounded';
+import { NavLink } from 'react-router-dom';
 
 const CesiEatsBanner = createSvgIcon(
     <svg width="768" height="434" viewBox="0 0 768 434" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,26 +35,78 @@ const BottomNavigationStyle = {
     }
 }
 
-function Header(props: any) {
-    const [value, setValue] = React.useState('recents');
+const userHeader = (props: any) => {
+    const [view, setView] = React.useState('recents');
 
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         if (!!props.test.current) (props.test.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
-        setValue(newValue);
+        setView(newValue);
     };
-    
+
     return (
-        <Box component="header" className="w-full bg-gray-200">
-            <BottomNavigation value={value} onChange={handleChange}  className="bg-gray-200">
-                <Link href='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></Link>
-                <Link href='/Order'/><BottomNavigationAction label="Commander" value="Commander" icon={<ShoppingCartRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
-                <Link href='/Orders'/><BottomNavigationAction label="Commandes" value="Commandes" icon={<ReceiptRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-                <Link href='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-                <Link href='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-                <Link href='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
-            </BottomNavigation>
-        </Box>
+        <BottomNavigation value={view} onChange={handleChange}  className="bg-gray-200">
+            <NavLink to='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></NavLink>
+            <NavLink to='/Order'/><BottomNavigationAction label="Commander" value="Commander" icon={<ShoppingCartRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
+            <NavLink to='/Orders'/><BottomNavigationAction label="Commandes" value="Commandes" icon={<ReceiptRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+        </BottomNavigation>
     );
+}
+
+const deliveryHeader = (props: any) => {
+    const [view, setView] = React.useState('recents');
+
+    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+        if (!!props.test.current) (props.test.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
+        setView(newValue);
+    };
+
+    return (
+        <BottomNavigation value={view} onChange={handleChange}  className="bg-gray-200">
+            <NavLink to='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></NavLink>
+            <NavLink to='/Delivery'/><BottomNavigationAction label="Livraison" value="Livraison" icon={<DeliveryDiningRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
+            <NavLink to='/Deliveries'/><BottomNavigationAction label="Livraisons" value="Livraisons" icon={<ReceiptRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+        </BottomNavigation>
+    );
+}
+
+const restaurantHeader = (props: any) => {
+    const [view, setView] = React.useState('recents');
+
+    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+        if (!!props.test.current) (props.test.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
+        setView(newValue);
+    };
+
+    return (
+        <BottomNavigation value={view} onChange={handleChange}  className="bg-gray-200">
+            <NavLink to='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></NavLink>
+            <NavLink to='/Restaurant'/><BottomNavigationAction label="Restaurant" value="Restaurant" icon={<StorefrontRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
+            <NavLink to='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+            <NavLink to='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+        </BottomNavigation>
+    );
+}
+
+function Header(props: any) {
+    let userType = 0; // get the user type 
+    
+    switch(userType){
+        case 0: // USER ?
+            return userHeader(props);
+        case 1: // DELIVERY ?
+            return deliveryHeader(props);
+        case 2: // RESTAURANT ?
+            return restaurantHeader(props);
+        default: // ERROR
+            return userHeader(props);
+    }
 }
 
 export default Header;
