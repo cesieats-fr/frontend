@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.API_RESTAURANT_URL;
+const BASE_URL = import.meta.env.VITE_API_RESTAURANT_URL;
 
 export const fetchRestaurants = async () => {
     try {

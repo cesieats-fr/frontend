@@ -1,13 +1,13 @@
 import axios from 'axios';
-import { IIdentity } from 'cesieats-service-types/src/identity';
+import { IAccount } from 'cesieats-service-types/src/account';
 
-const BASE_URL = import.meta.env.VITE_API_ACCOUNT_URL;
+const BASE_URL = import.meta.env.VITE_API_IDENTITY_URL;
 
 // Public
-export const register = async (forname: string, name: string, idIdentity: string) => {
-    const response = await axios.post(`${BASE_URL}/register`, {
+export const register = async (email: string, password: string) => {
+    const response = await axios.post(`${BASE_URL}/registerAccount`, {
         data: {
-            forname, name, idIdentity
+            email, password
         },
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -29,11 +29,8 @@ export const login = async (email: string, password: string) => {
 };
 
 // Private
-export const edit = async (identity: IIdentity) => {
-    const response = await axios.post(`${BASE_URL}/edit`, {
-        data: {
-            ...identity
-        },
+export const deleteAccount = async () => {
+    const response = await axios.post(`${BASE_URL}/delete`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -41,8 +38,11 @@ export const edit = async (identity: IIdentity) => {
     return response.data;
 };
 
-export const createApiKey = async () => {
-    const response = await axios.post(`${BASE_URL}/createApiKey`, {
+export const editAccount = async (account: IAccount) => {
+    const response = await axios.post(`${BASE_URL}/login`, {
+        data: {
+            ...account
+        },
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }

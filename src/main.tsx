@@ -9,7 +9,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux'
 import store from './store'
 import HeaderFooter from './layout/headerFooter'
-import Home from './layout/home'
+import Home from './views/home'
 import Order from './views/order'
 import Orders from './views/orders'
 import Favorites from './views/favorites'
@@ -36,23 +36,23 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/Order',
+        path: '/order',
         element: <Order />,
       },
       {
-        path: '/Orders',
+        path: '/orders',
         element: <Orders />,
       },
       {
-        path: '/Favorite',
+        path: '/favorites',
         element: <Favorites />,
       },
       {
-        path: '/Account',
+        path: '/account',
         element: <Account />,
       },
       {
-        path: '/Parameters',
+        path: '/parameters',
         element: <Parameters />,
       },
     ]
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-   <ThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}>
       <React.StrictMode>
         <Provider store={store}>
           <RouterProvider router={router} />

@@ -1,32 +1,51 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { IRestaurant } from 'cesieats-service-types/src/restaurant';
-import { restaurantAPI } from '../../api';
+import { IIdentity } from 'cesieats-service-types/src/identity';
+import { identityAPI } from '../../api';
 
-interface IRestaurantState {
-    restaurants: IRestaurant[];
+interface IIdentityState {
+    identity: IIdentity;
 }
 
-const initialState: IRestaurantState = {
-    restaurants: [] as IRestaurant[],
+interface ICredentials {
+    email: string;
+    password: string;
+}
+
+const initialState: IIdentityState = {
+    identity: {} as IIdentity,
 };
 
-const fetchRestaurants = createAsyncThunk('restaurant/fetchRestaurants', async () => {
-    const response = await restaurantAPI.fetchRestaurants();
+const register = createAsyncThunk('identity/register', async ({email, password}: ICredentials) => {
+    const response = await identityAPI.register(email, password);
     return response.data;
 });
 
-const restaurantReducer = createSlice({
-    name: 'restaurant',
+export const login = createAsyncThunk('identity/login', async ({email, password}: ICredentials) => {
+    console.log('login')
+    const response = await identityAPI.login(email, password);
+    console.log(response);
+    return response.data;
+});
+
+const identitySlice = createSlice({
+    name: 'identity',
     initialState,
     reducers: {
-        setRestaurants: (state, { payload }) => {
-            state.restaurants = payload;
-        },
+        // setRestaurants: (state, { payload }) => {
+        //     state.restaurants = payload;
+        // },
     },
     extraReducers: (builder) => {
-        builder.addCase(fetchRestaurants.fulfilled, (state, { payload }) => state.restaurants = payload );
+        builder.addCase(register.fulfilled, (state, { payload }) => {
+            console.log('payload :', payload)
+            state.identity = payload 
+        });
+        builder.addCase(login.fulfilled, (state, { payload }) => {
+            console.log('payload :', payload)
+            state.identity = payload
+        });
     }
 });
 
 // Export the numberReducer
-export default restaurantReducer;
+export default identitySlice.reducer;

@@ -18,7 +18,7 @@ const fetchRestaurantsWithFilter = createAsyncThunk('restaurant/fetchRestaurants
 });
 
 // Create a reducer for each action using the createSlice function from @reduxjs/toolkit
-const restaurantReducer = createSlice({
+const restaurantSlice = createSlice({
     name: 'restaurantReducer',
     initialState,
     reducers: {
@@ -32,4 +32,4 @@ const restaurantReducer = createSlice({
 });
 
 // Export the numberReducer
-export default restaurantReducer;
+export default restaurantSlice.reducer;

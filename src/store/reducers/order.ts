@@ -22,7 +22,7 @@ const initialState: IOrderState = {
     orderCart: {} as IOrderCart,
 };
 
-const orderReducer = createSlice({
+const orderSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
@@ -45,4 +45,4 @@ const orderReducer = createSlice({
     },
 });
 
-export default orderReducer;
+export default orderSlice.reducer;
