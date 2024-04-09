@@ -6,9 +6,7 @@ const BASE_URL = import.meta.env.VITE_API_ACCOUNT_URL;
 // Public
 export const register = async (email: string, password: string, forname?: string, name?: string) => {
     const response = await axios.post(`${BASE_URL}/register`, {
-        data: {
-            email, password, forname, name
-        },
+        email, password, forname, name
     }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -19,9 +17,7 @@ export const register = async (email: string, password: string, forname?: string
 
 export const login = async (email: string, password: string) => {
     const response = await axios.post(`${BASE_URL}/login`, {
-        data: {
-            email, password
-        },
+        email, password
     }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -33,9 +29,7 @@ export const login = async (email: string, password: string) => {
 // Private
 export const edit = async (account: IAccount) => {
     const response = await axios.post(`${BASE_URL}/edit`, {
-        data: {
-            ...account
-        },
+        ...account
     }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
