@@ -30,7 +30,7 @@ const initialState: IAccountState = {
 //     return response.data;
 // });
 
-const accountReducer = createSlice({
+const accountSlice = createSlice({
     name: 'accountReducer',
     initialState,
     reducers: {
@@ -48,4 +48,6 @@ const accountReducer = createSlice({
     // }
 });
 
-export default accountReducer;
+export const { setAccount } = accountSlice.actions;
+
+export default accountSlice.reducer;
