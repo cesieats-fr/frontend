@@ -1,24 +1,15 @@
-import * as React from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 import { Box } from "@mui/material";
-import { grey } from "@mui/material/colors";
-
-const style = { 
-    position: 'absolute',
-    bottom: 0,
-    backgroundColor: grey[500],
-    p: 6,
-}
 
 function Footer(props: any) {
     return (
-        <Box component="footer" sx={style}>
+        <Box component="footer" className="w-full bg-neutralClassic p-5 flex-shrink-0">
             <Container maxWidth="lg">
-                <Grid container spacing={5}>
+                <Grid container spacing={2}>
                     <Grid item xs={12} sm={4}>
                         <Typography variant="h6" color="text.primary" gutterBottom>
                         About Us
@@ -61,20 +52,20 @@ function Footer(props: any) {
                         </Link>
                     </Grid>
                 </Grid>
-                <Box mt={5}>
-                <Typography variant="body2" color="text.secondary" align="center">
-                    {"Copyright © "}
-                    <Link color="inherit" href="https://cesiEats.com/}">
-                    CesiEats 
-                    </Link>
-                    {" "}
-                    {new Date().getFullYear()}
-                    {"."}
-                </Typography>
-            </Box>
-        </Container>
-    </Box>
-  );
+                <Box mt={2}>
+                    <Typography variant="body2" color="text.secondary" align="center">
+                        {"Copyright © "}
+                        <Link color="inherit" href="https://cesiEats.com/}">
+                        CesiEats 
+                        </Link>
+                        {" "}
+                        {new Date().getFullYear()}
+                        {"."}
+                    </Typography>
+                </Box>
+            </Container>
+        </Box>
+    );
 }
 
 export default Footer;
