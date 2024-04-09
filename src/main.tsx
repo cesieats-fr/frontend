@@ -15,7 +15,7 @@ import Orders from './views/orders'
 import Favorites from './views/favorites'
 import Account from './views/account'
 import Parameters from './views/parameters'
-import Delivery from './views/Delivery';
+import DeliveryView from './views/delivery';
 import Register from './views/register';
 import Login from './views/login';
 
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/delivery",
-        element: <Delivery />,
+        element: <DeliveryView />,
       },
       {
         path: '/register',
