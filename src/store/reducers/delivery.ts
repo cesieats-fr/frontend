@@ -10,7 +10,7 @@ const initialState: IDeliveryState = {
     deliveries: [] as IDelivery[],
 };
 
-const getDeliveries = createAsyncThunk('delivery/fetchDelivery', async () => {
+export const getDeliveries = createAsyncThunk('delivery/fetchDelivery', async () => {
     const response = await deliveryAPI.getDeliveries();
     return response.data;
 });
