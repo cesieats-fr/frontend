@@ -11,9 +11,7 @@ const initialState: IDeliveryState = {
 };
 
 export const getDeliveries = createAsyncThunk('delivery/fetchDelivery', async () => {
-    console.log('getDeliveries')
     const response = await deliveryAPI.getDeliveries();
-    console.log(response.data);
     return response.data;
 });
 
@@ -24,7 +22,9 @@ const deliverySlice = createSlice({
     reducers: {
     },
     extraReducers: (builder) => {
-        builder.addCase(getDeliveries.fulfilled, (state, { payload }) => state.deliveries = payload );
+        builder.addCase(getDeliveries.fulfilled, (state, { payload }) => {
+            state.deliveries = payload 
+        });
     }
 });
 

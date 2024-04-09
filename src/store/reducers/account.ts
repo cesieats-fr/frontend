@@ -3,12 +3,12 @@ import { IAccount } from 'cesieats-service-types/src/account';
 
 interface IAccountState {
     account: IAccount;
-    isLogged: boolean;
+    isAuthenticated: boolean;
 }
 
 const initialState: IAccountState = {
     account: {} as IAccount,
-    isLogged: false,
+    isAuthenticated: false,
 };
 
 const accountSlice = createSlice({
@@ -17,11 +17,11 @@ const accountSlice = createSlice({
     reducers: {
         setAccount: (state, { payload }) => {
             state.account = payload;
-            state.isLogged = true;
+            state.isAuthenticated = true;
         },
         removeAccount: (state) => {
             state.account = {} as IAccount
-            state.isLogged = false;
+            state.isAuthenticated = false;
         }
     },
 });

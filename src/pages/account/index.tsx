@@ -11,7 +11,6 @@ function Account() {
     
     const dispatch = useDispatch<AppDispatch>();
     const account = useSelector((state: RootState) => state.account.account);
-    console.log(account);
     const [email, setEmail] = useState(account.email);
     const [password, setPassword] = useState(account.password);
     const [name, setName] = useState(account.name);

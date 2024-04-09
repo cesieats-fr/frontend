@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IDelivery, DeliveryState } from 'cesieats-service-types/src/delivery';
+import { IDelivery, EDeliveryState } from 'cesieats-service-types/src/delivery';
 
 const BASE_URL = import.meta.env.VITE_API_DELIVERY_URL;
 
@@ -15,7 +15,7 @@ export const addDelivery = async (delivery: IDelivery) => {
     return response.data;
 };
 
-export const updateDeliveryState = async (state: DeliveryState) => {
+export const updateDeliveryState = async (state: EDeliveryState) => {
     const response = await axios.put(`${BASE_URL}/updateDeliveryState`, {
         state
     }, {
@@ -53,7 +53,7 @@ export const getDeliveries = async () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         },
     });
-    return response.data;
+    return response;
 };
 
 export const deleteDelivery = async (idDelivery: string) => {

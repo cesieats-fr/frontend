@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import { Facebook, Instagram, Twitter, LinkedIn } from "@mui/icons-material";
 import { Box } from "@mui/material";
 
-function Footer(props: any) {
+function Footer() {
     return (
         <Box component="footer" className="w-full bg-neutralClassic text-blackClassic p-5 flex-shrink-0">
             <Container maxWidth="lg">

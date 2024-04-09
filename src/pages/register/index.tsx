@@ -3,19 +3,20 @@ import { useDispatch } from "react-redux";
 import { useState } from 'react';
 import { register } from "../../api/services/account";
 import { setAccount } from "../../store/reducers/account";
+import { EAccountType } from "../../enums";
 
 const accountTypes = [
     {
         name: "Client",
-        type: '0'
+        type: EAccountType.CLIENT
     },
     {
         name: "Restaurant",
-        type: '2'
+        type: EAccountType.RESTAURANT
     },
     {
         name: "Livreur",
-        type: '1'
+        type: EAccountType.DELIVER
     }
 ]
 function Register() {
@@ -24,13 +25,10 @@ function Register() {
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [forname, setForname] = useState('');
-    const [typeAccount, setTypeAccount] = useState('0');
+    const [accountType, setAccountType] = useState<EAccountType>(EAccountType.CLIENT);
 
     const handleRegister = async () => {
-        const { token, account } = await register(email, password, forname, name);
-        console.log(token);
-        console.log(account);
-        console.log(typeAccount);
+        const { token, account } = await register({ email, password, forname, name, accountType });
         localStorage.setItem('token', token);
         dispatch(setAccount(account));
         
@@ -40,12 +38,19 @@ function Register() {
             <div className="w-75 items-center flex flex-col">
                 <h1 className="m-2">Créer un compte</h1>
                 <div className="w-full items-center flex flex-col">
-                    <RadioGroup row aria-labelledby="row-radio-buttons-group-label" name="row-radio-buttons-group" onChange={(e) => setTypeAccount(e.target.value)}>
+                    <RadioGroup row aria-labelledby="row-radio-buttons-group-label" name="row-radio-buttons-group" onChange={(e) => setAccountType(parseInt(e.target.value))}>
                         {/* <FormControlLabel value={EAccountType.CLIENT} control={<Radio />} label="Client" />
                         <FormControlLabel value={EAccountType.CLIENT} control={<Radio />} label="Restaurant" />
                         <FormControlLabel value={EAccountType.CLIENT} control={<Radio />} label="Livreur" /> */}
-                        {accountTypes && accountTypes.map((accountType) => (
-                            <FormControlLabel value={accountType.type} control={<Radio />} label={accountType.name} />
+                        {accountTypes && accountTypes.map((aT, index) => (
+                            <FormControlLabel
+                                key={index}
+                                checked={accountType == aT.type}
+                                value={aT.type}
+                                control={<Radio />}
+                                label={aT.name}
+                                
+                            />
                         ))}
                     </RadioGroup>
                     <TextField id="outlined-basic" label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)}/>

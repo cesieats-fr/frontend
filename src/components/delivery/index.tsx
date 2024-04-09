@@ -13,30 +13,30 @@ interface IDeliveryProps {
 
 const Delivery: React.FC<IDeliveryProps> = ({ delivery }) => {
   return (
-    <Card sx={{ minWidth: 275, border: "2px solid black" }}>
+    <Card>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          { delivery.restaurantName } 
+        <Typography gutterBottom>
+          { delivery.restaurantName }
         </Typography>
-        <Typography variant="h4" component="div">
-          ADRESSE DU RESTAU
+        <Typography color="text.secondary">
+        { delivery.restaurantAddress }
         </Typography>
-        <Typography variant="h4" component="div">
-          téléphone du restaurant
+        <Typography color="text.secondary">
+        { delivery.restaurantTelephone }
         </Typography>
 
         <CardMedia
+          height={100}
           component="img"
-          height="194"
           image="/static/images/cards/paella.jpg"
-          alt="Photo du restau "
+          alt="Photo du restau"
         />
 
         <Typography variant="h4">
-          Adresse client
+        { delivery.clientAddress }
           <br />
         </Typography>
-        <Typography variant="h4">argent gagn</Typography>
+        <Typography>0€</Typography>
       </CardContent>
       <CardActions className="flex justify-center">
         <Button variant="contained" className="" size="small">

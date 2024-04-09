@@ -1,16 +1,19 @@
-import React from 'react';
-import Header from "../header";
-import Footer from "../footer";
-import { Outlet } from 'react-router-dom';
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import { ReactNode } from "react";
 
-function HeaderFooter() {
+type HeaderFooterProps = {
+    children: ReactNode;
+  }
+
+function HeaderFooter({ children }: HeaderFooterProps) {
     
 
     return (
-        <div className="w-full h-full absolute top-0 left-0 flex flex-col text-darkClassic">
+        <div className="w-full h-full absolute top-0 left-0 flex flex-col text-darkClassic pt-5">
             <Header/>
-            <div className='flex-1'>
-                <Outlet />
+            <div className='flex-1 p-10'>
+                { children }
             </div>
             <Footer />
         </div>

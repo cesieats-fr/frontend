@@ -1,69 +1,58 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import HeaderFooter from '../layout/headerFooter'
-import Home from '../views/home'
-import OrderView from '../views/order'
-import Orders from '../views/orders'
-import Favorites from '../views/favorites'
-import Account from '../views/account'
-import Parameters from '../views/parameters'
-import Deliveries from '../views/delivery';
-import Register from '../views/register';
-import Login from '../views/login';
-import DeliveryView from '../views/delivery'
-import Restaurant from '../views/restaurant'
+import Home from '../pages/home'
+import OrderPage from '../pages/order'
+import Orders from '../pages/orders'
+import Favorites from '../pages/favorites'
+import Account from '../pages/account'
+import Parameters from '../pages/parameters'
+import Deliveries from '../pages/delivery';
+import Register from '../pages/register';
+import Login from '../pages/login';
+import DeliveryPage from '../pages/delivery'
+import Restaurant from '../pages/restaurant'
+import RestrictedPage from '../pages/restricted'
+import { useSelector } from 'react-redux'
+import { RootState } from '../store'
+import { EAccountType } from '../enums'
 
-const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <HeaderFooter />,
-      errorElement: <div>404 Not Found</div>,
-      children: [
-        {
-          path: '/',
-          element: <Home />,
-        },
-        {
-          path: '/order',
-          element: <OrderView />,
-        },
-        {
-          path: '/orders',
-          element: <Orders />,
-        },
-        {
-          path: '/favorites',
-          element: <Favorites />,
-        },
-        {
-          path: '/account',
-          element: <Account />,
-        },
-        {
-          path: '/parameters',
-          element: <Parameters />,
-        },
-        {
-          path: "/delivery",
-          element: <DeliveryView />,
-        },
-        {
-            path: "/deliveries",
-            element: <Deliveries />,
-        },
-        {
-          path: "/restaurant",
-          element: <Restaurant />,
-      },
-        {
-          path: '/register',
-          element: <Register />
-        },
-        {
-          path: '/login',
-          element: <Login />
-        }
-      ]
-    },
-  ]);
 
-export default router;
+interface ProtectedRouteProps {
+  element: React.ElementType;
+  requiredAccountType?: EAccountType;
+}
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element: Element, requiredAccountType, ...rest }) => {
+  const isAuthenticated = useSelector((state: RootState) => state.account.isAuthenticated);
+  const accountType = useSelector((state: RootState) => state.account.account?.accountType);
+
+  if (isAuthenticated && requiredAccountType === undefined || accountType === requiredAccountType) {
+    return <Element {...rest} />;
+  } else {
+    return <RestrictedPage />;
+  }
+};
+
+const RouterPage: React.FC = () => {
+  return (
+    <Router>
+      <HeaderFooter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/order" element={<ProtectedRoute element={OrderPage} requiredAccountType={EAccountType.RESTAURANT} />} />
+          <Route path="/orders" element={<ProtectedRoute element={Orders} requiredAccountType={EAccountType.CLIENT} />} />
+          <Route path="/favorites" element={<ProtectedRoute element={Favorites} />} />
+          <Route path="/account" element={<ProtectedRoute element={Account} />} />
+          <Route path="/parameters" element={<ProtectedRoute element={Parameters} />} />
+          <Route path="/delivery" element={<ProtectedRoute element={DeliveryPage} />} />
+          <Route path="/deliveries" element={<ProtectedRoute element={Deliveries} />} />
+          <Route path="/restaurant" element={<ProtectedRoute element={Restaurant} />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </HeaderFooter>
+    </Router>
+  );
+};
+
+export default RouterPage;
