@@ -18,9 +18,14 @@ const CesiEatsBanner = createSvgIcon(
     </svg>
     , "svg");
 
+const largeBanner = {
+    width: 'auto',
+    height: '2em',
+};
+
 const largeIcon = {
-    width: 180,
-    height: 90,
+    width: 'auto',
+    height: '1.3em',
 };
 
 const BottomNavigationStyle = {
@@ -41,12 +46,12 @@ function Header(props: any) {
     return (
         <Box component="header" className="w-full bg-gray-200">
             <BottomNavigation value={value} onChange={handleChange}  className="bg-gray-200">
-                <Link href='/'/><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeIcon}/>} />
-                <Link href='/Order'/><BottomNavigationAction label="Commander" value="Commander" icon={<ShoppingCartRoundedIcon />} sx={BottomNavigationStyle} />
-                <Link href='/Orders'/><BottomNavigationAction label="Commandes" value="Commandes" icon={<ReceiptRoundedIcon />} sx={BottomNavigationStyle} />
-                <Link href='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon />} sx={BottomNavigationStyle} />
-                <Link href='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon />} sx={BottomNavigationStyle} />
-                <Link href='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon />} sx={BottomNavigationStyle} />
+                <Link href='/'><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeBanner}/>} /></Link>
+                <Link href='/Order'/><BottomNavigationAction label="Commander" value="Commander" icon={<ShoppingCartRoundedIcon style={largeIcon}/>} sx={BottomNavigationStyle} />
+                <Link href='/Orders'/><BottomNavigationAction label="Commandes" value="Commandes" icon={<ReceiptRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+                <Link href='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+                <Link href='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
+                <Link href='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon style={largeIcon} />} sx={BottomNavigationStyle} />
             </BottomNavigation>
         </Box>
     );
