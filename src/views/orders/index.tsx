@@ -1,7 +1,7 @@
 function Orders() {
     return (
         <div>
-            Commandes
+            Commander
         </div>
     );
 }
