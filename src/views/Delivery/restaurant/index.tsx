@@ -24,74 +24,94 @@ const bull = (
 
 const Restaurant: React.FC<IDeleveryProps> = ({ order }) => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="">
-        <Chip
-          label="10,0$"
-          variant="outlined"
-          style={{ backgroundColor: "black", color: "white" }}
-          deleteIcon={<span className="text-green-500">$</span>}
-        />
+    <div className="justify-center flex flex-wrap gap-4 flex-col">
+      <Chip
+        label={
+          <span>
+            <span>10,0</span>
+            <span className="text-primaryLighter font-bold">$</span>
+          </span>
+        }
+        variant="outlined"
+        style={{ backgroundColor: "black", color: "white" }}
+      />
+      <div>
+        <div>
+          <Card sx={{ minWidth: 275, border: "2px solid black" }}>
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                NOM DU RESTAURANT
+              </Typography>
+              <Typography variant="h4" component="div">
+                ADRESSE DU RESTAU
+              </Typography>
+              <Typography variant="h4" component="div">
+                téléphone du restaurant
+              </Typography>
+
+              <CardMedia
+                component="img"
+                height="194"
+                image="/static/images/cards/paella.jpg"
+                alt="Photo du restau "
+              />
+
+              <Typography variant="h4">
+                Adresse client
+                <br />
+              </Typography>
+              <Typography variant="h4">argent gagn</Typography>
+            </CardContent>
+            <CardActions className="flex justify-center">
+              <Button variant="contained" className="" size="small">
+                Accepter la livraison
+              </Button>
+            </CardActions>
+          </Card>
+        </div>
+        <br />
+        <div>
+          <Card sx={{ minWidth: 275, border: "2px solid black" }}>
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                NOM DU RESTAURANT
+              </Typography>
+              <Typography variant="h4" component="div">
+                ADRESSE DU RESTAU
+              </Typography>
+              <Typography variant="h4" component="div">
+                téléphone du restaurant
+              </Typography>
+
+              <CardMedia
+                component="img"
+                height="194"
+                image="/static/images/cards/paella.jpg"
+                alt="Photo du restau "
+              />
+
+              <Typography variant="h4">
+                Adresse client
+                <br />
+              </Typography>
+              <Typography variant="h4">argent gagn</Typography>
+            </CardContent>
+            <CardActions className="flex justify-center">
+              <Button variant="contained" className="" size="small">
+                Accepter la livraison
+              </Button>
+            </CardActions>
+          </Card>
+        </div>
       </div>
-
-      <Card sx={{ minWidth: 275 }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            NOM DU RESTAURANT
-          </Typography>
-          <Typography variant="h4" component="div">
-            ADRESSE DU RESTAU
-          </Typography>
-          <Typography variant="h4" component="div">
-            téléphone du restaurant
-          </Typography>
-
-          <CardMedia
-            component="img"
-            height="194"
-            image="/static/images/cards/paella.jpg"
-            alt="Photo du restau "
-          />
-
-          <Typography variant="h4">
-            Adresse client
-            <br />
-          </Typography>
-          <Typography variant="h4">argent gagn</Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Accepter la livraison</Button>
-        </CardActions>
-      </Card>
-      <Card sx={{ minWidth: 275 }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            NOM DU RESTAURANT
-          </Typography>
-          <Typography variant="h4" component="div">
-            ADRESSE DU RESTAU
-          </Typography>
-          <Typography variant="h4" component="div">
-            téléphone du restaurant
-          </Typography>
-
-          <CardMedia
-            component="img"
-            height="194"
-            image="/static/images/cards/paella.jpg"
-            alt="Photo du restau "
-          />
-
-          <Typography variant="h4">
-            Adresse client
-            <br />
-          </Typography>
-          <Typography variant="h4">argent gagn</Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Accepter la livraison</Button>
-        </CardActions>
-      </Card>
     </div>
   );
 };
