@@ -7,34 +7,34 @@ import { Box } from "@mui/material";
 
 function Footer(props: any) {
     return (
-        <Box component="footer" className="w-full bg-neutralClassic p-5 flex-shrink-0">
+        <Box component="footer" className="w-full bg-neutralClassic text-blackClassic p-5 flex-shrink-0">
             <Container maxWidth="lg">
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={4}>
-                        <Typography variant="h6" color="text.primary" gutterBottom>
+                        <Typography variant="h6" className="text-primaryClassic" gutterBottom>
                         About Us
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2">
                         We are CesiEats company, dedicated to providing the best service to our
                         customers.
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={4}>
-                        <Typography variant="h6" color="text.primary" gutterBottom>
+                        <Typography variant="h6" className="text-primaryClassic" gutterBottom>
                         Contact Us
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2">
                         1 rue des cristalleries, 54000 Nancy
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2">
                         Email: keanu.harrell@apple.fr
                         </Typography>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2">
                         Phone: +33 6 29 60 80 70
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={4}>
-                        <Typography variant="h6" color="text.primary" gutterBottom>
+                        <Typography variant="h6" className="text-primaryClassic" gutterBottom>
                         Follow Us
                         </Typography>
                         <Link href="https://www.facebook.com/" color="inherit">
@@ -55,7 +55,7 @@ function Footer(props: any) {
                 <Box mt={2}>
                     <Typography variant="body2" color="text.secondary" align="center">
                         {"Copyright © "}
-                        <Link color="inherit" href="https://cesiEats.com/}">
+                        <Link color="inherit" href="https://cesieats.fr/}">
                         CesiEats 
                         </Link>
                         {" "}

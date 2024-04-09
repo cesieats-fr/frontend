@@ -10,7 +10,6 @@ import ReceiptRoundedIcon from '@mui/icons-material/ReceiptRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
-import { pink } from '@mui/material/colors';
 
 const CesiEatsBanner = createSvgIcon(
     <svg width="768" height="434" viewBox="0 0 768 434" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,6 +23,13 @@ const largeIcon = {
     height: 90,
 };
 
+const BottomNavigationStyle = {
+    color: '#0D1B2A',
+    '&.Mui-selected': {
+        color: '#06c167',
+    }
+}
+
 function Header(props: any) {
     const [value, setValue] = React.useState('recents');
 
@@ -31,16 +37,16 @@ function Header(props: any) {
         if (!!props.test.current) (props.test.current as HTMLDivElement).ownerDocument.body.scrollTop = 0;
         setValue(newValue);
     };
-
+    
     return (
         <Box component="header" className="w-full bg-gray-200">
             <BottomNavigation value={value} onChange={handleChange}  className="bg-gray-200">
                 <Link href='/'/><BottomNavigationAction value="Home" icon={<CesiEatsBanner fontSize='large' style={largeIcon}/>} />
-                <Link href='/Order'/><BottomNavigationAction label="Commander" value="Commander" icon={<ShoppingCartRoundedIcon />} />
-                <Link href='/Orders'/><BottomNavigationAction label="Commandes" value="Commandes" icon={<ReceiptRoundedIcon />} />
-                <Link href='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon />} />
-                <Link href='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon />} />
-                <Link href='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon />} sx={{color: pink[500]}}/>
+                <Link href='/Order'/><BottomNavigationAction label="Commander" value="Commander" icon={<ShoppingCartRoundedIcon />} sx={BottomNavigationStyle} />
+                <Link href='/Orders'/><BottomNavigationAction label="Commandes" value="Commandes" icon={<ReceiptRoundedIcon />} sx={BottomNavigationStyle} />
+                <Link href='/Favorites'/><BottomNavigationAction label="Favoris" value="Favoris" icon={<FavoriteRoundedIcon />} sx={BottomNavigationStyle} />
+                <Link href='/Account'/><BottomNavigationAction label="Compte" value="Compte" icon={<AccountCircleRoundedIcon />} sx={BottomNavigationStyle} />
+                <Link href='/Parameters'/><BottomNavigationAction label="Paramètres" value="Paramètres" icon={<SettingsRoundedIcon />} sx={BottomNavigationStyle} />
             </BottomNavigation>
         </Box>
     );
