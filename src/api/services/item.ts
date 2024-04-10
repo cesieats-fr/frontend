@@ -81,7 +81,7 @@ export const addMenu = async (title: string, price: Number, idRestaurant: string
     return response.data;
 };
 
-export const editMenu = async ( title: string, price: number, idRestaurant: string, description?: string, imageUrl?: string) => {
+export const editMenu = async ( title: string, price: Number, idRestaurant: string, description?: string, imageUrl?: string) => {
     const response = await axios.post(`${BASE_URL}/editMenu`, {
         title,
         description,
@@ -138,13 +138,14 @@ export const deleteMenu = async (idMenu: number) => {
     return response.data;
 }
 
-export const deleteMenuItem = async (idMenuItem: number) => {
+export const deleteMenuItem = async (idMenu: string, idItem: string) => {
     const response = await axios.delete(`${BASE_URL}/deleteMenuItem`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         },
         data:{
-            id: idMenuItem
+            idMenu: idMenu,
+            idItem: idItem
         }
     });
     return response.data;

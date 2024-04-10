@@ -5,12 +5,32 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
 import { IMenu } from "cesieats-service-types/src/item";
+import { getMenuItems } from "../../api/services/item";
+import { setSourceMapsEnabled } from "process";
+import { EditMenuDialog } from "../editMenu";
+import { useState } from "react";
 
 interface IMenuProps {
   menu: IMenu;
 }
 
 function MenuCard({ menu }: IMenuProps) {
+
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  }
+  const itemsMenu = async () => {
+    if(menu._id){
+      const res =  await getMenuItems(menu._id);
+      return res.data;
+    }
+  }
+  
   return (
     <Card>
       <CardContent>
@@ -31,9 +51,10 @@ function MenuCard({ menu }: IMenuProps) {
         <Typography>{ menu.price.toString() + "€"}</Typography>
       </CardContent>
       <CardActions className="flex justify-center">
-        <Button variant="contained" className="" size="small">
+        <Button variant="contained" className="" size="small" onClick={handleClickOpen}>
           Editer le menu
         </Button>
+        <EditMenuDialog menu={menu} open={open} onClose={handleClose} />
       </CardActions>
     </Card>
   );

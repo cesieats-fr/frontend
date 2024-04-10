@@ -4,12 +4,14 @@ import accountReducer from './reducers/account';
 import deliveryReducer from './reducers/delivery';
 import orderReducer from './reducers/order';
 import restaurantReducer from './reducers/restaurant';
+import itemReducer from './reducers/item';
 
 const rootReducer = combineReducers({
     account: accountReducer,
     delivery: deliveryReducer,
     order: orderReducer,
     restaurant: restaurantReducer,
+    items: itemReducer
 });
 
 const store = configureStore({
