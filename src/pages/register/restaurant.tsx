@@ -30,14 +30,14 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
   //Gestion des champs obligatoire
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [fornameError, setFornameError] = useState("");
-  const [RestuarantNameError, setRestuarantNameError] = useState("");
-  const [DescriptionRestaurantError, setDescriptionError] = useState("");
-  const [houverteError, setHouvertureError] = useState("");
-  const [hFermetureError, setHfermtureError] = useState("");
-  const [PriceError, setPriceError] = useState("");
-  const [TelephoneRestaurantError, setTelephoneError] = useState("");
+  // const [nameError, setNameError] = useState("");
+  // const [fornameError, setFornameError] = useState("");
+  // const [RestuarantNameError, setRestuarantNameError] = useState("");
+  // const [DescriptionRestaurantError, setDescriptionError] = useState("");
+  // const [houverteError, setHouvertureError] = useState("");
+  // const [hFermetureError, setHfermtureError] = useState("");
+  // const [PriceError, setPriceError] = useState("");
+  // const [TelephoneRestaurantError, setTelephoneError] = useState("");
 
   const handleRegister = async () => {
     // Vérification des champs obligatoires
@@ -51,7 +51,7 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
     if (!emailRegex.test(email)) {
       setEmailError("Veuillez entrer une adresse e-mail valide");
       console.log(password.trim());
-       } else {
+        } else {
       setEmailError("");
     }
 
@@ -131,8 +131,8 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
               margin="dense"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              error={!!nameError}
-              helperText={nameError}
+              // error={!!nameError}
+              // helperText={nameError}
             />
             <TextField
               label="Prénom"
@@ -141,8 +141,8 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
               margin="dense"
               value={forname}
               onChange={(e) => setForname(e.target.value)}
-              error={!!fornameError}
-              helperText={fornameError}
+              // error={!!fornameError}
+              // helperText={fornameError}
             />
             <TextField
               label="Adresse"
@@ -162,8 +162,8 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
               margin="dense"
               value={restaurantName}
               onChange={(e) => setRestaurantName(e.target.value)}
-              error={!!RestuarantNameError}
-              helperText={RestuarantNameError}
+              // error={!!RestuarantNameError}
+              // helperText={RestuarantNameError}
             />
             <TextField
               label="Description restaurant"
@@ -173,8 +173,8 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
               value={restaurantDescription}
               onChange={(e) => setRestaurantDescription(e.target.value)}
               type="password"
-              error={!!DescriptionRestaurantError}
-              helperText={DescriptionRestaurantError}
+              // error={!!DescriptionRestaurantError}
+              // helperText={DescriptionRestaurantError}
             />
             <TextField
               label="Adresse restaurant"
@@ -192,8 +192,8 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
               margin="dense"
               value={restaurantOpeningTime}
               onChange={(e) => setRestaurantOpeningTime(e.target.value)}
-              error={!!houverteError}
-              helperText={houverteError}
+              // error={!!houverteError}
+              // helperText={houverteError}
             />
             <TextField
               label="Heure de fermeture"
@@ -202,8 +202,8 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
               margin="dense"
               value={restaurantClosingTime}
               onChange={(e) => setRestaurantClosingTime(e.target.value)}
-              error={!!hFermetureError}
-              helperText={hFermetureError}
+              // error={!!hFermetureError}
+              // helperText={hFermetureError}
             />
             <TextField
               label="Prix de livraison"
@@ -215,8 +215,8 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
                 setRestaurantDeliveryPrice(parseInt(e.target.value))
               }
               type="number"
-              error={!!PriceError}
-              helperText={PriceError}
+              // error={!!PriceError}
+              // helperText={PriceError}
             />
             <TextField
               label="Téléphone"
@@ -225,8 +225,8 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
               margin="dense"
               value={restaurantTelephone}
               onChange={(e) => setRestaurantTelephone(e.target.value)}
-              error={!!TelephoneRestaurantError}
-              helperText={TelephoneRestaurantError}
+              // error={!!TelephoneRestaurantError}
+              // helperText={TelephoneRestaurantError}
             />
           </Stack>
         </Stack>
