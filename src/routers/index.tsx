@@ -24,7 +24,6 @@ interface ProtectedRouteProps {
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element: Element, requiredAccountType, ...rest }) => {
   const isAuthenticated = useSelector((state: RootState) => state.account.isAuthenticated);
   const accountType = useSelector((state: RootState) => state.account.account?.accountType);
-  console.log(isAuthenticated)
 
   if (isAuthenticated && (requiredAccountType === undefined || accountType === requiredAccountType)) {
     return <Element {...rest} />;
