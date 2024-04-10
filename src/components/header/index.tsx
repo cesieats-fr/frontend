@@ -143,7 +143,7 @@ function Header() {
             case EAccountType.RESTAURANT:
                 return restaurantHeader;
             default:
-                return clientHeader;
+                return disconnectedHeader;
         }
     }
 
