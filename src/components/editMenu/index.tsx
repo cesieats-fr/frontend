@@ -1,19 +1,18 @@
-import { useEffect } from 'react';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Dialog from '@mui/material/Dialog';
-import { IItem, IMenu } from 'cesieats-service-types/src/item';
-import { editMenu } from '../../api/services/item';
+import { useEffect } from "react";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from "@mui/material/Dialog";
+import { IItem, IMenu } from "cesieats-service-types/src/item";
+import { editMenu } from "../../api/services/item";
 import { getMenuItems, deleteMenuItem } from "../../store/reducers/item";
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, AppDispatch } from '../../store';
-import { IconButton } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { Title } from '@mui/icons-material';
-
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../../store";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Title } from "@mui/icons-material";
 
 export interface editMenuDialogProps {
   menu: IMenu;
@@ -25,40 +24,49 @@ export function EditMenuDialog(props: editMenuDialogProps) {
   const { onClose, menu, open } = props;
 
   const handleClose = () => {
-    editMenu(menu.title, menu.price, menu.idRestaurant, menu.description, menu.imageUrl);
+    editMenu(
+      menu.title,
+      menu.price,
+      menu.idRestaurant,
+      menu.description,
+      menu.imageUrl
+    );
     onClose(menu);
   };
 
-  const dispatch = useDispatch<AppDispatch>(); 
+  const dispatch = useDispatch<AppDispatch>();
   const items = useSelector((state: RootState) => state.items.items);
   useEffect(() => {
-    if(menu._id)
-      dispatch(getMenuItems(menu._id));
+    if (menu._id) dispatch(getMenuItems(menu._id));
   }, [dispatch]);
 
   let idMenu: string;
-  if(menu._id){
+  if (menu._id) {
     idMenu = menu._id;
   }
 
   const handleDeleteItem = (idItem: string | undefined) => {
-    if(menu._id && idItem)
+    if (menu._id && idItem)
       useEffect(() => {
-          dispatch(deleteMenuItem({idMenu, idItem}));
+        dispatch(deleteMenuItem({ idMenu, idItem }));
       }, [dispatch]);
-  }
+  };
 
-  const handleAddItem = () => {
-    
-  }
+  const handleAddItem = () => {};
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Edition du menu {menu.title}</DialogTitle>
       <Title>Liste des items :</Title>
-      <List sx={{ pt: 0 }}>
+      <List className="pt-0">
         {items.map((item: IItem) => (
-          <ListItem key={menu._id}  onClick={() => {handleDeleteItem(item._id)}} secondaryAction={<Button>Delete</Button>}>
-              <ListItemText primary={menu.title} />
+          <ListItem
+            key={menu._id}
+            onClick={() => {
+              handleDeleteItem(item._id);
+            }}
+            secondaryAction={<Button>Delete</Button>}
+          >
+            <ListItemText primary={menu.title} />
           </ListItem>
         ))}
       </List>
