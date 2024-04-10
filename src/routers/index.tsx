@@ -4,7 +4,6 @@ import Home from '../pages/home'
 import OrderPage from '../pages/order'
 import Orders from '../pages/orders'
 import Account from '../pages/account'
-import Parameters from '../pages/parameters'
 import Deliveries from '../pages/delivery';
 import Register from '../pages/register';
 import Login from '../pages/login';
@@ -40,8 +39,7 @@ const RouterPage: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/order" element={<ProtectedRoute element={OrderPage} requiredAccountType={EAccountType.CLIENT} />} />
           <Route path="/orders" element={<ProtectedRoute element={Orders} requiredAccountType={EAccountType.CLIENT} />} />
-          <Route path="/account" element={<ProtectedRoute element={Account} />} />
-          <Route path="/parameters" element={<ProtectedRoute element={Parameters} />} />
+          <Route path="/account" element={<ProtectedRoute element={Account} />} />          
           <Route path="/delivery" element={<ProtectedRoute element={DeliveryPage} />} />
           <Route path="/deliveries" element={<ProtectedRoute element={Deliveries} />} />
           <Route path="/restaurant" element={<ProtectedRoute element={Restaurant} />} />
