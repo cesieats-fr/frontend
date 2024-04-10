@@ -31,7 +31,6 @@ export const editAccountRestaurant = createAsyncThunk('restaurant/editRestaurant
 
 export const getAllRestaurants = createAsyncThunk('restaurant/getAllRestaurants', async () => {
     const response = await restaurantAPI.getAllRestaurants();
-    console.log('response: ', response)
     return response.data;
 });
 
@@ -56,6 +55,9 @@ const restaurantSlice = createSlice({
         });
         builder.addCase(editAccountRestaurant.fulfilled, (state, { payload }) =>{
             state.accountRestaurant = payload;
+        });
+        builder.addCase(getAllRestaurants.fulfilled, (state, { payload }) => {
+            state.restaurants = payload;
         });
     }
 });

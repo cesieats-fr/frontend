@@ -4,6 +4,7 @@ import { AppDispatch, RootState } from "../../store";
 import OrderCard from "../../components/order/orderCard";
 import { useEffect } from "react";
 import { getAllRestaurants } from "../../store/reducers/restaurant";
+import { Divider, Stack } from "@mui/material";
 
 function OrderPage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,9 +17,8 @@ function OrderPage() {
   }, [dispatch]);
 
   return (
-    <div>
+    <Stack spacing={5} direction="column" divider={<Divider orientation="horizontal" flexItem />} >
       <Typography
-        className="p-4 background-color-grey-100 border-b-2 border-black color-black-100" 
         variant="body1"
         color="text.primary"
         gutterBottom
@@ -31,7 +31,7 @@ function OrderPage() {
           restaurants && restaurants.map((restaurant, index) => <OrderCard restaurant={restaurant} key={index} />)
         }
       </div>
-    </div>
+    </Stack>
   );
 }
 
