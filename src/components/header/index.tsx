@@ -115,11 +115,11 @@ function Header() {
     
     const getHeader = () => {
         switch(userType){
-            case EAccountType.CLIENT: // USER ?
+            case EAccountType.CLIENT:
                 return clientHeader;
-            case EAccountType.DELIVER: // DELIVERY ?
+            case EAccountType.DELIVER:
                 return deliveryHeader;
-            case EAccountType.RESTAURANT: // RESTAURANT ?
+            case EAccountType.RESTAURANT:
                 return restaurantHeader;
             default:
                 return clientHeader;

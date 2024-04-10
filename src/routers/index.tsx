@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HeaderFooter from '../layout/headerFooter'
 import Home from '../pages/home'
 import OrderPage from '../pages/order'
@@ -34,7 +34,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element: Element, requi
 
 const RouterPage: React.FC = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <HeaderFooter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -49,7 +49,7 @@ const RouterPage: React.FC = () => {
           <Route path="/login" element={<Login />} />
         </Routes>
       </HeaderFooter>
-    </Router>
+    </BrowserRouter>
   );
 };
 
