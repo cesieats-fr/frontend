@@ -49,7 +49,7 @@ function DefaultAccount() {
                     <TextField id="outlined-basic" label="Nom"          variant="outlined" className="w-full" required margin="dense" value={name}      onChange={(e) => setName(e.target.value)}/>
                     <TextField id="outlined-basic" label="Prénom"       variant="outlined" className="w-full" required margin="dense" value={forname}   onChange={(e) => setForname(e.target.value)}/>
                     <TextField id="outlined-basic" label="Adresse"      variant="outlined" className="w-full"          margin="dense" value={address}    onChange={(e) => setAddress(e.target.value)}   multiline       rows={4}/>
-                    {CopyableDisabledTextField(account.codeSponsor)}
+                    {CopyableDisabledTextField(account.codeSponsor,'Code pour sponsoriser')}
                     <div className="w-full flex flex-row justify-around pt-5">
                         <Button variant="contained" onClick={() => { handleEditAccount() }}>Valider les modifications</Button>
                         <Button variant="contained" onClick={() => { handleDeleteAccount() }}>Supprimer le compte</Button>

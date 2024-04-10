@@ -1,7 +1,7 @@
 import TextField from '@mui/material/TextField';
 import { Box } from '@mui/material';
 
-const CopyableTextField = (text: string | undefined) => {
+const CopyableTextField = (text: string | undefined, label: string) => {
     const value = text;
   
     // Fonction pour copier le texte
@@ -34,6 +34,7 @@ const CopyableTextField = (text: string | undefined) => {
   
     return (
       <Box
+        marginTop={2}
         display="inline-block"
         onClick={() => copyToClipboard(value)} 
         sx={{
@@ -47,10 +48,14 @@ const CopyableTextField = (text: string | undefined) => {
       >
         <TextField
           fullWidth
+          label={label}
           value={value}
           InputProps={{
             readOnly: true,
             style: { color: 'gray', cursor: 'pointer' }
+          }}
+          InputLabelProps={{
+            shrink: true,
           }}
         />
       </Box>
