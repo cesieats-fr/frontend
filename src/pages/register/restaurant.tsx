@@ -30,14 +30,14 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
   //Gestion des champs obligatoire
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-//   const [nameError, setNameError] = useState("");
-//   const [fornameError, setFornameError] = useState("");
-//   const [RestuarantNameError, setRestuarantNameError] = useState("");
-//   const [DescriptionRestaurantError, setDescriptionError] = useState("");
-//   const [houverteError, setHouvertureError] = useState("");
-//   const [hFermetureError, setHfermtureError] = useState("");
-//   const [PriceError, setPriceError] = useState("");
-//   const [TelephoneRestaurantError, setTelephoneError] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [fornameError, setFornameError] = useState("");
+  const [RestuarantNameError, setRestuarantNameError] = useState("");
+  const [DescriptionRestaurantError, setDescriptionError] = useState("");
+  const [houverteError, setHouvertureError] = useState("");
+  const [hFermetureError, setHfermtureError] = useState("");
+  const [PriceError, setPriceError] = useState("");
+  const [TelephoneRestaurantError, setTelephoneError] = useState("");
 
   const handleRegister = async () => {
     // Vérification des champs obligatoires
