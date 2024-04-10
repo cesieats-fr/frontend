@@ -1,13 +1,19 @@
-# Step 1: Build the React application
-FROM node:14 AS build
-WORKDIR /react-template
-COPY package*.json ./
+FROM node:lts-alpine AS build
+
+WORKDIR /frontend
+
+COPY package*.json .
+
+RUN npm install -g vite
 RUN npm install
-COPY . ./
+
+COPY . .
+
 RUN npm run build
 
-# Step 2: Serve the application using Nginx
-FROM nginx:alpine
-COPY --from=build /react-template/build /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM ubuntu As prod
+RUN apt-get update
+RUN apt-get install nginx -y
+COPY --from=build /frontend/dist /var/www/html/
+EXPOSE 3000 
+CMD ["nginx","-g","daemon off;"]

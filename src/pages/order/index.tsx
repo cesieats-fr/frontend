@@ -11,13 +11,20 @@ function OrderPage() {
 
   const account = useSelector((state: RootState) => state.account.account);
   const restaurants = useSelector((state: RootState) => state.restaurant.restaurants);
+  const restaurantSelected = useSelector((state: RootState) => state.restaurant.restaurantSelected);
+  const currentRestaurantItems = useSelector((state: RootState) => state.item.currentRestaurantItems);
+  const currentRestaurantsMenus = useSelector((state: RootState) => state.item.currentRestaurantsMenus);
 
   useEffect(() => {
     dispatch(getAllRestaurants())
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log(currentRestaurantItems, currentRestaurantsMenus);
+  }, [currentRestaurantItems, currentRestaurantsMenus]);
+
   return (
-    <Stack spacing={5} direction="column" divider={<Divider orientation="horizontal" flexItem />} >
+    <Stack spacing={5} direction="column" divider={<Divider orientation="horizontal" flexItem />} alignItems="center" >
       <Typography
         variant="body1"
         color="text.primary"
@@ -26,11 +33,23 @@ function OrderPage() {
         Livrer à l'adresse : { account.address }
       </Typography>
 
-      <div className="flex flex-wrap justify-center gap-4">
-        {
-          restaurants && restaurants.map((restaurant, index) => <OrderCard restaurant={restaurant} key={index} />)
-        }
-      </div>
+      <Stack spacing={5} direction="row" divider={<Divider orientation="vertical" flexItem />} className="h-full">
+        <Stack spacing={5} direction="row" useFlexGap flexWrap="wrap">
+          {
+            restaurants && restaurants.map((restaurant, index) => <OrderCard restaurant={restaurant} key={index} />)
+          }
+        </Stack>
+        <Stack>
+          <Typography>
+            Restaurant { restaurantSelected &&  restaurantSelected.name }
+          </Typography>
+        </Stack>
+        <Stack>
+          <Typography>
+            Panier
+          </Typography>
+        </Stack>
+      </Stack>
     </Stack>
   );
 }

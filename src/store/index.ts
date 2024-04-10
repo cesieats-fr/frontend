@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
     delivery: deliveryReducer,
     order: orderReducer,
     restaurant: restaurantReducer,
-    items: itemReducer
+    item: itemReducer
 });
 
 const store = configureStore({

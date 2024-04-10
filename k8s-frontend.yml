@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: cesieats-frontend
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: kilme/frontend:$IMAGE_VERSION
+          env:
+          - name: VITE_API_ACCOUNT_URL
+            value: https://api.cesieats.fr/account
+          - name: VITE_API_ITEM_URL
+            value: https://api.cesieats.fr/item
+          - name: VITE_API_ORDER_URL
+            value: https://api.cesieats.fr/order
+          - name: VITE_API_RESTAURANT_URL
+            value: https://api.cesieats.fr/restaurant
+          - name: VITE_API_SPONSOR_URL
+            value: https://api.cesieats.fr/sponsor
+          - name: VITE_API_DELIVERY_URL
+            value: https://api.cesieats.fr/delivery
+          - name: VITE_SOCKET_URL
+            value: https://socket.cesieats.fr
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "250m"
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-frontend
+  namespace: cesieats-frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3000
+      nodePort: 30080
+  type: NodePort
