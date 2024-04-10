@@ -9,8 +9,8 @@ RUN npm install
 
 COPY . .
 RUN ls -l
-RUN ls -l /src
-RUN ls -l /src/layout
+RUN ls -l src
+RUN ls -l src/layout
 RUN npm run build
 
 FROM ubuntu As prod
