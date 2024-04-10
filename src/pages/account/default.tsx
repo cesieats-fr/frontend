@@ -6,6 +6,8 @@ import { deleteAccount } from "../../api/services/account";
 import { editAccount, removeAccount } from "../../store/reducers/account";
 import { IAccount } from 'cesieats-service-types/src/account';
 import { redirect } from "react-router-dom";
+import CopyableTextField from "../../components/common/CopyableTextField"
+const type = ['Client','Livreur','Restaurant'];
 
 function DefaultAccount() {
     const dispatch = useDispatch<AppDispatch>();
@@ -43,20 +45,24 @@ function DefaultAccount() {
     }
     return (
         <div className="w-full h-full items-center flex flex-col">
-            <Stack direction="column" spacing={4}>
-                <Typography className="m-3 text-center">Infos et modifications du compte</Typography>
-                <Stack direction="column" spacing={2} justifyContent="space-around">
-                    <TextField label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)}/>
-                    <TextField label="Mot de passe" variant="outlined" className="w-full" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
-                    <TextField label="Nom"          variant="outlined" className="w-full" required margin="dense" value={name}      onChange={(e) => setName(e.target.value)}/>
-                    <TextField label="Prénom"       variant="outlined" className="w-full" required margin="dense" value={forname}   onChange={(e) => setForname(e.target.value)}/>
-                    <TextField label="Adresse"      variant="outlined" className="w-full"          margin="dense" value={address}    onChange={(e) => setAddress(e.target.value)}   multiline       rows={4}/>
-                </Stack>
-                <Stack direction="row" spacing={5} alignItems="center" justifyContent="space-between">
-                    <Button variant="contained" onClick={() => { handleEditAccount() }}>Valider les modifications</Button>
-                    <Button variant="contained" onClick={() => { handleDeleteAccount() }}>Supprimer le compte</Button>                    
-                </Stack>
-            </Stack>
+            <div className="w-75 h-full items-center flex flex-col">
+                <h1 className="m-5">Infos et modifications du compte</h1>
+                <div className="w-full items-center flex flex-col">
+                    Type de compte : {type[account.accountType]}
+                </div>
+                <div className="w-full h-full items-center flex flex-col">
+                    <TextField id="outlined-basic" label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)}/>
+                    <TextField id="outlined-basic" label="Mot de passe" variant="outlined" className="w-full" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
+                    <TextField id="outlined-basic" label="Nom"          variant="outlined" className="w-full" required margin="dense" value={name}      onChange={(e) => setName(e.target.value)}/>
+                    <TextField id="outlined-basic" label="Prénom"       variant="outlined" className="w-full" required margin="dense" value={forname}   onChange={(e) => setForname(e.target.value)}/>
+                    <TextField id="outlined-basic" label="Adresse"      variant="outlined" className="w-full"          margin="dense" value={address}    onChange={(e) => setAddress(e.target.value)}   multiline       rows={4}/>
+                    {CopyableTextField(account.codeSponsor,'Code pour sponsoriser')}
+                    <div className="w-full flex flex-row justify-around pt-5">
+                        <Button variant="contained" onClick={() => { handleEditAccount() }}>Valider les modifications</Button>
+                        <Button variant="contained" onClick={() => { handleDeleteAccount() }}>Supprimer le compte</Button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

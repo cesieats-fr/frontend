@@ -17,6 +17,8 @@ import {
   RoomService,
   BarChart,
 } from "@mui/icons-material";
+import MenuList from "../../components/menuList";
+import { IMenu } from "cesieats-service-types/src/item";
 
 const drawerWidth = 240;
 const icons = [<Home />, <RestaurantMenu />, <RoomService />, <BarChart />];
@@ -24,10 +26,48 @@ const icons = [<Home />, <RestaurantMenu />, <RoomService />, <BarChart />];
 export default function MenuDrawer() {
   const [selectedMenu, setSelectedMenu] = useState("Home");
 
-  const handleMenuClick = (menu) => {
+  const handleMenuClick = (menu: React.SetStateAction<string>) => {
     setSelectedMenu(menu);
   };
 
+  const menuList: IMenu[] = [
+    {
+      title: "Menu bigmac",
+      description: "yummy",
+      price: 20,
+      idRestaurant: 'test'
+    },
+    {
+      title: "Menu bigmac",
+      description: "yummy",
+      price: 20,
+      idRestaurant: 'test'
+    },
+    {
+      title: "Menu bigmac",
+      description: "yummy",
+      price: 20,
+      idRestaurant: 'test'
+    },
+    {
+      title: "Menu bigmac",
+      description: "yummy",
+      price: 20,
+      idRestaurant: 'test'
+    },
+    {
+      title: "Menu bigmac",
+      description: "yummy",
+      price: 20,
+      idRestaurant: 'test'
+    },
+    {
+      title: "Menu bigmac",
+      description: "yummy",
+      price: 20,
+      idRestaurant: 'test'
+    }
+  ] ;
   return (
     <Box className="flex">
       <Drawer
@@ -63,7 +103,7 @@ export default function MenuDrawer() {
         <Typography paragraph>
           {/* Condition pour afficher les informations en fonction de l'élément de menu sélectionné */}
           {selectedMenu === "Home" && <>Bienvenue sur la page d'accueil</>}
-          {selectedMenu === "Menu" && <>...</>}
+          {selectedMenu === "Menu" && <MenuList menuList={menuList}/>}
           {selectedMenu === "Commandes" && (
             <>Informations pour les commandes...</>
           )}
