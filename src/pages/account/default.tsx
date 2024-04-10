@@ -6,7 +6,7 @@ import { deleteAccount, edit } from "../../api/services/account";
 import { removeAccount, setAccount } from "../../store/reducers/account";
 import { IAccount } from 'cesieats-service-types/src/account';
 import { redirect } from "react-router-dom";
-
+import CopyableDisabledTextField from "../../components/common/CopyableTextField"
 const type = ['Client','Livreur','Restaurant'];
 
 function DefaultAccount() {
@@ -49,6 +49,7 @@ function DefaultAccount() {
                     <TextField id="outlined-basic" label="Nom"          variant="outlined" className="w-full" required margin="dense" value={name}      onChange={(e) => setName(e.target.value)}/>
                     <TextField id="outlined-basic" label="Prénom"       variant="outlined" className="w-full" required margin="dense" value={forname}   onChange={(e) => setForname(e.target.value)}/>
                     <TextField id="outlined-basic" label="Adresse"      variant="outlined" className="w-full"          margin="dense" value={address}    onChange={(e) => setAddress(e.target.value)}   multiline       rows={4}/>
+                    {CopyableDisabledTextField(account.codeSponsor)}
                     <div className="w-full flex flex-row justify-around pt-5">
                         <Button variant="contained" onClick={() => { handleEditAccount() }}>Valider les modifications</Button>
                         <Button variant="contained" onClick={() => { handleDeleteAccount() }}>Supprimer le compte</Button>

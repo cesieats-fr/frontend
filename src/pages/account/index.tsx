@@ -9,7 +9,7 @@ function Account() {
     const accountType = useSelector((state: RootState) => state.account.account?.accountType);
 
     switch(accountType) {
-        case EAccountType.CLIENT:
+        case EAccountType.RESTAURANT:
             return <RestaurantAccount />;
         default:
             return <DefaultAccount />;
