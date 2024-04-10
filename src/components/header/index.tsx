@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { ShoppingCartRounded, ReceiptRounded, AccountCircleRounded, SettingsRounded, DeliveryDiningRounded, StorefrontRounded, Login,Logout } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import { EAccountType } from '../../enums';
 import { Link } from 'react-router-dom';
 import { removeAccount } from '../../store/reducers/account';
@@ -128,9 +128,9 @@ const disconnectedHeader = [
 
 function Header() {
     const userType = useSelector((state: RootState) => state.account.account?.accountType);
-
+    const dispatch = useDispatch<AppDispatch>();
+    
     const disconnectUser = () => {
-        const dispatch = useDispatch();
         dispatch(removeAccount());
     }
 
@@ -153,7 +153,7 @@ function Header() {
                 const [state, setState] = useState('');
 
                 return (
-                    <BottomNavigationAction 
+                    <BottomNavigationAction
                         component={Link}
                         showLabel={state == item.navigation}
                         to={item.navigation}

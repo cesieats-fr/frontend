@@ -25,7 +25,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element: Element, requi
   const isAuthenticated = useSelector((state: RootState) => state.account.isAuthenticated);
   const accountType = useSelector((state: RootState) => state.account.account?.accountType);
 
-  if (isAuthenticated && requiredAccountType === undefined || accountType === requiredAccountType) {
+  if (isAuthenticated && (requiredAccountType === undefined || accountType === requiredAccountType)) {
     return <Element {...rest} />;
   } else {
     return <RestrictedPage />;
