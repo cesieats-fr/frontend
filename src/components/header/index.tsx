@@ -6,6 +6,7 @@ import { AppDispatch, RootState } from '../../store';
 import { EAccountType } from '../../enums';
 import { Link } from 'react-router-dom';
 import { removeAccount } from '../../store/reducers/account';
+import { useState } from 'react';
 import CesiEatsBanner from '../../assets/CesiEatsBanner';
 
 const largeBanner = {
@@ -112,7 +113,7 @@ const restaurantHeader = [
     },
 ];
 
-const errorHeader = [
+const disconnectedHeader = [
     {
         name: '',
         icon: <CesiEatsBanner fontSize='large' style={largeBanner} />,
@@ -128,6 +129,8 @@ const errorHeader = [
 function Header() {
     const userType = useSelector((state: RootState) => state.account.account?.accountType);
     const dispatch = useDispatch<AppDispatch>();
+
+    const [navHover, setNavHover] = useState('');
     
     const disconnectUser = () => {
         dispatch(removeAccount());
@@ -142,22 +145,25 @@ function Header() {
             case EAccountType.RESTAURANT:
                 return restaurantHeader;
             default:
-                return errorHeader;
+                return disconnectedHeader;
         }
     }
 
     return (
-        <BottomNavigation value={useLocation().pathname}>
+        <BottomNavigation value={useLocation().pathname} >
             {getHeader().map((item, index) => {
                 return (
                     <BottomNavigationAction
                         component={Link}
+                        showLabel={navHover === item.navigation}
                         to={item.navigation}
                         label={item.name} 
                         icon={item.icon}
                         value={item.navigation}
                         key={index}
                         onClick={() => {if(item.navigation === '/login') disconnectUser()}}
+                        onMouseEnter={() => setNavHover(item.navigation)}
+                        onMouseLeave={() => setNavHover('')}
                     />
                 )
             })}

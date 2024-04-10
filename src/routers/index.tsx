@@ -25,7 +25,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element: Element, requi
   const isAuthenticated = useSelector((state: RootState) => state.account.isAuthenticated);
   const accountType = useSelector((state: RootState) => state.account.account?.accountType);
 
-  if (isAuthenticated && requiredAccountType === undefined || accountType === requiredAccountType) {
+  if (isAuthenticated && (requiredAccountType === undefined || accountType === requiredAccountType)) {
     return <Element {...rest} />;
   } else {
     return <RestrictedPage />;
@@ -38,7 +38,7 @@ const RouterPage: React.FC = () => {
       <HeaderFooter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/order" element={<ProtectedRoute element={OrderPage} requiredAccountType={EAccountType.RESTAURANT} />} />
+          <Route path="/order" element={<ProtectedRoute element={OrderPage} requiredAccountType={EAccountType.CLIENT} />} />
           <Route path="/orders" element={<ProtectedRoute element={Orders} requiredAccountType={EAccountType.CLIENT} />} />
           <Route path="/account" element={<ProtectedRoute element={Account} />} />
           <Route path="/parameters" element={<ProtectedRoute element={Parameters} />} />
