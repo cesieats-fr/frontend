@@ -1,10 +1,12 @@
-import { NavLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
-import { ShoppingCartRounded, ReceiptRounded, FavoriteRounded, AccountCircleRounded, SettingsRounded, DeliveryDiningRounded, StorefrontRounded } from '@mui/icons-material';
-import { useSelector } from 'react-redux';
+import { ShoppingCartRounded, ReceiptRounded, AccountCircleRounded, SettingsRounded, DeliveryDiningRounded, StorefrontRounded, Login,Logout } from '@mui/icons-material';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import CesiEatsBanner from '../../assets/CesiEatsBanner';
 import { EAccountType } from '../../enums';
+import { Link } from 'react-router-dom';
+import { removeAccount } from '../../store/reducers/account';
+import CesiEatsBanner from '../../assets/CesiEatsBanner';
 
 const largeBanner = {
     width: 'auto',
@@ -18,7 +20,7 @@ const large = {
 
 const clientHeader = [
     {
-        name: 'Home',
+        name: '',
         icon: <CesiEatsBanner fontSize='large' style={largeBanner} />,
         navigation: '/'
     },
@@ -33,11 +35,6 @@ const clientHeader = [
         navigation: '/orders'
     },
     {
-        name: 'Favoris',
-        icon: <FavoriteRounded style={large} />,
-        navigation: '/favorites'
-    },
-    {
         name: 'Compte',
         icon: <AccountCircleRounded style={large} />,
         navigation: '/account'
@@ -46,12 +43,17 @@ const clientHeader = [
         name: 'Paramètres',
         icon: <SettingsRounded style={large} />,
         navigation: '/parameters'
-    }
+    },
+    {
+        name: 'Se déconnecter',
+        icon: <Logout style={large} />,
+        navigation: '/login'
+    },
 ];
 
 const deliveryHeader = [
     {
-        name: 'Home',
+        name: '',
         icon: <CesiEatsBanner fontSize='large' style={largeBanner} />,
         navigation: '/'
     },
@@ -66,11 +68,6 @@ const deliveryHeader = [
         navigation: '/deliveries'
     },
     {
-        name: 'Favoris',
-        icon: <FavoriteRounded style={large} />,
-        navigation: '/favorites'
-    },
-    {
         name: 'Compte',
         icon: <AccountCircleRounded style={large} />,
         navigation: '/account'
@@ -79,12 +76,17 @@ const deliveryHeader = [
         name: 'Paramètres',
         icon: <SettingsRounded style={large} />,
         navigation: '/parameters'
-    }
+    },
+    {
+        name: 'Se déconnecter',
+        icon: <Logout style={large} />,
+        navigation: '/login'
+    },
 ];
 
 const restaurantHeader = [
     {
-        name: 'Home',
+        name: '',
         icon: <CesiEatsBanner fontSize='large' style={largeBanner} />,
         navigation: '/'
     },
@@ -94,11 +96,6 @@ const restaurantHeader = [
         navigation: '/restaurant'
     },
     {
-        name: 'Favoris',
-        icon: <FavoriteRounded style={large} />,
-        navigation: '/favorites'
-    },
-    {
         name: 'Compte',
         icon: <AccountCircleRounded style={large} />,
         navigation: '/account'
@@ -107,12 +104,39 @@ const restaurantHeader = [
         name: 'Paramètres',
         icon: <SettingsRounded style={large} />,
         navigation: '/parameters'
-    }
+    },
+    {
+        name: 'Se déconnecter',
+        icon: <Logout style={large} />,
+        navigation: '/login'
+    },
+];
+
+const errorHeader = [
+    {
+        name: '',
+        icon: <CesiEatsBanner fontSize='large' style={largeBanner} />,
+        navigation: '/'
+    },
+    {
+        name: 'Se connecter',
+        icon: <Login style={large} />,
+        navigation: '/login'
+    },
 ];
 
 function Header() {
     const userType = useSelector((state: RootState) => state.account.account?.accountType);
     
+    const disconnectUser = () => {
+        const dispatch = useDispatch();
+        dispatch(removeAccount());
+    }
+
+    const test = (event:any) => {
+        console.log(event)
+    }
+
     const getHeader = () => {
         switch(userType){
             case EAccountType.CLIENT:
@@ -122,27 +146,24 @@ function Header() {
             case EAccountType.RESTAURANT:
                 return restaurantHeader;
             default:
-                return clientHeader;
+                return errorHeader;
         }
     }
 
     return (
-        <BottomNavigation className='bg-blackClassic'>
+        <BottomNavigation value={useLocation().pathname}>
             {getHeader().map((item, index) => {
                 return (
-                    <NavLink 
-                        to={item.navigation} 
-                        key={index}
-                        className={({ isActive, isPending }) =>
-                            isPending ? "pending" : isActive ? "bg-neutralDark" : ""
-                        }
-                    >
-                        <BottomNavigationAction 
-                            label={item.name} 
-                            icon={item.icon}
-                            className='bg-blackClassic'
-                        />
-                    </NavLink>
+                    <BottomNavigationAction 
+                        component={Link}
+                        to={item.navigation}
+                        label={item.name} 
+                        icon={item.icon}
+                        value={item.navigation}
+                        key={item.name}
+                        //onMouseOver={this.setState}
+                        onClick={() => {if(item.navigation === '/login') disconnectUser()}}
+                    />
                 )
             })}
         </BottomNavigation>

@@ -9,7 +9,7 @@ type HeaderFooterProps = {
 function HeaderFooter({ children }: HeaderFooterProps) {
 
     return (
-        <div className="w-full h-full absolute top-0 left-0 flex flex-col text-darkClassic pt-5">
+        <div className="w-full h-full absolute top-0 left-0 flex flex-col text-darkClassic">
             <Header />
             <div className='flex-1 p-10'>
                 { children }
