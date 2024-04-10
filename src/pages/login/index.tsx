@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import { login } from "../../api/services/account";
@@ -38,7 +38,7 @@ function Login() {
             return (
             <div className="w-full items-center flex flex-col">
             <div className="w-75 items-center flex flex-col">
-                <h1 className="m-2">Connexion</h1>
+                <Typography className="m-2">Connexion</Typography>
                 <div className="w-full items-center flex flex-col">
                     <TextField label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)}/>
                     <TextField label="Mot de passe" variant="outlined" className="w-full" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
@@ -47,7 +47,7 @@ function Login() {
                 </div>
             </div>
             <div className="w-75 items-center flex flex-col">
-                <h1 className="m-2">Pas encore inscrit?</h1>
+                <Typography className="m-2" >Pas encore inscrit?</Typography>
                 <div className="w-full items-center flex flex-col">
                     <NavLink to={'/register'}>
                         <Button variant="contained">S'inscrire</Button>

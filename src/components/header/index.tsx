@@ -129,6 +129,8 @@ const disconnectedHeader = [
 function Header() {
     const userType = useSelector((state: RootState) => state.account.account?.accountType);
     const dispatch = useDispatch<AppDispatch>();
+
+    const [navHover, setNavHover] = useState('');
     
     const disconnectUser = () => {
         dispatch(removeAccount());
@@ -150,20 +152,18 @@ function Header() {
     return (
         <BottomNavigation value={useLocation().pathname} >
             {getHeader().map((item, index) => {
-                const [state, setState] = useState('');
-
                 return (
                     <BottomNavigationAction
                         component={Link}
-                        showLabel={state == item.navigation}
+                        showLabel={navHover === item.navigation}
                         to={item.navigation}
                         label={item.name} 
                         icon={item.icon}
                         value={item.navigation}
-                        key={item.name}
+                        key={index}
                         onClick={() => {if(item.navigation === '/login') disconnectUser()}}
-                        onMouseEnter={() => setState(item.navigation)}
-                        onMouseLeave={() => setState('')}
+                        onMouseEnter={() => setNavHover(item.navigation)}
+                        onMouseLeave={() => setNavHover('')}
                     />
                 )
             })}
