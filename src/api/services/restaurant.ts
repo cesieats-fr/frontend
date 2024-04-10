@@ -49,9 +49,9 @@ export const editRestaurant = async (restaurant: IRestaurant) => {
     }
 };
 
-export const getRestaurant = async (id: number) => {
+export const getRestaurantByAccountId = async () => {
     try {
-        const response = await axios.get(`${BASE_URL}/getRestaurant/${id}`,{
+        const response = await axios.get(`${BASE_URL}/getRestaurant`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

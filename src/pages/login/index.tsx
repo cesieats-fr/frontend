@@ -8,8 +8,7 @@ import { RootState } from "../../store";
 
 function Login() {
     const dispatch = useDispatch();
-    const account = useSelector((state: RootState) => state.account.account);
-    const isLogged = useSelector((state: RootState) => state.account.isLogged);
+    const isAuthenticated = useSelector((state: RootState) => state.account.isAuthenticated);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const handleLogin = async () => {
@@ -26,7 +25,7 @@ function Login() {
     }
     
     const getPage = () => {
-        if(isLogged){
+        if(isAuthenticated){
             return (
                 <div className="w-full items-center flex flex-col">
                     <h1 className="m-2">Vous êtes déjà connecté.e</h1>

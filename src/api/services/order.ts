@@ -36,7 +36,7 @@ export const getOrder = async (id: number) => {
     return response.data;
 };
 
-export const getAllOrders = async (idRestaurant?: number, orderState?: number) => {
+export const getAllClientOrders = async (idRestaurant?: number, orderState?: number) => {
     const response = await axios.get(`${BASE_URL}/getAllOrders`, {
         params: {
             restaurant: idRestaurant,
