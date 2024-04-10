@@ -6,12 +6,14 @@ import { restaurantAPI } from '../../api';
 interface IRestaurantState {
     restaurants: IRestaurant[];
     accountRestaurant: IRestaurant;
+    restaurantSelected: IRestaurant;
 }
 
 // Define the initial state
 const initialState: IRestaurantState = {
     restaurants: [] as IRestaurant[],
     accountRestaurant: {} as IRestaurant,
+    restaurantSelected: {} as IRestaurant,
 };
 
 export const getRestaurantByAccountId = createAsyncThunk('restaurant/getRestaurantByAccountId', async () => {
@@ -44,7 +46,10 @@ const restaurantSlice = createSlice({
         },
         setAccountRestaurant: (state, { payload }) => {
             state.accountRestaurant = payload;
-        }
+        },
+        setRestaurantSelected: (state, { payload }) => {
+            state.restaurantSelected = payload;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(getRestaurantByAccountId.fulfilled, (state, { payload }) => {
@@ -62,7 +67,7 @@ const restaurantSlice = createSlice({
     }
 });
 
-export const { setRestaurants, setAccountRestaurant } = restaurantSlice.actions;
+export const { setRestaurants, setAccountRestaurant, setRestaurantSelected } = restaurantSlice.actions;
 
 // Export the numberReducer
 export default restaurantSlice.reducer;

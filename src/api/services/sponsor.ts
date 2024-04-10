@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { ISponsor } from 'cesieats-service-types/src/sponsor';
 
 const BASE_URL = import.meta.env.VITE_API_RESTAURANT_URL;
 

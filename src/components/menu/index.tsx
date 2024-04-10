@@ -5,8 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { CardMedia } from "@mui/material";
 import { IMenu } from "cesieats-service-types/src/item";
-import { getMenuItems } from "../../api/services/item";
-import { setSourceMapsEnabled } from "process";
+// import { getMenuItems } from "../../api/services/item";
 import { EditMenuDialog } from "../editMenu";
 import { useState } from "react";
 
@@ -24,12 +23,12 @@ function MenuCard({ menu }: IMenuProps) {
   const handleClose = () => {
     setOpen(false);
   }
-  const itemsMenu = async () => {
-    if(menu._id){
-      const res =  await getMenuItems(menu._id);
-      return res.data;
-    }
-  }
+  // const itemsMenu = async () => {
+  //   if(menu._id){
+  //     const res =  await getMenuItems(menu._id);
+  //     return res.data;
+  //   }
+  // }
   
   return (
     <Card>
@@ -58,6 +57,6 @@ function MenuCard({ menu }: IMenuProps) {
       </CardActions>
     </Card>
   );
-};
+}
 
 export default MenuCard;

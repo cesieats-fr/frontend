@@ -1,11 +1,23 @@
 import { Button, Card, CardActions, CardContent, Typography } from "@mui/material";
 import { IRestaurant } from "cesieats-service-types/src/restaurant";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
+import { setRestaurantSelected } from "../../store/reducers/restaurant";
+import { getItemsByRestaurantId, getMenusByRestaurantId } from "../../store/reducers/item";
 
 interface IOrderCardProps {
     restaurant: IRestaurant
 }
 
 function OrderCard({ restaurant }: IOrderCardProps) {
+    const dispatch = useDispatch<AppDispatch>()
+
+    const handleClickOrder = () => {
+        dispatch(setRestaurantSelected(restaurant));
+        dispatch(getItemsByRestaurantId(restaurant._id!));
+        dispatch(getMenusByRestaurantId(restaurant._id!))
+    }
+
     return (
         <Card variant="elevation">
             <CardContent>
@@ -23,7 +35,7 @@ function OrderCard({ restaurant }: IOrderCardProps) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button variant="contained">Commander</Button>
+                <Button variant="contained" onClick={() => handleClickOrder()}>Commander</Button>
             </CardActions>
         </Card>
     );

@@ -66,7 +66,7 @@ export const deleteItem = async (idItem: number) => {
     return response.data;
 }
 
-export const addMenu = async (title: string, price: Number, idRestaurant: string, description?: string, imageUrl?: string) => {
+export const addMenu = async (title: string, price: number, idRestaurant: string, description?: string, imageUrl?: string) => {
     const response = await axios.post(`${BASE_URL}/addMenu`, {
         title,
         description,
@@ -81,7 +81,7 @@ export const addMenu = async (title: string, price: Number, idRestaurant: string
     return response.data;
 };
 
-export const editMenu = async ( title: string, price: Number, idRestaurant: string, description?: string, imageUrl?: string) => {
+export const editMenu = async ( title: string, price: number, idRestaurant: string, description?: string, imageUrl?: string) => {
     const response = await axios.post(`${BASE_URL}/editMenu`, {
         title,
         description,
@@ -162,3 +162,21 @@ export const linkMenuItem = async (idMenu: string, idItem: string) => {
     });
     return response.data;
 };
+
+export const getMenusByRestaurantId = async (idRestaurant: string) => {
+    const response = await axios.get(`${BASE_URL}/getMenusByRestaurantId/${idRestaurant}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+    return response.data;
+}
+
+export const getItemsByRestaurantId = async (idRestaurant: string) => {
+    const response = await axios.get(`${BASE_URL}/getItemsByRestaurantId/${idRestaurant}`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+    return response.data;
+}

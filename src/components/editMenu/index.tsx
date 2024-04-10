@@ -10,8 +10,6 @@ import { editMenu } from "../../api/services/item";
 import { getMenuItems, deleteMenuItem } from "../../store/reducers/item";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../store";
-import { IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
 import { Title } from "@mui/icons-material";
 
 export interface editMenuDialogProps {
@@ -35,10 +33,10 @@ export function EditMenuDialog(props: editMenuDialogProps) {
   };
 
   const dispatch = useDispatch<AppDispatch>();
-  const items = useSelector((state: RootState) => state.items.items);
+  const items = useSelector((state: RootState) => state.item.items);
   useEffect(() => {
     if (menu._id) dispatch(getMenuItems(menu._id));
-  }, [dispatch]);
+  }, [dispatch, menu._id]);
 
   let idMenu: string;
   if (menu._id) {
@@ -47,9 +45,7 @@ export function EditMenuDialog(props: editMenuDialogProps) {
 
   const handleDeleteItem = (idItem: string | undefined) => {
     if (menu._id && idItem)
-      useEffect(() => {
-        dispatch(deleteMenuItem({ idMenu, idItem }));
-      }, [dispatch]);
+      dispatch(deleteMenuItem({ idMenu, idItem }));
   };
 
   const handleAddItem = () => {};

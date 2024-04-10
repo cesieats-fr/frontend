@@ -1,33 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { itemAPI } from '../../api';
-import { IItem } from 'cesieats-service-types/src/item';
-
-// interface IOrderCart {
-//     restaurant: IRestaurant;
-//     items: {
-//         item: IItem;
-//         quantity: number;
-//     }[];
-//     menus: {
-//         menu: IMenu;
-//         quantity: number;
-//     }[];
-// }
+import { IItem, IMenu } from 'cesieats-service-types/src/item';
 
 interface IItemState {
-    // orderCart: IOrderCart;
     items: IItem[];
+    currentRestaurantItems: IItem[];
+    currentRestaurantsMenus: IMenu[];
 }
 
 const initialState: IItemState = {
-    // orderCart: {} as IOrderCart,
     items: [] as IItem[],
+    currentRestaurantItems: [] as IItem[],
+    currentRestaurantsMenus: [] as IMenu[],
 };
 
 interface LinkMenuItem {
     idMenu: string;
     idItem: string;
-  }
+}
 
 export const getMenuItems = createAsyncThunk('item/getMenuItems', async (idMenu: string) => {
     const response = await itemAPI.getMenuItems(idMenu);
@@ -39,26 +29,20 @@ export const deleteMenuItem = createAsyncThunk<string, LinkMenuItem>('item/delet
     return response.data;
 });
 
+export const getItemsByRestaurantId = createAsyncThunk('item/getItemsByRestaurantId', async (idRestaurant: string) => {
+    const response = await itemAPI.getItemsByRestaurantId(idRestaurant);
+    return response.data;
+});
+
+export const getMenusByRestaurantId = createAsyncThunk('item/getMenusByRestaurantId', async (idRestaurant: string) => {
+    const response = await itemAPI.getMenusByRestaurantId(idRestaurant);
+    return response.data;
+});
+
 const itemSlice = createSlice({
     name: 'item',
     initialState,
     reducers: {
-        // addItem: (state, payload) => {
-        //     // Update the state based on the action
-        //     const item: IItem = payload.payload;
-        //     if(state.orderCart.restaurant !== item.idRestaurant) {
-        //         state.orderCart = {} as IOrderCart;
-        //     }
-        //     if(state.orderCart.items.find(i => i.item.title === item.title)) {
-        //         state.orderCart.items.push({
-        //             item,
-        //             quantity: 1
-        //         });
-        //     }
-        // },
-        // resetCart: (state) => {
-        //     state.orderCart = {} as IOrderCart;
-        // }
     },
     extraReducers: (builder) => {
         builder.addCase(getMenuItems.fulfilled, (state, { payload }) => {
@@ -69,6 +53,12 @@ const itemSlice = createSlice({
             state.items = state.items.filter( (item) => {
                 item._id !== linkPayload.idItem
             })
+        });
+        builder.addCase(getItemsByRestaurantId.fulfilled, (state, { payload }) => {
+            state.currentRestaurantItems = payload;
+        });
+        builder.addCase(getMenusByRestaurantId.fulfilled, (state, { payload }) => {
+            state.currentRestaurantsMenus = payload;
         });
     }
 });
