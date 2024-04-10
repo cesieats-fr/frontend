@@ -6,6 +6,7 @@ import { RootState } from '../../store';
 import { EAccountType } from '../../enums';
 import { Link } from 'react-router-dom';
 import { removeAccount } from '../../store/reducers/account';
+import { useState } from 'react';
 import CesiEatsBanner from '../../assets/CesiEatsBanner';
 
 const largeBanner = {
@@ -112,7 +113,7 @@ const restaurantHeader = [
     },
 ];
 
-const errorHeader = [
+const disconnectedHeader = [
     {
         name: '',
         icon: <CesiEatsBanner fontSize='large' style={largeBanner} />,
@@ -127,14 +128,10 @@ const errorHeader = [
 
 function Header() {
     const userType = useSelector((state: RootState) => state.account.account?.accountType);
-    
+
     const disconnectUser = () => {
         const dispatch = useDispatch();
         dispatch(removeAccount());
-    }
-
-    const test = (event:any) => {
-        console.log(event)
     }
 
     const getHeader = () => {
@@ -146,23 +143,27 @@ function Header() {
             case EAccountType.RESTAURANT:
                 return restaurantHeader;
             default:
-                return errorHeader;
+                return clientHeader;
         }
     }
 
     return (
-        <BottomNavigation value={useLocation().pathname}>
+        <BottomNavigation value={useLocation().pathname} >
             {getHeader().map((item, index) => {
+                const [state, setState] = useState('');
+
                 return (
                     <BottomNavigationAction 
                         component={Link}
+                        showLabel={state == item.navigation}
                         to={item.navigation}
                         label={item.name} 
                         icon={item.icon}
                         value={item.navigation}
                         key={item.name}
-                        //onMouseOver={this.setState}
                         onClick={() => {if(item.navigation === '/login') disconnectUser()}}
+                        onMouseEnter={() => setState(item.navigation)}
+                        onMouseLeave={() => setState('')}
                     />
                 )
             })}
