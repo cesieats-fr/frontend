@@ -32,7 +32,7 @@ function DefaultAccount({ accountType }: IRegisterProps) {
             <Stack direction="column" spacing={4} className="pt-5">
                 <Typography className="m-3 text-center">Infos et modifications du compte</Typography>
                 <Stack direction="column" spacing={2} justifyContent="space-around">
-                    <TextField label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)}/>
+                    <TextField label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)} type="email"/>
                     <TextField label="Mot de passe" variant="outlined" className="w-full" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
                     <TextField label="Nom"          variant="outlined" className="w-full" required margin="dense" value={name}      onChange={(e) => setName(e.target.value)}/>
                     <TextField label="Prénom"       variant="outlined" className="w-full" required margin="dense" value={forname}   onChange={(e) => setForname(e.target.value)}/>

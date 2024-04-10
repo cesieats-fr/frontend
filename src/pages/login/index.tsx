@@ -6,61 +6,62 @@ import { setAccount } from "../../store/reducers/account";
 import { NavLink, redirect } from "react-router-dom";
 import { RootState } from "../../store";
 
-
 function Login() {
-    const dispatch = useDispatch();
-    const isAuthenticated = useSelector((state: RootState) => state.account.isAuthenticated);
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [emailError, setEmailError] = useState('');
-  
-    const handleLogin = async () => {
-      // Validation de l'email
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        setEmailError('Veuillez entrer une adresse e-mail valide');
-        return; // Sortir de la fonction si l'email est invalide
-      }
-  
-      const { status, data } = await login(email, password);
-      if (status === 200) {
-        localStorage.setItem('token', data.token);
-        dispatch(setAccount(data.account));
-        redirect('/');
-      } else if (status === 404) {
-        alert('Email ou mot de passe incorrect');
-      } else {
-        alert('Connexion impossible!');
-      }
-    };
-  
-    const getPage = () => {
-      if (isAuthenticated) {
-        return (
-          <div className="w-full items-center flex flex-col">
-            <h1 className="m-2">Vous êtes déjà connecté.e</h1>
-            <NavLink to={'/'}>
-              <Button variant="contained">Retour à la page d'accueil</Button>
-            </NavLink>
-          </div>
-        );
-      } else {
-        return (
-          <div className="w-full items-center flex flex-col">
-            <div className="w-75 items-center flex flex-col">
-              <Typography className="m-2">Connexion</Typography>
-              <div className="w-full items-center flex flex-col">
-                <TextField
-                  label="E-mail"
-                  variant="outlined"
-                  className="w-full"
-                  required
-                  margin="dense"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  error={!!emailError}
-                  helperText={emailError}
-                />
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.account.isAuthenticated
+  );
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  const handleLogin = async () => {
+    // Validation de l'email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError("Veuillez entrer une adresse e-mail valide");
+      return; // Sortir de la fonction si l'email est invalide
+    }
+
+    const { status, data } = await login(email, password);
+    if (status === 200) {
+      localStorage.setItem("token", data.token);
+      dispatch(setAccount(data.account));
+      redirect("/");
+    } else if (status === 404) {
+      alert("Email ou mot de passe incorrect");
+    } else {
+      alert("Connexion impossible!");
+    }
+  };
+
+  const getPage = () => {
+    if (isAuthenticated) {
+      return (
+        <div className="w-full items-center flex flex-col">
+          <h1 className="m-2">Vous êtes déjà connecté.e</h1>
+          <NavLink to={"/"}>
+            <Button variant="contained">Retour à la page d'accueil</Button>
+          </NavLink>
+        </div>
+      );
+    } else {
+      return (
+        <div className="w-full items-center flex flex-col">
+          <div className="w-75 items-center flex flex-col">
+            <Typography className="m-2">Connexion</Typography>
+            <div className="w-full items-center flex flex-col">
+              <TextField
+                label="E-mail"
+                variant="outlined"
+                className="w-full"
+                required
+                margin="dense"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                error={!!emailError}
+                helperText={emailError}
+              />
               <TextField
                 label="Mot de passe"
                 variant="outlined"
@@ -80,7 +81,6 @@ function Login() {
               >
                 Valider
               </Button>
-              
             </div>
           </div>
           <div className="w-75 items-center flex flex-col">
