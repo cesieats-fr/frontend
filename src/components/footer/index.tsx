@@ -12,10 +12,10 @@ function Footer() {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={4}>
                         <Typography variant="h6" className="text-primaryClassic" gutterBottom>
-                        À propos de cesieats
+                        À propos de Cesieats
                         </Typography>
                         <Typography variant="body2">
-                        cesieats, votre solution de livraison de repas méditerranéens préférée. 
+                        Cesieats, votre solution de livraison de repas méditerranéens préférée. 
                         Des saveurs authentiques livrées directement chez vous, rapidement et avec soin.
                         </Typography>
                     </Grid>
@@ -44,7 +44,7 @@ function Footer() {
                     <Typography variant="body2" color="text.secondary" align="center">
                         {"Copyright © "}
                         <Link color="inherit" href="https://cesieats.fr/}">
-                        cesieats 
+                        Cesieats 
                         </Link>
                         {" "}
                         {new Date().getFullYear()}

@@ -1,20 +1,13 @@
 import React from 'react'
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
-import { accountAPI } from './api';
+import { accountAPI, restaurantAPI } from './api';
 import { useEffect } from 'react';
 import { setAccount } from './store/reducers/account';
+import { setAccountRestaurant } from './store/reducers/restaurant';
 import RouterPage from './routers';
 import './index.css';
 
-const theme = createTheme({
-  typography: {
-    fontFamily: [
-      'lexend',
-      'calibri',
-    ].join(','),
-  },
-});
+
 
 function App(): React.ReactElement {
   const dispatch = useDispatch();
@@ -23,6 +16,12 @@ function App(): React.ReactElement {
     accountAPI.loginWithToken()
     .then((response) => {
       dispatch(setAccount(response));
+      if(response.accountType === 2) {
+        restaurantAPI.getRestaurantByAccountId()
+        .then((response) => {
+          dispatch(setAccountRestaurant(response.data))
+        })
+      }
     })
     .catch(() => {
       localStorage.removeItem('token');
@@ -30,9 +29,7 @@ function App(): React.ReactElement {
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <RouterPage />
-    </ThemeProvider>
+    <RouterPage />
   );
 }
 

@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HeaderFooter from '../layout/headerFooter'
 import Home from '../pages/home'
 import OrderPage from '../pages/order'
@@ -25,7 +25,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element: Element, requi
   const isAuthenticated = useSelector((state: RootState) => state.account.isAuthenticated);
   const accountType = useSelector((state: RootState) => state.account.account?.accountType);
 
-  if (isAuthenticated && requiredAccountType === undefined || accountType === requiredAccountType) {
+  if (isAuthenticated && (requiredAccountType === undefined || accountType === requiredAccountType)) {
     return <Element {...rest} />;
   } else {
     return <RestrictedPage />;
@@ -34,11 +34,11 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element: Element, requi
 
 const RouterPage: React.FC = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <HeaderFooter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/order" element={<ProtectedRoute element={OrderPage} requiredAccountType={EAccountType.RESTAURANT} />} />
+          <Route path="/order" element={<ProtectedRoute element={OrderPage} requiredAccountType={EAccountType.CLIENT} />} />
           <Route path="/orders" element={<ProtectedRoute element={Orders} requiredAccountType={EAccountType.CLIENT} />} />
           <Route path="/account" element={<ProtectedRoute element={Account} />} />
           <Route path="/parameters" element={<ProtectedRoute element={Parameters} />} />
@@ -49,7 +49,7 @@ const RouterPage: React.FC = () => {
           <Route path="/login" element={<Login />} />
         </Routes>
       </HeaderFooter>
-    </Router>
+    </BrowserRouter>
   );
 };
 

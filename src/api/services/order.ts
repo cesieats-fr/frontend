@@ -36,12 +36,17 @@ export const getOrder = async (id: number) => {
     return response.data;
 };
 
-export const getAllOrders = async (idRestaurant?: number, orderState?: number) => {
-    const response = await axios.get(`${BASE_URL}/getAllOrders`, {
-        params: {
-            restaurant: idRestaurant,
-            state: orderState
-        },
+export const getAllClientOrders = async () => {
+    const response = await axios.get(`${BASE_URL}/getAllClientOrders`, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+    });
+    return response.data;
+};
+
+export const getAllRestaurantOrders = async () => {
+    const response = await axios.get(`${BASE_URL}/getAllRestaurantOrders`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
