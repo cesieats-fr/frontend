@@ -51,16 +51,15 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
     if (!emailRegex.test(email)) {
       setEmailError("Veuillez entrer une adresse e-mail valide");
       console.log(password.trim());
-       } else {
+    } else {
       setEmailError("");
     }
 
     if (!password.trim()) {
-        setPasswordError("Veuillez entrer un mot de passe.");
+      setPasswordError("Veuillez entrer un mot de passe.");
     } else {
-        setPasswordError("");
+      setPasswordError("");
     }
-    
 
     const response = await register({
       email,
