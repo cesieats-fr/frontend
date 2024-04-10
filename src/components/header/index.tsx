@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { ShoppingCartRounded, ReceiptRounded, AccountCircleRounded, SettingsRounded, DeliveryDiningRounded, StorefrontRounded, Login,Logout } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 import { EAccountType } from '../../enums';
 import { Link } from 'react-router-dom';
 import { removeAccount } from '../../store/reducers/account';
@@ -127,14 +127,10 @@ const errorHeader = [
 
 function Header() {
     const userType = useSelector((state: RootState) => state.account.account?.accountType);
+    const dispatch = useDispatch<AppDispatch>();
     
     const disconnectUser = () => {
-        const dispatch = useDispatch();
         dispatch(removeAccount());
-    }
-
-    const test = (event:any) => {
-        console.log(event)
     }
 
     const getHeader = () => {
@@ -154,14 +150,13 @@ function Header() {
         <BottomNavigation value={useLocation().pathname}>
             {getHeader().map((item, index) => {
                 return (
-                    <BottomNavigationAction 
+                    <BottomNavigationAction
                         component={Link}
                         to={item.navigation}
                         label={item.name} 
                         icon={item.icon}
                         value={item.navigation}
-                        key={item.name}
-                        //onMouseOver={this.setState}
+                        key={index}
                         onClick={() => {if(item.navigation === '/login') disconnectUser()}}
                     />
                 )

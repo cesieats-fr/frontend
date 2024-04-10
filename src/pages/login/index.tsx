@@ -40,8 +40,8 @@ function Login() {
             <div className="w-75 items-center flex flex-col">
                 <h1 className="m-2">Connexion</h1>
                 <div className="w-full items-center flex flex-col">
-                    <TextField id="outlined-basic" label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)}/>
-                    <TextField id="outlined-basic" label="Mot de passe" variant="outlined" className="w-full" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
+                    <TextField label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)}/>
+                    <TextField label="Mot de passe" variant="outlined" className="w-full" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
                     
                     <Button variant="contained" onClick={() => { handleLogin() }}>Valider</Button>
                 </div>

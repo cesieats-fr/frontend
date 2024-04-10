@@ -28,6 +28,7 @@ const accountSlice = createSlice({
         removeAccount: (state) => {
             state.account = {} as IAccount
             state.isAuthenticated = false;
+            localStorage.removeItem('token');
         }
     },
     extraReducers: (builder) => {

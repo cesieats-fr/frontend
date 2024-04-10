@@ -6,7 +6,6 @@ import { deleteAccount } from "../../api/services/account";
 import { editAccount, removeAccount } from "../../store/reducers/account";
 import { IAccount } from 'cesieats-service-types/src/account';
 import { redirect } from "react-router-dom";
-import CopyableDisabledTextField from "../../components/common/CopyableTextField"
 
 function DefaultAccount() {
     const dispatch = useDispatch<AppDispatch>();
