@@ -1,24 +1,26 @@
 import { Button, Divider, Stack, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import { useState } from 'react';
-import { deleteAccount, edit } from "../../api/services/account";
-import { removeAccount, setAccount } from "../../store/reducers/account";
+import { useEffect, useState } from 'react';
+import { deleteAccount } from "../../api/services/account";
+import { editAccount, removeAccount } from "../../store/reducers/account";
 import { IAccount } from 'cesieats-service-types/src/account';
 import { redirect } from "react-router-dom";
+import { IRestaurant } from "cesieats-service-types/src/restaurant";
+import { editAccountRestaurant } from "../../store/reducers/restaurant";
 
 function RestaurantAccount() {
     
     const dispatch = useDispatch<AppDispatch>();
     const account = useSelector((state: RootState) => state.account.account);
-    // const restaurant = useSelector((state: RootState) => state.restaurant.restaurant);
+    const restaurant = useSelector((state: RootState) => state.restaurant.accountRestaurant);
 
     // Account
-    const [email, setEmail] = useState(account.email);
-    const [password, setPassword] = useState(account.password);
-    const [name, setName] = useState(account.name);
-    const [forname, setForname] = useState(account.forname);
-    const [address, setAddress] = useState(account.address);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [forname, setForname] = useState('');
+    const [address, setAddress] = useState('');
 
     // Restaurant
     const [restaurantName, setRestaurantName] = useState('');
@@ -29,17 +31,41 @@ function RestaurantAccount() {
     const [restaurantDeliveryPrice, setRestaurantDeliveryPrice] = useState(0);
     const [restaurantTelephone, setRestaurantTelephone] = useState('');
 
+    useEffect(() => {
+        setEmail(account.email);
+        setPassword(account.password);
+        setName(account.name);
+        setForname(account.forname);
+        setAddress(account.address || '');
+        setRestaurantName(restaurant.name);
+        setRestaurantDescription(restaurant.description);
+        setRestaurantAddress(restaurant.address);
+        setRestaurantOpeningTime(restaurant.openingTime);
+        setRestaurantClosingTime(restaurant.closingTime);
+        setRestaurantDeliveryPrice(restaurant.deliveryPrice);
+        setRestaurantTelephone(restaurant.telephone);
+    }, [account, restaurant]);
+
     const handleEditRestaurant = async () => {
-        const acc : IAccount = {
+        const acc: IAccount = {
             email: email,
-            password: password,
-            name: name,
-            forname: forname,
-            address: address,
+            password,
+            name,
+            forname,
+            address,
             accountType: account.accountType
         } 
-        await edit(acc);
-        dispatch(setAccount(acc));
+        dispatch(editAccount(acc));
+        const restaurant: IRestaurant = {
+            name: restaurantName,
+            description: restaurantDescription,
+            address: restaurantAddress,
+            openingTime: restaurantOpeningTime,
+            closingTime: restaurantClosingTime,
+            deliveryPrice: restaurantDeliveryPrice,
+            telephone: restaurantTelephone,
+        };
+        dispatch(editAccountRestaurant(restaurant));
     }
     const handleDeleteAccount = async () => {
         await deleteAccount();
@@ -48,7 +74,7 @@ function RestaurantAccount() {
     }
     return (
         <div className="w-full items-center flex flex-col">
-            <Stack direction="column" spacing={8}>
+            <Stack direction="column" spacing={4}>
                 <Typography className="m-3 text-center">Infos et modifications du restaurant</Typography>
                 <Stack direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={10} justifyContent="space-around">
                     <Stack direction="column" spacing={2} justifyContent="space-around">

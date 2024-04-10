@@ -17,10 +17,10 @@ export const fetchRestaurants = async () => {
     }
 };
 
-export const addRestaurant = async (title: string, description: string, address: string, closingTime: string, openingTime: string, deliveryPrice: number, telephone: number) => {
+export const addRestaurant = async (restaurant: IRestaurant) => {
     try {
         const response = await axios.post(`${BASE_URL}/addRestaurant`, {
-            title, description, address, closingTime, openingTime, deliveryPrice, telephone
+            ...restaurant
         },{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -35,7 +35,7 @@ export const addRestaurant = async (title: string, description: string, address:
 
 export const editRestaurant = async (restaurant: IRestaurant) => {
     try {
-        const response = await axios.post(`${BASE_URL}/editRestaurant`, {
+        const response = await axios.put(`${BASE_URL}/editRestaurant`, {
             ...restaurant
         },{
             headers: {
@@ -51,7 +51,7 @@ export const editRestaurant = async (restaurant: IRestaurant) => {
 
 export const getRestaurantByAccountId = async () => {
     try {
-        const response = await axios.get(`${BASE_URL}/getRestaurant`,{
+        const response = await axios.get(`${BASE_URL}/getRestaurantByAccountId`,{
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }

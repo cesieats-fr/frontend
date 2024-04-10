@@ -12,7 +12,7 @@ export const register = async (account: IAccount) => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     });
-    return response.data;
+    return response;
 };
 
 export const login = async (email: string, password: string) => {
@@ -38,14 +38,14 @@ export const loginWithToken = async () => {
 
 // Private
 export const edit = async (account: IAccount) => {
-    const response = await axios.post(`${BASE_URL}/edit`, {
+    const response = await axios.put(`${BASE_URL}/edit`, {
         ...account
     }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     });
-    return response.data;
+    return response;
 };
 
 export const deleteAccount = async () => {

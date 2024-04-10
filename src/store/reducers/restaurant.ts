@@ -14,8 +14,18 @@ const initialState: IRestaurantState = {
     accountRestaurant: {} as IRestaurant,
 };
 
-const getRestaurantByAccountId = createAsyncThunk('restaurant/getRestaurantByAccountId', async () => {
+export const getRestaurantByAccountId = createAsyncThunk('restaurant/getRestaurantByAccountId', async () => {
     const response = await restaurantAPI.getRestaurantByAccountId();
+    return response.data;
+});
+
+export const addRestaurant = createAsyncThunk('restaurant/addRestaurant', async (restaurant: IRestaurant) => {
+    const response = await restaurantAPI.addRestaurant(restaurant);
+    return response.data;
+});
+
+export const editAccountRestaurant = createAsyncThunk('restaurant/editRestaurant', async (restaurant: IRestaurant) => {
+    const response = await restaurantAPI.editRestaurant(restaurant);
     return response.data;
 });
 
@@ -32,9 +42,19 @@ const restaurantSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(getRestaurantByAccountId.fulfilled, (state, { payload }) => state.accountRestaurant = payload );
+        builder.addCase(getRestaurantByAccountId.fulfilled, (state, { payload }) => {
+            state.accountRestaurant = payload
+        });
+        builder.addCase(addRestaurant.fulfilled, (state, { payload }) =>{
+            state.accountRestaurant = payload;
+        });
+        builder.addCase(editAccountRestaurant.fulfilled, (state, { payload }) =>{
+            state.accountRestaurant = payload;
+        });
     }
 });
+
+export const { setRestaurants, setAccountRestaurant } = restaurantSlice.actions;
 
 // Export the numberReducer
 export default restaurantSlice.reducer;

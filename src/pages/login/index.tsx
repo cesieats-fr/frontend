@@ -2,7 +2,7 @@ import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
 import { login } from "../../api/services/account";
-import { removeAccount, setAccount } from "../../store/reducers/account";
+import { setAccount } from "../../store/reducers/account";
 import { NavLink, redirect } from "react-router-dom";
 import { RootState } from "../../store";
 
