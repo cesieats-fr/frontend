@@ -15,7 +15,7 @@ function Footer() {
                         À propos de cesieats
                         </Typography>
                         <Typography variant="body2">
-                        cesieats, votre solution de livraison de repas méditerranéens préférée. 
+                        Cesieats, votre solution de livraison de repas méditerranéens préférée. 
                         Des saveurs authentiques livrées directement chez vous, rapidement et avec soin.
                         </Typography>
                     </Grid>
