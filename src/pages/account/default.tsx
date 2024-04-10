@@ -1,4 +1,4 @@
-import { Button, Stack, TextField, Typography } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useEffect, useState } from 'react';
@@ -6,7 +6,7 @@ import { deleteAccount } from "../../api/services/account";
 import { editAccount, removeAccount } from "../../store/reducers/account";
 import { IAccount } from 'cesieats-service-types/src/account';
 import { redirect } from "react-router-dom";
-import CopyableTextField from "../../components/common/CopyableTextField"
+import CopyToClipboardButton from "../../components/common/copyToClipboardButton"
 const type = ['Client','Livreur','Restaurant'];
 
 function DefaultAccount() {
@@ -51,12 +51,12 @@ function DefaultAccount() {
                     Type de compte : {type[account.accountType]}
                 </div>
                 <div className="w-full h-full items-center flex flex-col">
-                    <TextField id="outlined-basic" label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)}/>
-                    <TextField id="outlined-basic" label="Mot de passe" variant="outlined" className="w-full" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
-                    <TextField id="outlined-basic" label="Nom"          variant="outlined" className="w-full" required margin="dense" value={name}      onChange={(e) => setName(e.target.value)}/>
-                    <TextField id="outlined-basic" label="Prénom"       variant="outlined" className="w-full" required margin="dense" value={forname}   onChange={(e) => setForname(e.target.value)}/>
-                    <TextField id="outlined-basic" label="Adresse"      variant="outlined" className="w-full"          margin="dense" value={address}    onChange={(e) => setAddress(e.target.value)}   multiline       rows={4}/>
-                    {CopyableTextField(account.codeSponsor,'Code pour sponsoriser')}
+                    <TextField label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)} InputProps={{ readOnly: true }} />
+                    <TextField label="Mot de passe" variant="outlined" className="w-full" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
+                    <TextField label="Nom"          variant="outlined" className="w-full" required margin="dense" value={name}      onChange={(e) => setName(e.target.value)}/>
+                    <TextField label="Prénom"       variant="outlined" className="w-full" required margin="dense" value={forname}   onChange={(e) => setForname(e.target.value)}/>
+                    <TextField label="Adresse"      variant="outlined" className="w-full"          margin="dense" value={address}    onChange={(e) => setAddress(e.target.value)}   multiline       rows={4}/>
+                    <CopyToClipboardButton text={account.codeSponsor!} />
                     <div className="w-full flex flex-row justify-around pt-5">
                         <Button variant="contained" onClick={() => { handleEditAccount() }}>Valider les modifications</Button>
                         <Button variant="contained" onClick={() => { handleDeleteAccount() }}>Supprimer le compte</Button>

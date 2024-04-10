@@ -78,7 +78,7 @@ function RestaurantAccount() {
                 <Typography className="m-3 text-center">Infos et modifications du restaurant</Typography>
                 <Stack direction="row" divider={<Divider orientation="vertical" flexItem />} spacing={10} justifyContent="space-around">
                     <Stack direction="column" spacing={2} justifyContent="space-around">
-                        <TextField label="E-mail" variant="outlined" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)}/>
+                        <TextField label="E-mail" variant="outlined" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)} InputProps={{ readOnly: true }} />
                         <TextField label="Mot de passe" variant="outlined" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
                         <TextField label="Nom" variant="outlined" required margin="dense" value={name}      onChange={(e) => setName(e.target.value)}/>
                         <TextField label="Prénom" variant="outlined" required margin="dense" value={forname}   onChange={(e) => setForname(e.target.value)}/>

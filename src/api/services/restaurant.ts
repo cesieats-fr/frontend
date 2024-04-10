@@ -3,14 +3,14 @@ import { IRestaurant } from 'cesieats-service-types/src/restaurant';
 
 const BASE_URL = import.meta.env.VITE_API_RESTAURANT_URL;
 
-export const fetchRestaurants = async () => {
+export const getAllRestaurants = async () => {
     try {
         const response = await axios.get(`${BASE_URL}/getAllRestaurants`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         });
-        return response.data;
+        return response;
     } catch (error) {
         console.error('Error fetching account data:', error);
         throw error;

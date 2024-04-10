@@ -29,6 +29,12 @@ export const editAccountRestaurant = createAsyncThunk('restaurant/editRestaurant
     return response.data;
 });
 
+export const getAllRestaurants = createAsyncThunk('restaurant/getAllRestaurants', async () => {
+    const response = await restaurantAPI.getAllRestaurants();
+    console.log('response: ', response)
+    return response.data;
+});
+
 // Create a reducer for each action using the createSlice function from @reduxjs/toolkit
 const restaurantSlice = createSlice({
     name: 'restaurantReducer',
