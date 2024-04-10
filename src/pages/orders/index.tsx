@@ -9,35 +9,55 @@ import { AppDispatch } from "../../store";
 import { getAllClientOrders } from "../../store/reducers/order";
 import { useEffect } from "react";
 
+import { Stack, Divider } from "@mui/material";
+import OrderCards from "../../components/orders/ordersCard";
+import { Typography } from "@mui/material";
+
 function Orders() {
-    const dispatch = useDispatch<AppDispatch>();
-    // const orders = useSelector((state: RootState) => state.order.orders);
+  const dispatch = useDispatch<AppDispatch>();
+  const orders = useSelector((state: RootState) => state.order.orders);
 
-    useEffect(() => {
-        dispatch(getAllClientOrders());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllClientOrders());
+  }, [dispatch]);
 
-    //Nécessite l'id du compte
-    // const resultListeOrders = async () => {    
-    //     const {status, data} = await getAllClientOrders(1, undefined, undefined);
+  // // Nécessite l'id du compte
+  // const resultListeOrders = async () => {
+  //     const {status, data} = await getAllClientOrders(1, undefined, undefined);
 
-    //     if(status === 200) {
-    //         return(
-    //             <div className="w-full items-center flex flex-col">
-    //             </div>
-    //         );
-    //     }else {
-    //         return(
-    //             <h2 className="m-2">Vous n'avez pas de commandes</h2>
-    //         );
-    //     }
-    // };
-    return (
-        <div className="w-full items-center flex flex-col">
-        <h1 className="m-2">Historiques des commandes</h1>
-            {}
-        </div>
-    );
+  //     if(status === 200) {
+  //         return(
+  //             <div className="w-full items-center flex flex-col">
+  //             </div>
+  //         );
+  //     }else {
+  //         return(
+  //             <h2 className="m-2">Vous n'avez pas de commandes</h2>
+  //         );
+  //     }
+  // };
+  return (
+    <Stack
+      spacing={5}
+      direction="column"
+      divider={<Divider orientation="horizontal" flexItem />}
+    >
+      <Typography
+        className="m-2"
+        variant="body1"
+        color="text.primary"
+        gutterBottom
+      >
+        Historiques des commandes :
+      </Typography>
+
+      <div className="flex flex-wrap justify-center gap-4">
+        {orders && orders.map((order, index) => (           
+            <OrderCards order={order} key={index} />
+          ))}
+      </div>
+    </Stack>
+  );
 }
 
 export default Orders;
