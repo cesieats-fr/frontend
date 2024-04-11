@@ -10,3 +10,10 @@ export enum EOrderState {
     WaitingForDelivery,
     Delivered,
 }
+
+export enum EDeliveryState {
+    Waiting,
+    GoingToRestaurant,
+    Delivering,
+    Delivered
+}

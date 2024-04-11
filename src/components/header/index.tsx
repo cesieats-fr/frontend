@@ -68,7 +68,7 @@ const deliveryHeader = [
     navigation: "/delivery",
   },
   {
-    name: "Livraisons",
+    name: "Historique",
     icon: <ReceiptRounded style={large} />,
     navigation: "/deliveries",
   },
@@ -76,11 +76,6 @@ const deliveryHeader = [
     name: "Compte",
     icon: <AccountCircleRounded style={large} />,
     navigation: "/account",
-  },
-  {
-    name: "Paramètres",
-    icon: <SettingsRounded style={large} />,
-    navigation: "/parameters",
   },
   {
     name: "Se déconnecter",
