@@ -43,7 +43,7 @@ function Footer() {
                 <Box mt={2}>
                     <Typography variant="body2" color="text.secondary" align="center">
                         {"Copyright © "}
-                        <Link color="inherit" href="https://cesieats.fr/}">
+                        <Link color="inherit" href="https://cesieats.fr/">
                         Cesieats 
                         </Link>
                         {" "}
