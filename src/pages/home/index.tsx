@@ -12,11 +12,7 @@ import PizzaIcon from "@mui/icons-material/LocalPizza";
 import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import KebabDiningIcon from "@mui/icons-material/KebabDining";
 
-function Home() {
-  const largeBanner = {
-    width: "auto",
-    height: "5em",
-  };
+function Home() { 
   const floatAnimation = keyframes`
     0%, 100% {
       transform: translate(0, 0) rotate(0deg) scale(1);
