@@ -5,17 +5,11 @@ import { IItem, IMenu } from 'cesieats-service-types/src/item';
 interface IItemState {
     items: IItem[];
     menus: IMenu[];
-    // currentRestaurantItems: IItem[];
-    // currentRestaurantMenus: IMenu[];
-    // currentRestaurantAccountMenus: IMenu[];
 }
 
 const initialState: IItemState = {
     items: [] as IItem[],
     menus: [] as IMenu[],
-    // currentRestaurantItems: [] as IItem[],
-    // currentRestaurantMenus: [] as IMenu[],
-    // currentRestaurantAccountMenus: [] as IMenu[],
 };
 
 interface LinkMenuItem {
@@ -38,7 +32,7 @@ export const deleteMenu = createAsyncThunk('item/deleteMenu', async (idMenu: str
     return response.data;
 });
 
-export const deleteItem = createAsyncThunk('item/deletItem', async (idItem: string) => {
+export const deleteItem = createAsyncThunk('item/deleteItem', async (idItem: string) => {
     const response = await itemAPI.deleteItem(idItem);
     return response.data;
 });
@@ -82,19 +76,13 @@ const itemSlice = createSlice({
             state.items = payload;
         });
         builder.addCase(deleteItem.fulfilled, (state, { payload }) => {
-            const itemPayload: IItem = JSON.parse(payload);
-            state.items = state.items.filter( (item) => {
-                item._id !== itemPayload._id
-            });
+            state.items = state.items.filter((item) => item._id !== payload.resultItem._id);
         });
         builder.addCase(getMenusByRestaurantId.fulfilled, (state, { payload }) => {
             state.menus = payload;
         });
         builder.addCase(deleteMenu.fulfilled, (state, { payload }) => {
-            const menuPayload: IMenu = JSON.parse(payload);
-            state.menus = state.menus.filter( (menu) => {
-                menu._id !== menuPayload._id
-            });
+            state.menus = state.menus.filter((menu) => menu._id !== payload.resultMenu._id);
         });
         builder.addCase(addMenu.fulfilled, (state, { payload }) => {
             state.menus.push(payload);

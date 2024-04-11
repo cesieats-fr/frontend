@@ -15,7 +15,7 @@ export const addItem = async ( title: string, price: number, idRestaurant: strin
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     });
-    return response.data;
+    return response;
 };
 
 export const editItem = async ( title: string, price: number, idRestaurant: string, description?: string, imageUrl?: string) => {
@@ -78,8 +78,7 @@ export const addMenu = async (title: string, price: number, idRestaurant: string
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     });
-    console.log(response.data);
-    return response.data;
+    return response;
 };
 
 export const editMenu = async ( title: string, price: number, idRestaurant: string, description?: string, imageUrl?: string) => {
@@ -119,7 +118,7 @@ export const getAllMenus = async (idRestaurant?: string) => {
 };
 
 export const getMenuItems = async (idMenu: string) => {
-    const response = await axios.get(`${BASE_URL}/getAllMenus/${idMenu}`, {
+    const response = await axios.get(`${BASE_URL}/getMenuItems/${idMenu}`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
@@ -136,7 +135,7 @@ export const deleteMenu = async (idMenu: string) => {
             id: idMenu
         }
     });
-    return response.data;
+    return response;
 }
 
 export const deleteMenuItem = async (idMenu: string, idItem: string) => {

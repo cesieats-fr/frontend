@@ -8,13 +8,16 @@ import { IMenu } from "cesieats-service-types/src/item";
 // import { getMenuItems } from "../../api/services/item";
 import { EditMenuDialog } from "../editMenu";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteMenu } from "../../store/reducers/item";
+import { AppDispatch } from "../../store";
 
 interface IMenuProps {
   menu: IMenu;
-  onDelete: (menuId: string) => void;
 }
 
-function MenuCard({ menu, onDelete }: IMenuProps) {
+function MenuCard({ menu }: IMenuProps) {
+  const dispatch = useDispatch<AppDispatch>();
 
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -27,7 +30,7 @@ function MenuCard({ menu, onDelete }: IMenuProps) {
 
   const handleDelete = () => {
     if(menu._id)
-      onDelete(menu._id)
+      dispatch(deleteMenu(menu._id))
   };
   
   return (
