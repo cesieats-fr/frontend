@@ -11,9 +11,10 @@ import { useState } from "react";
 
 interface IMenuProps {
   menu: IMenu;
+  onDelete: (menuId: string) => void;
 }
 
-function MenuCard({ menu }: IMenuProps) {
+function MenuCard({ menu, onDelete }: IMenuProps) {
 
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
@@ -22,13 +23,12 @@ function MenuCard({ menu }: IMenuProps) {
 
   const handleClose = () => {
     setOpen(false);
-  }
-  // const itemsMenu = async () => {
-  //   if(menu._id){
-  //     const res =  await getMenuItems(menu._id);
-  //     return res.data;
-  //   }
-  // }
+  };
+
+  const handleDelete = () => {
+    if(menu._id)
+      onDelete(menu._id)
+  };
   
   return (
     <Grid item xs={4}>
@@ -48,15 +48,18 @@ function MenuCard({ menu }: IMenuProps) {
             alt="Photo du restau"
           />
 
-          <Typography>{ menu.price.toString() + "€"}</Typography>
-        </CardContent>
-        <CardActions className="flex justify-center">
-          <Button variant="contained" className="" size="small" onClick={handleClickOpen}>
-            Editer le menu
-          </Button>
-          <EditMenuDialog menu={menu} open={open} onClose={handleClose} />
-        </CardActions>
-      </Card>
+        <Typography>{ menu.price.toString() + "€"}</Typography>
+      </CardContent>
+      <CardActions className="flex justify-center">
+        <Button variant="contained" className="" size="small" onClick={handleClickOpen}>
+          Editer le menu
+        </Button>
+        <Button variant="contained" className="" size="small" onClick={handleDelete}>
+          Supprimer le menu
+        </Button>
+        <EditMenuDialog menu={menu} open={open} onClose={handleClose} />
+      </CardActions>
+    </Card>
     </Grid>
   );
 }

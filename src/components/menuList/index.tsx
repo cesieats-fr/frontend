@@ -2,28 +2,42 @@ import Button from "@mui/material/Button";
 import { Grid, Stack } from "@mui/material";
 import { IMenu } from "cesieats-service-types/src/item";
 import MenuCard from "../menu";
+import { deleteMenu, getMenusByRestaurantId } from "../../store/reducers/item";
+import { AddMenuDialog } from "../addMenu";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
 
-interface IMenuListProps {
-  menuList: IMenu[];
+export interface IMenuListProps {
+  idRestaurant: string;
 }
 
-function MenuList({ menuList }: IMenuListProps) {
+function MenuList({ idRestaurant }: IMenuListProps) {
+
+  const dispatch = useDispatch<AppDispatch>();
+  const menus = useSelector((state: RootState) => state.item.items);
+  useEffect(() => {
+    dispatch(getMenusByRestaurantId(idRestaurant));
+  }, [dispatch, menus]);
+  const onDelete = (idMenu: string) => {
+    deleteMenu(idMenu);
+  }
 
   return (
     <Stack>
-        <Button sx={{width:300, marginBottom:2}} variant="contained">Ajouter un menu</Button>
         <Grid container spacing={2}>
-            { menuList && menuList.map((menu, index) => {
+            { menus && menus.map((menu, index) => {
                 return (
                     <Grid item xs={4}>
-                        <MenuCard menu={menu} key={index} />
+                        <MenuCard menu={menu} key={index} onDelete={onDelete} />
                     </Grid>
                     );
                 })
             }
         </Grid>
     </Stack>
-    
+
+
   );
 }
 

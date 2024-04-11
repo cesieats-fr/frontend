@@ -78,6 +78,7 @@ export const addMenu = async (title: string, price: number, idRestaurant: string
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     });
+    console.log(response.data);
     return response.data;
 };
 
@@ -126,7 +127,7 @@ export const getMenuItems = async (idMenu: string) => {
     return response.data;
 };
 
-export const deleteMenu = async (idMenu: number) => {
+export const deleteMenu = async (idMenu: string) => {
     const response = await axios.delete(`${BASE_URL}/deleteMenu`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   ListItemText,
   ListItemIcon,
@@ -9,6 +9,7 @@ import {
   Toolbar,
   Drawer,
   Box,
+  Typography,
 } from "@mui/material";
 import {
   RestaurantMenu,
@@ -21,48 +22,10 @@ import ItemsView from "./views/item";
 import StatsView from "./views/stats";
 import OrdersView from "./views/orders";
 import HomeView from "./views/home";
-import { IItem, IMenu } from "cesieats-service-types/src/item";
+
+import { IItem } from "cesieats-service-types/src/item";
 
 const drawerWidth = 240;
-
-const menuList: IMenu[] = [
-  {
-    title: "Menu bigmac",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
-  },
-  {
-    title: "Menu bigmac",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
-  },
-  {
-    title: "Menu bigmac",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
-  },
-  {
-    title: "Menu bigmac",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
-  },
-  {
-    title: "Menu bigmac",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
-  },
-  {
-    title: "Menu bigmac",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
-  }
-];
 
 const itemList: IItem[] = [
   {
@@ -117,7 +80,7 @@ const listItems = [
   {
     text: "Menus",
     icon: <RestaurantMenu />,
-    component: <MenusView menuList={menuList} />,
+    component: <MenusView/>,
   },
   {
     text: "Commandes",
@@ -137,6 +100,7 @@ export default function MenuDrawer() {
   const handleMenuClick = (menu: React.SetStateAction<string>) => {
     setSelectedMenu(menu);
   };
+  
   return (
     <div className="flex">
       <Drawer

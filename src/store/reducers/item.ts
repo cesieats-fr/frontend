@@ -4,14 +4,18 @@ import { IItem, IMenu } from 'cesieats-service-types/src/item';
 
 interface IItemState {
     items: IItem[];
+    menus: IMenu[];
     currentRestaurantItems: IItem[];
     currentRestaurantsMenus: IMenu[];
+    currentRestaurantAccountMenus: IMenu[];
 }
 
 const initialState: IItemState = {
     items: [] as IItem[],
+    menus: [] as IMenu[],
     currentRestaurantItems: [] as IItem[],
     currentRestaurantsMenus: [] as IMenu[],
+    currentRestaurantAccountMenus: [] as IMenu[],
 };
 
 interface LinkMenuItem {
@@ -29,6 +33,11 @@ export const deleteMenuItem = createAsyncThunk<string, LinkMenuItem>('item/delet
     return response.data;
 });
 
+export const deleteMenu = createAsyncThunk('item/deleteMenu', async (idMenu: string) => {
+    const response = await itemAPI.deleteMenu(idMenu);
+    return response.data;
+});
+
 export const getItemsByRestaurantId = createAsyncThunk('item/getItemsByRestaurantId', async (idRestaurant: string) => {
     const response = await itemAPI.getItemsByRestaurantId(idRestaurant);
     return response.data;
@@ -36,6 +45,11 @@ export const getItemsByRestaurantId = createAsyncThunk('item/getItemsByRestauran
 
 export const getMenusByRestaurantId = createAsyncThunk('item/getMenusByRestaurantId', async (idRestaurant: string) => {
     const response = await itemAPI.getMenusByRestaurantId(idRestaurant);
+    return response.data;
+});
+
+export const addMenu = createAsyncThunk('item/addMenu', async (menu: IMenu) => {
+    const response = await itemAPI.addMenu(menu.title, menu.price, menu.idRestaurant, menu.description, menu.imageUrl);
     return response.data;
 });
 
@@ -59,6 +73,15 @@ const itemSlice = createSlice({
         });
         builder.addCase(getMenusByRestaurantId.fulfilled, (state, { payload }) => {
             state.currentRestaurantsMenus = payload;
+        });
+        builder.addCase(deleteMenu.fulfilled, (state, { payload }) => {
+            const menuPayload: IMenu = JSON.parse(payload);
+            state.currentRestaurantAccountMenus = state.currentRestaurantAccountMenus.filter( (menu) => {
+                    menu._id !== menuPayload._id
+                })
+        });
+        builder.addCase(addMenu.fulfilled, (state, { payload }) => {
+            state.currentRestaurantAccountMenus.push(payload);
         });
     }
 });
