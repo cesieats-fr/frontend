@@ -2,11 +2,11 @@ import { useSelector } from 'react-redux'
 import { io } from 'socket.io-client'
 import { RootState } from '../store'
 import { useEffect } from 'react';
-import { notifySuccess } from '../components/notification';
+import { notifySuccess } from '../notification';
 import { useSnackbar } from 'notistack';
 
 function Socket() {
-    
+
     const { enqueueSnackbar } = useSnackbar();
     const isAuthenticated = useSelector((state: RootState) => state.account.isAuthenticated);
     const accountId = useSelector((state: RootState) => state.account.account._id);
