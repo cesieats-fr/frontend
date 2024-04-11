@@ -27,14 +27,17 @@ export function EditItemDialog(props: editItemDialogProps) {
   const [description, setDescription] = useState(item.description);
   
   const handleClose = () => {
-    editItem(
-        item.title,
-        item.price,
-        item.idRestaurant,
-        item.description
-    );
     onClose(item);
   };
+  const handleValidate = () => {
+    editItem(
+      item.title,
+      item.price,
+      item.idRestaurant,
+      item.description
+  );
+    onClose(item);
+  }
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -45,6 +48,7 @@ export function EditItemDialog(props: editItemDialogProps) {
       <TextField label="Titre"          variant="outlined" className="w-full" required margin="dense" value={title}         onChange={(e) => setTitle(e.target.value)}              />
       <TextField label="Description"    variant="outlined" className="w-full" required margin="dense" value={description}   onChange={(e) => setDescription(e.target.value)}        />
       <TextField label="Prix"           variant="outlined" className="w-full" required margin="dense" value={price}         onChange={(e) => setPrice(parseInt(e.target.value))}    type="number"/>
+      <Button onClick={handleValidate}>Valider</Button>
     </Dialog>
   );
 }

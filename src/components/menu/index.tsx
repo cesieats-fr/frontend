@@ -44,21 +44,14 @@ function MenuCard({ menu }: IMenuProps) {
           { menu.description }
           </Typography>
 
-          <CardMedia
-            height={100}
-            component="img"
-            image="/static/images/cards/paella.jpg"
-            alt="Photo du restau"
-          />
-
         <Typography>{ menu.price.toString() + "€"}</Typography>
       </CardContent>
       <CardActions className="flex justify-center">
         <Button variant="contained" className="" size="small" onClick={handleClickOpen}>
-          Editer le menu
+          Editer
         </Button>
         <Button variant="contained" className="" size="small" onClick={handleDelete}>
-          Supprimer le menu
+          Supprimer
         </Button>
         <EditMenuDialog menu={menu} open={open} onClose={handleClose} />
       </CardActions>

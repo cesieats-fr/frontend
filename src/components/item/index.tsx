@@ -3,7 +3,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CardMedia, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useState } from "react";
 import { IItem } from "cesieats-service-types/src/item";
 import { EditItemDialog } from "../editItem";
@@ -40,21 +40,14 @@ function ItemCard({ item, onDelete }: IItemProps) {
           { item.description }
           </Typography>
 
-          <CardMedia
-            height={100}
-            component="img"
-            image="/static/images/cards/paella.jpg"
-            alt="Photo du restau"
-          />
-
         <Typography>{ item.price.toString() + "€"}</Typography>
       </CardContent>
       <CardActions className="flex justify-center">
         <Button variant="contained" className="" size="small" onClick={handleClickOpen}>
-          Editer l'article
+          Editer
         </Button>
         <Button variant="contained" className="" size="small" onClick={handleDelete}>
-          Supprimer l'article
+          Supprimer
         </Button>
         <EditItemDialog item={item} open={open} onClose={handleClose} />
       </CardActions>

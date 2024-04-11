@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -11,6 +11,7 @@ import { getMenuItems, deleteMenuItem } from "../../store/reducers/item";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../store";
 import { Title } from "@mui/icons-material";
+import { TextField } from "@mui/material";
 
 export interface editMenuDialogProps {
   menu: IMenu;
@@ -21,54 +22,31 @@ export interface editMenuDialogProps {
 export function EditMenuDialog(props: editMenuDialogProps) {
   const { onClose, menu, open } = props;
 
+  const [title, setTitle] = useState(menu.title);
+  const [price, setPrice] = useState(menu.price);
+  const [description, setDescription] = useState(menu.description);
+  
   const handleClose = () => {
+    onClose(menu);
+  };
+
+  const handleValidate = () => {
     editMenu(
       menu.title,
       menu.price,
       menu.idRestaurant,
-      menu.description,
-      menu.imageUrl
+      menu.description
     );
     onClose(menu);
-  };
-
-  const dispatch = useDispatch<AppDispatch>();
-  const items = useSelector((state: RootState) => state.item.items);
-  useEffect(() => {
-    if (menu._id) dispatch(getMenuItems(menu._id));
-  }, [dispatch, menu._id]);
-
-  let idMenu: string;
-  if (menu._id) {
-    idMenu = menu._id;
   }
 
-  const handleDeleteItem = (idItem: string | undefined) => {
-    if (menu._id && idItem)
-      dispatch(deleteMenuItem({ idMenu, idItem }));
-  };
-
-  const handleAddItem = () => {
-    
-  };
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Edition du menu {menu.title}</DialogTitle>
-      <Title>Liste des items :</Title>
-      <List className="pt-0">
-        {items && items.map((item: IItem) => (
-          <ListItem
-            key={menu._id}
-            onClick={() => {
-              handleDeleteItem(item._id);
-            }}
-            secondaryAction={<Button>Delete</Button>}
-          >
-            <ListItemText primary={menu.title} />
-          </ListItem>
-        ))}
-      </List>
-      <Button onClick={() => handleAddItem}>Ajouter un élément</Button>
+      <TextField label="Titre"          variant="outlined" className="w-full" required margin="dense" value={title}         onChange={(e) => setTitle(e.target.value)}              />
+      <TextField label="Description"    variant="outlined" className="w-full" required margin="dense" value={description}   onChange={(e) => setDescription(e.target.value)}        />
+      <TextField label="Prix"           variant="outlined" className="w-full" required margin="dense" value={price}         onChange={(e) => setPrice(parseInt(e.target.value))}    type="number"/>
+      <Button onClick={handleValidate}>Valider</Button>
     </Dialog>
   );
 }

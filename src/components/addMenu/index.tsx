@@ -37,7 +37,6 @@ export function AddMenuDialog({ onClose, open, idRestaurant }: addMenuDialogProp
       <TextField label="Titre"          variant="outlined" className="w-full" required margin="dense" value={title}         onChange={(e) => setTitle(e.target.value)}              />
       <TextField label="Description"    variant="outlined" className="w-full" required margin="dense" value={description}   onChange={(e) => setDescription(e.target.value)}        />
       <TextField label="Prix"           variant="outlined" className="w-full" required margin="dense" value={price}         onChange={(e) => setPrice(parseInt(e.target.value))}    type="number"/>
-      <TextField label="URL de l'image" variant="outlined" className="w-full" required margin="dense" value={imageUrl}      onChange={(e) => setImageUrl(e.target.value)}/>
       <Button onClick={handleValidate}>Ajouter le menu</Button>
     </Dialog>
   );
