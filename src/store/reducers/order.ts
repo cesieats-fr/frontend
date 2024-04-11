@@ -2,18 +2,6 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { orderAPI } from '../../api';
 import { IOrder } from 'cesieats-service-types/src/order';
 
-// interface IOrderCart {
-//     restaurant: IRestaurant;
-//     items: {
-//         item: IItem;
-//         quantity: number;
-//     }[];
-//     menus: {
-//         menu: IMenu;
-//         quantity: number;
-//     }[];
-// }
-
 interface IOrderState {
     orders: IOrder[];
 }

@@ -19,22 +19,22 @@ function OrderCard({ restaurant }: IOrderCardProps) {
     }
 
     return (
-        <Card variant="elevation">
+        <Card variant="elevation" className="w-80 p-2">
             <CardContent>
                 <Typography variant="h6" color="text.primary" gutterBottom>
                     { restaurant.name }
                 </Typography>
-                <Typography variant="body2" color="text.primary" gutterBottom>
+                <Typography variant="body2" color="text.primary">
                     { restaurant.address }
                 </Typography>
-                <Typography variant="body2" color="text.primary" gutterBottom>
+                <Typography variant="body2" color="text.primary">
                     { restaurant.description }
                 </Typography>
-                <Typography variant="body2" color="text.primary" gutterBottom>
+                <Typography variant="body2" color="text.primary">
                     Ouvert de { restaurant.openingTime }h à { restaurant.closingTime }h
                 </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions className="justify-center">
                 <Button variant="contained" onClick={() => handleClickOrder()}>Commander</Button>
             </CardActions>
         </Card>

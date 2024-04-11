@@ -12,7 +12,7 @@ export interface IMenuListProps {
 function MenuList({ idRestaurant }: IMenuListProps) {
   const dispatch = useDispatch<AppDispatch>();
 
-  const menus = useSelector((state: RootState) => state.item.currentRestaurantsMenus);
+  const menus = useSelector((state: RootState) => state.item.menus);
 
   useEffect(() => {
     dispatch(getMenusByRestaurantId(idRestaurant));

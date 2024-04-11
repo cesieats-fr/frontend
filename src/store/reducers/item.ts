@@ -5,17 +5,17 @@ import { IItem, IMenu } from 'cesieats-service-types/src/item';
 interface IItemState {
     items: IItem[];
     menus: IMenu[];
-    currentRestaurantItems: IItem[];
-    currentRestaurantsMenus: IMenu[];
-    currentRestaurantAccountMenus: IMenu[];
+    // currentRestaurantItems: IItem[];
+    // currentRestaurantMenus: IMenu[];
+    // currentRestaurantAccountMenus: IMenu[];
 }
 
 const initialState: IItemState = {
     items: [] as IItem[],
     menus: [] as IMenu[],
-    currentRestaurantItems: [] as IItem[],
-    currentRestaurantsMenus: [] as IMenu[],
-    currentRestaurantAccountMenus: [] as IMenu[],
+    // currentRestaurantItems: [] as IItem[],
+    // currentRestaurantMenus: [] as IMenu[],
+    // currentRestaurantAccountMenus: [] as IMenu[],
 };
 
 interface LinkMenuItem {
@@ -53,6 +53,8 @@ export const addMenu = createAsyncThunk('item/addMenu', async (menu: IMenu) => {
     return response.data;
 });
 
+
+
 const itemSlice = createSlice({
     name: 'item',
     initialState,
@@ -69,19 +71,19 @@ const itemSlice = createSlice({
             })
         });
         builder.addCase(getItemsByRestaurantId.fulfilled, (state, { payload }) => {
-            state.currentRestaurantItems = payload;
+            state.items = payload;
         });
         builder.addCase(getMenusByRestaurantId.fulfilled, (state, { payload }) => {
-            state.currentRestaurantsMenus = payload;
+            state.menus = payload;
         });
         builder.addCase(deleteMenu.fulfilled, (state, { payload }) => {
             const menuPayload: IMenu = JSON.parse(payload);
-            state.currentRestaurantAccountMenus = state.currentRestaurantAccountMenus.filter( (menu) => {
-                    menu._id !== menuPayload._id
-                })
+            state.menus = state.menus.filter( (menu) => {
+                menu._id !== menuPayload._id
+            });
         });
         builder.addCase(addMenu.fulfilled, (state, { payload }) => {
-            state.currentRestaurantAccountMenus.push(payload);
+            state.menus.push(payload);
         });
     }
 });
