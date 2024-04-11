@@ -23,7 +23,7 @@ function ItemsView() {
     
     return (
         <Stack>
-        <Button sx={{width:300, marginBottom:2}} variant="contained" onClick={handleClickOpen}>Ajouter un menu</Button>
+        <Button sx={{width:300, marginBottom:2}} variant="contained" onClick={handleClickOpen}>Ajouter un article</Button>
         <ItemList idRestaurant={restaurant._id!}/>
         <AddItemDialog onClose={handleClose} open={open} idRestaurant={restaurant._id!}/>
     </Stack>

@@ -10,14 +10,13 @@ export interface IItemListProps {
 }
 
 function ItemList({ idRestaurant }: IItemListProps) {
+
   const dispatch = useDispatch<AppDispatch>();
 
+  const items = useSelector((state: RootState) => state.item.items);
   useEffect(() => {
     dispatch(getItemsByRestaurantId(idRestaurant));
   }, [dispatch, idRestaurant]);
-
-  const items = useSelector((state: RootState) => state.item.items);
-
 
 
   const onDelete = (idItem: string) => {
