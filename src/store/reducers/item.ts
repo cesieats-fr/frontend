@@ -48,7 +48,7 @@ export const getMenusByRestaurantId = createAsyncThunk('item/getMenusByRestauran
 });
 
 export const addMenu = createAsyncThunk('item/addMenu', async (menu: IMenu) => {
-    const response = await itemAPI.addMenu(menu.title, menu.price, menu.idRestaurant, menu.description, menu.imageUrl);
+    const response = await itemAPI.addMenu(menu.title, menu.price, menu.idRestaurant, menu.description);
     return response.data;
 });
 
@@ -68,9 +68,7 @@ const itemSlice = createSlice({
         });
         builder.addCase(deleteMenuItem.fulfilled, (state, { payload }) => {
             const linkPayload: LinkMenuItem = JSON.parse(payload);
-            state.items = state.items.filter( (item) => {
-                item._id !== linkPayload.idItem
-            })
+            state.items = state.items.filter( (item) => item._id !== linkPayload.idItem)
         });
         builder.addCase(getItemsByRestaurantId.fulfilled, (state, { payload }) => {
             state.items = payload;

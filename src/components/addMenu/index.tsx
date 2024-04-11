@@ -3,22 +3,21 @@ import Button from "@mui/material/Button";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import { addMenu } from "../../store/reducers/item";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
 import { TextField } from "@mui/material";
 
 export interface addMenuDialogProps {
   open: boolean;
-  idRestaurant: string;
   onClose: () => void;
 }
 
-export function AddMenuDialog({ onClose, open, idRestaurant }: addMenuDialogProps) {
-
+export function AddMenuDialog({ onClose, open }: addMenuDialogProps) {
+  const restaurant = useSelector((state: RootState) => state.restaurant.accountRestaurant);
+  
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -27,7 +26,7 @@ export function AddMenuDialog({ onClose, open, idRestaurant }: addMenuDialogProp
   };
 
   const handleValidate = () => {
-    dispatch(addMenu({title, price, idRestaurant, description, imageUrl}));
+    dispatch(addMenu({title, price, idRestaurant: restaurant._id!, description}));
     onClose();
   }
 

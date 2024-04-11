@@ -1,36 +1,17 @@
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { Grid } from "@mui/material";
-import { useState } from "react";
+import { Card, CardContent, Typography, Grid } from "@mui/material";
+import { ReactElement } from "react";
 import { IItem } from "cesieats-service-types/src/item";
-import { EditItemDialog } from "../editItem";
+
 
 interface IItemProps {
   item: IItem;
-  onDelete: (itemId: string) => void;
+  actions: ReactElement;
 }
 
-function ItemCard({ item, onDelete }: IItemProps) {
+function ItemCard({ item, actions }: IItemProps) {
 
-  const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleDelete = () => {
-    if(item._id)
-      onDelete(item._id)
-  };
-  
   return (
-    <Grid item xs={4}>
+    <Grid item xs={4} className="min-w-64">
       <Card>
         <CardContent>
           <Typography gutterBottom>
@@ -39,18 +20,9 @@ function ItemCard({ item, onDelete }: IItemProps) {
           <Typography color="text.secondary">
           { item.description }
           </Typography>
-
         <Typography>{ item.price.toString() + "€"}</Typography>
       </CardContent>
-      <CardActions className="flex justify-center">
-        <Button variant="contained" className="" size="small" onClick={handleClickOpen}>
-          Editer
-        </Button>
-        <Button variant="contained" className="" size="small" onClick={handleDelete}>
-          Supprimer
-        </Button>
-        <EditItemDialog item={item} open={open} onClose={handleClose} />
-      </CardActions>
+      { actions }
     </Card>
     </Grid>
   );

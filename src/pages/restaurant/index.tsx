@@ -1,144 +1,53 @@
-import React, { useEffect, useState } from "react";
-import {
-  ListItemText,
-  ListItemIcon,
-  ListItemButton,
-  ListItem,
-  Divider,
-  List,
-  Toolbar,
-  Drawer,
-  Box,
-  Typography,
-} from "@mui/material";
-import {
-  RestaurantMenu,
-  Home,
-  RoomService,
-  BarChart,
-} from "@mui/icons-material";
-import MenusView from "./views/menus";
-import ItemsView from "./views/item";
-import StatsView from "./views/stats";
-import OrdersView from "./views/orders";
-import HomeView from "./views/home";
+import { Divider, Stack, Typography } from "@mui/material";
+import DividedMenu, { IDividedMenuPart } from "../../components/dividedMenu";
+import Items from "./items";
+import ItemsTitle from "./items/title";
+import Menus from "./menus";
+import MenusTitle from "./menus/title"
+import MenuItems from "./menuItems";
+import MenuItemsTitle from "./menuItems/title";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { useEffect } from "react";
+import { getItemsByRestaurantId, getMenusByRestaurantId } from "../../store/reducers/item";
 
-import { IItem } from "cesieats-service-types/src/item";
-
-const drawerWidth = 240;
-
-const itemList: IItem[] = [
+const dividedMenuParts: IDividedMenuPart[] = [
   {
-    title: "Nuggets",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
+    titleComponent: <MenusTitle />,
+    component: <Menus />,
   },
   {
-    title: "Frites",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
+    titleComponent: <ItemsTitle />,
+    component: <Items />,
   },
   {
-    title: "Giga Mac",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
-  },
-  {
-    title: "Tolgaval",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
-  },
-  {
-    title: "Glaces",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
-  },
-  {
-    title: "San pe",
-    description: "yummy",
-    price: 20,
-    idRestaurant: 'test'
+    titleComponent: <MenuItemsTitle />,
+    component: <MenuItems />,
   }
-];
+]
 
-const listItems = [
-  {
-    text: "Home",
-    icon: <Home />,
-    component: <HomeView />,
-  },
-  {
-    text: "Items",
-    icon: <RestaurantMenu />,
-    component: <ItemsView itemList={itemList} />,
-  },
-  {
-    text: "Menus",
-    icon: <RestaurantMenu />,
-    component: <MenusView/>,
-  },
-  {
-    text: "Commandes",
-    icon: <RoomService />,
-    component: <OrdersView />,
-  },
-  {
-    text: "Statistiques",
-    icon: <BarChart />,
-    component: <StatsView />,
-  },
-];
+function Restaurant() {
+  const dispatch = useDispatch<AppDispatch>();
 
-export default function MenuDrawer() {
-  const [selectedMenu, setSelectedMenu] = useState("Home");
+  const restaurant = useSelector((state: RootState) => state.restaurant.accountRestaurant);
 
-  const handleMenuClick = (menu: React.SetStateAction<string>) => {
-    setSelectedMenu(menu);
-  };
-  
+  useEffect(() => {
+    dispatch(getItemsByRestaurantId(restaurant._id!));
+    dispatch(getMenusByRestaurantId(restaurant._id!))
+  }, [dispatch, restaurant]);
+
   return (
-    <div className="flex">
-      <Drawer
-        variant="permanent"
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-      >
-        <Toolbar />
-        <Box className="">
-          <List>
-            {
-              listItems && listItems.map(
-                (lI, index) => (
-                  <ListItem key={index} disablePadding>
-                    <ListItemButton onClick={() => handleMenuClick(lI.text)}>
-                      <ListItemIcon>{lI.icon}</ListItemIcon>
-                      <ListItemText primary={lI.text} />
-                    </ListItemButton>
-                  </ListItem>
-                )
-              )
-            }
-          </List>
-          <Divider />
-        </Box>
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
-          {
-            listItems && listItems.find((lI) => lI.text === selectedMenu)?.component
-          }
-      </Box>
-    </div>
+    <Stack spacing={5} direction="column" divider={<Divider orientation="horizontal" flexItem />} alignItems="center" >
+    <Typography
+      variant="h5"
+      color="text.primary"
+      gutterBottom
+    >
+      Gestion du restaurant
+    </Typography>
+    <DividedMenu dividedMenuParts={dividedMenuParts} />
+  </Stack>
   );
 }
+
+export default Restaurant;
