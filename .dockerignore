@@ -10,5 +10,3 @@ k8s-react-template.yml
 Jenkinsfile
 README.md
 .eslintrc.cjs
-
-.env
