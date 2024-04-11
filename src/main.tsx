@@ -4,6 +4,7 @@ import App from './App';
 import { Provider } from 'react-redux'
 import store from './store'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { SnackbarProvider } from 'notistack';
 import Socket from './socket';
 
 const theme = createTheme({
@@ -19,8 +20,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 <React.StrictMode>
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <App />
-      <Socket />
+      <SnackbarProvider maxSnack={3} autoHideDuration={2000} >
+        <App />
+        <Socket />
+      </SnackbarProvider>
     </ThemeProvider>
   </Provider>
 </React.StrictMode>);

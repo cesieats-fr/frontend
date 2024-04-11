@@ -138,10 +138,6 @@ function Header() {
 
   const [navHover, setNavHover] = useState("");
 
-  const disconnectUser = () => {
-    dispatch(removeAccount());
-  };
-
   const getHeader = () => {
     switch (userType) {
       case EAccountType.CLIENT:
@@ -168,7 +164,7 @@ function Header() {
             value={item.navigation}
             key={index}
             onClick={() => {
-              if (item.navigation === "/login") disconnectUser();
+              if (item.navigation === "/login") dispatch(removeAccount());
             }}
             onMouseEnter={() => setNavHover(item.navigation)}
             onMouseLeave={() => setNavHover("")}
