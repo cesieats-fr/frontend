@@ -16,6 +16,28 @@ function Orders() {
   }, [dispatch]);
 
   return (
+    <Stack>
+      <Stack
+      spacing={5}
+      direction="column"
+      divider={<Divider orientation="horizontal" flexItem />}
+    >
+      <Typography
+        className="m-2"
+        variant="body1"
+        color="text.primary"
+        gutterBottom
+      >
+        Historiques des commandes en cours:
+      </Typography>
+
+      <div className="flex flex-wrap justify-center gap-4 min-h-64">
+        {orders &&
+          orders.filter(order => order.orderState !== EOrderState.Delivered ).map((order, index) => (
+            <OrdersCard order={order} key={index} />
+          ))}
+      </div>
+    </Stack>
     <Stack
       spacing={5}
       direction="column"
@@ -30,12 +52,13 @@ function Orders() {
         Historiques des commandes :
       </Typography>
 
-      <div className="flex flex-wrap justify-center gap-4">
+      <div className="flex flex-wrap justify-center gap-4 ">
         {orders &&
           orders.filter(order => order.orderState === EOrderState.Delivered ).map((order, index) => (
             <OrdersCard order={order} key={index} />
           ))}
       </div>
+    </Stack>
     </Stack>
   );
 }
