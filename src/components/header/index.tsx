@@ -103,11 +103,6 @@ const restaurantHeader = [
     navigation: "/account",
   },
   {
-    name: "Paramètres",
-    icon: <SettingsRounded style={large} />,
-    navigation: "/parameters",
-  },
-  {
     name: "Se déconnecter",
     icon: <Logout style={large} />,
     navigation: "/login",
