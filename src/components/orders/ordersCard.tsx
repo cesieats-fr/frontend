@@ -29,9 +29,6 @@ function OrdersCard({ order }: IOrderCardProps) {
         </Typography>
         <Typography variant="body2" color="text.primary" gutterBottom>
           {order.restaurantTelephone}
-        </Typography>        
-        <Typography variant="body2" color="text.primary" gutterBottom>
-          {order.idRestaurant}
         </Typography>
       </CardContent>
     </Card>
