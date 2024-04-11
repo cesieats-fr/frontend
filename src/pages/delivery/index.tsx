@@ -18,7 +18,7 @@ function DeliveryPage() {
   return (
     <div className="justify-center flex flex-wrap gap-4 flex-col">
       <Chip
-        label={
+        label={          
           <span>
             <span>10,0</span>
             <span className="text-primaryLighter font-bold"> €</span>
