@@ -7,7 +7,7 @@ import { editAccount, removeAccount } from "../../store/reducers/account";
 import { IAccount } from 'cesieats-service-types/src/account';
 import { redirect } from "react-router-dom";
 import CopyToClipboardButton from "../../components/common/copyToClipboardButton"
-const type = ['Client','Livreur','Restaurant'];
+const type = ['Client','Livreur','Restaurant',"Service Commercial"];
 
 function DefaultAccount() {
     const dispatch = useDispatch<AppDispatch>();

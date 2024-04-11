@@ -9,6 +9,7 @@ import {
   StorefrontRounded,
   Login,
   Logout,
+  ManageAccounts,
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
@@ -17,6 +18,7 @@ import { Link } from "react-router-dom";
 import { removeAccount } from "../../store/reducers/account";
 import { useState } from "react";
 import CesiEatsBanner from "../../assets/CesiEatsBanner";
+
 
 const largeBanner = {
   width: "auto",
@@ -125,6 +127,31 @@ const disconnectedHeader = [
   },
 ];
 
+const salesDepartementHeader = [
+  {
+    name: "",
+    icon: <CesiEatsBanner fontSize="large" style={largeBanner} />,
+    navigation: "/",
+  },
+  {
+    name: "Gestion clients",
+    icon: <ManageAccounts  style={large} />,
+    navigation: "/management",
+  },
+  {
+    name: "Compte",
+    icon: <AccountCircleRounded style={large} />,
+    navigation: "/account",
+  },
+  {
+    name: "Se déconnecter",
+    icon: <Logout style={large} />,
+    navigation: "/login",
+  },
+  
+];
+
+
 function Header() {
   const userType = useSelector(
     (state: RootState) => state.account.account?.accountType
@@ -141,6 +168,8 @@ function Header() {
         return deliveryHeader;
       case EAccountType.RESTAURANT:
         return restaurantHeader;
+      case EAccountType.SALESDEPARTEMENT:
+        return salesDepartementHeader;
       default:
         return disconnectedHeader;
     }

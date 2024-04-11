@@ -20,6 +20,10 @@ const accountTypes = [
     {
         name: "Livreur",
         type: EAccountType.DELIVER
+    },
+    {
+        name: "Service commercial",
+        type: EAccountType.SALESDEPARTEMENT
     }
 ]
 function Register() {
