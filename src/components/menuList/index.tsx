@@ -12,11 +12,11 @@ export interface IMenuListProps {
 function MenuList({ idRestaurant }: IMenuListProps) {
   const dispatch = useDispatch<AppDispatch>();
 
-  const menus = useSelector((state: RootState) => state.item.items);
+  const menus = useSelector((state: RootState) => state.item.currentRestaurantsMenus);
 
   useEffect(() => {
     dispatch(getMenusByRestaurantId(idRestaurant));
-  }, [dispatch, menus, idRestaurant]);
+  }, [dispatch, idRestaurant]);
 
   const onDelete = (idMenu: string) => {
     deleteMenu(idMenu);

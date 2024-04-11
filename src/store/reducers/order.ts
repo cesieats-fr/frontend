@@ -23,11 +23,11 @@ const initialState: IOrderState = {
 };
 
 export const getAllClientOrders = createAsyncThunk(
-  "order/getAllClientOrders",
-  async () => {
-    const response = await orderAPI.getAllClientOrders();
-    return response.data;
-  }
+    "order/getAllClientOrders",
+    async () => {
+        const response = await orderAPI.getAllClientOrders();
+        return response.data;
+    }
 );
 
 export const getAllRestaurantOrders = createAsyncThunk('order/getAllRestaurantOrders', async () => {
