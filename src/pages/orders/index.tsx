@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
-import order, { getAllClientOrders } from "../../store/reducers/order";
+import { getAllClientOrders } from "../../store/reducers/order";
 import { useEffect } from "react";
 
 import { Stack, Divider, Typography } from "@mui/material";
 import OrdersCard from "../../components/orders/ordersCard";
-import { EOrderState } from "cesieats-service-types/src/order";
+import { EOrderState } from "../../enums";
 
 function Orders() {
   const dispatch = useDispatch<AppDispatch>();

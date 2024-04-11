@@ -3,3 +3,10 @@ export enum EAccountType {
     DELIVER,
     RESTAURANT,
 }
+
+export enum EOrderState {
+    WaitingForApproval,
+    Approved,
+    WaitingForDelivery,
+    Delivered,
+}
