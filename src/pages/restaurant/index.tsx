@@ -37,7 +37,7 @@ function Restaurant() {
   }, [dispatch, restaurant]);
 
   return (
-    <Stack spacing={5} direction="column" divider={<Divider orientation="horizontal" flexItem />} alignItems="center" >
+    <Stack spacing={5} direction="column" divider={<Divider orientation="horizontal" flexItem />} alignItems="center" className="h-full" >
     <Typography
       variant="h5"
       color="text.primary"

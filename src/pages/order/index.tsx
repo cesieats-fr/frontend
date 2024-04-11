@@ -37,7 +37,7 @@ function OrderPage() {
   }, [dispatch]);
 
   return (
-    <Stack spacing={5} direction="column" divider={<Divider orientation="horizontal" flexItem />} alignItems="center" >
+    <Stack spacing={5} direction="column" divider={<Divider orientation="horizontal" flexItem />} alignItems="center" className="h-full" >
       <Typography
         variant="body1"
         color="text.primary"

@@ -14,7 +14,7 @@ interface IDividedMenuProps {
 function DividedMenu({ dividedMenuParts }: IDividedMenuProps) {
 
   return (
-    <Stack spacing={5} direction="row" divider={<Divider orientation="vertical" flexItem />} className="w-full">
+    <Stack spacing={5} direction="row" divider={<Divider orientation="vertical" flexItem />} className="w-full h-full">
       { dividedMenuParts &&
         dividedMenuParts.map((part, index) => <DividedMenuPart dividedMenuPart={part} numberOfParts={dividedMenuParts.length} key={index} />)
       }
