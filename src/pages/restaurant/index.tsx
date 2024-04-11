@@ -21,8 +21,8 @@ import ItemsView from "./views/item";
 import StatsView from "./views/stats";
 import OrdersView from "./views/orders";
 import HomeView from "./views/home";
-
 import { IItem, IMenu } from "cesieats-service-types/src/item";
+
 const drawerWidth = 240;
 
 const menuList: IMenu[] = [
