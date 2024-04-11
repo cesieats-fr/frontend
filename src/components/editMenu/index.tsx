@@ -48,7 +48,9 @@ export function EditMenuDialog(props: editMenuDialogProps) {
       dispatch(deleteMenuItem({ idMenu, idItem }));
   };
 
-  const handleAddItem = () => {};
+  const handleAddItem = () => {
+    
+  };
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Edition du menu {menu.title}</DialogTitle>
