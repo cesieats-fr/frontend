@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
@@ -13,8 +13,7 @@ export interface addMenuDialogProps {
   onClose: () => void;
 }
 
-export function AddMenuDialog(props: addMenuDialogProps) {
-  const { onClose, open, idRestaurant } = props;
+export function AddMenuDialog({ onClose, open, idRestaurant }: addMenuDialogProps) {
 
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);

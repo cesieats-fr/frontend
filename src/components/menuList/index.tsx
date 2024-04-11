@@ -1,10 +1,7 @@
-import Button from "@mui/material/Button";
 import { Grid, Stack } from "@mui/material";
-import { IMenu } from "cesieats-service-types/src/item";
 import MenuCard from "../menu";
 import { deleteMenu, getMenusByRestaurantId } from "../../store/reducers/item";
-import { AddMenuDialog } from "../addMenu";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 
@@ -13,12 +10,14 @@ export interface IMenuListProps {
 }
 
 function MenuList({ idRestaurant }: IMenuListProps) {
-
   const dispatch = useDispatch<AppDispatch>();
+
   const menus = useSelector((state: RootState) => state.item.items);
+
   useEffect(() => {
     dispatch(getMenusByRestaurantId(idRestaurant));
-  }, [dispatch, menus]);
+  }, [dispatch, menus, idRestaurant]);
+
   const onDelete = (idMenu: string) => {
     deleteMenu(idMenu);
   }

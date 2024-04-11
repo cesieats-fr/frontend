@@ -1,16 +1,17 @@
 import Button from "@mui/material/Button";
-import { MenuList, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
 import { useEffect, useState } from "react";
 import { getMenusByRestaurantId } from "../../../store/reducers/item";
 import { AddMenuDialog } from "../../../components/addMenu";
+import MenuList from "../../../components/menuList"
 
 
 function MenusView() {
-
   const dispatch = useDispatch<AppDispatch>();
   const restaurant = useSelector((state: RootState) => state.restaurant.accountRestaurant);
+
   useEffect(() => {
     if (restaurant._id) 
       dispatch(getMenusByRestaurantId(restaurant._id));

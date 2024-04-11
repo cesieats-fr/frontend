@@ -170,7 +170,7 @@ export const getMenusByRestaurantId = async (idRestaurant: string) => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     });
-    return response.data;
+    return response;
 }
 
 export const getItemsByRestaurantId = async (idRestaurant: string) => {
