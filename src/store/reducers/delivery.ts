@@ -10,8 +10,13 @@ const initialState: IDeliveryState = {
     deliveries: [] as IDelivery[],
 };
 
-export const getDeliveries = createAsyncThunk('delivery/fetchDelivery', async () => {
+export const getDeliveries = createAsyncThunk('delivery/getDeliveries', async () => {
     const response = await deliveryAPI.getDeliveries();
+    return response.data;
+});
+
+export const linkDelivery = createAsyncThunk('delivery/linkDelivery', async (id: string) => {
+    const response = await deliveryAPI.linkDelivery(id);    
     return response.data;
 });
 
@@ -24,6 +29,9 @@ const deliverySlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getDeliveries.fulfilled, (state, { payload }) => {
             state.deliveries = payload 
+        });
+        builder.addCase(linkDelivery.fulfilled, (state, { payload }) => {
+            state.deliveries.map((delivery) => delivery._id !== payload._id ? delivery : payload);
         });
     }
 });

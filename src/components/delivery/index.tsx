@@ -1,18 +1,25 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CardMedia } from "@mui/material";
 import { IDelivery } from "cesieats-service-types/src/delivery";
 import { Stack, Divider } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
+import { linkDelivery } from "../../store/reducers/delivery";
 
 interface IDeliveryProps {
   delivery: IDelivery;
 }
 
 const Delivery: React.FC<IDeliveryProps> = ({ delivery }) => {
+
+  const dispatch = useDispatch<AppDispatch>();
+  const handleAcceptDelivery = () => {
+    dispatch(linkDelivery(delivery._id!));    
+    }
+
   return (   
     <Card>
     <CardContent>
@@ -41,7 +48,7 @@ const Delivery: React.FC<IDeliveryProps> = ({ delivery }) => {
           <Typography variant="body1">{delivery.price}€</Typography>
         </Stack>
       <Stack direction="row" spacing={2} justifyContent="center">
-        <Button variant="contained" className="" size="small">
+        <Button variant="contained" className="" size="small" onClick={handleAcceptDelivery}>
           Accepter la livraison
         </Button>
         </Stack>

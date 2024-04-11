@@ -1,40 +1,47 @@
+import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from "react-redux";
-
-import Delivery from "../../components/delivery";
-import Chip from "@mui/material/Chip";
-import { IDelivery } from "cesieats-service-types/src/delivery";
+import { Divider, Stack } from "@mui/material";
+import DividedMenu, { IDividedMenuPart } from "../../components/dividedMenu";
+import Deliveries from "./deliveries";
+import DeliveriesList from "./deliveries/title";
+import DeliveryDriver from "./delivery";
+import DeliveryList from "./delivery/title";
+import { AppDispatch, RootState } from "../../store";
 import { getDeliveries } from "../../store/reducers/delivery";
 import { useEffect } from "react";
-import { AppDispatch, RootState } from "../../store";
 
-function DeliveryPage() {
+function OrderPage() {
   const dispatch = useDispatch<AppDispatch>();
-  const deliveries = useSelector((state: RootState) => state.delivery.deliveries);
+  const account = useSelector((state: RootState) => state.account.account);
 
   useEffect(() => {
     dispatch(getDeliveries());
   }, [dispatch]);
 
+  const dividedMenuParts: IDividedMenuPart[] = [
+    {
+      titleComponent: <DeliveriesList />,
+      component: <Deliveries />,
+    },
+    {
+      titleComponent: <DeliveryList />,
+      component: <DeliveryDriver />,
+    },
+  ];
   return (
-    <div className="justify-center flex flex-wrap gap-4 flex-col">
-      <Chip
-        label={          
-          <span>
-            <span>10,0</span>
-            <span className="text-primaryLighter font-bold"> €</span>
-          </span>
-        }
-        variant="outlined"
-        className="bg-blackDark"
-      />
-      <div className="flex flex-wrap justify-center gap-4">
-        {deliveries &&
-          deliveries.map((delivery: IDelivery, index: number) => (
-            <Delivery key={index} delivery={delivery} />
-          ))}
-      </div>
-    </div>
+    <Stack
+      spacing={5}
+      direction="column"
+      divider={<Divider orientation="horizontal" flexItem />}
+      alignItems="center"
+      className="h-full"
+    >
+      <Typography variant="body1" color="text.primary" gutterBottom>
+        Argent gagné: {account.address}
+      </Typography>
+      <DividedMenu dividedMenuParts={dividedMenuParts} />
+    </Stack>
   );
 }
 
-export default DeliveryPage;
+export default OrderPage;

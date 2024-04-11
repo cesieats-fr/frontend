@@ -26,15 +26,15 @@ export const updateDeliveryState = async (state: EDeliveryState) => {
     return response.data;
 };
 
-export const linkDelivery = async () => {
+export const linkDelivery = async (id: string) => {
     const response = await axios.put(`${BASE_URL}/linkDelivery`, {
-        
+        id
     }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         },
     });
-    return response.data;
+    return response;
 };
 
 export const getDelivery = async (idDelivery: string) => {
