@@ -31,6 +31,7 @@ function Socket() {
                 notifySuccess(enqueueSnackbar, "test")
 
             });
+
         }
     }, [isAuthenticated, accountId])
 
