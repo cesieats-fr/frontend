@@ -20,7 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 <React.StrictMode>
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <SnackbarProvider maxSnack={3} autoHideDuration={2000} >
+      <SnackbarProvider maxSnack={3} autoHideDuration={4000}  anchorOrigin={{ vertical:'top', horizontal:'right' }}>
         <App />
         <Socket />
       </SnackbarProvider>
