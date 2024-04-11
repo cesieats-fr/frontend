@@ -6,53 +6,37 @@ import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import { IItem, IMenu } from "cesieats-service-types/src/item";
-import { editMenu } from "../../api/services/item";
+import { editItem } from "../../api/services/item";
 import { getMenuItems, deleteMenuItem } from "../../store/reducers/item";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../store";
 import { Title } from "@mui/icons-material";
 
 export interface editItemDialogProps {
-  menu: IItem;
+  item: IItem;
   open: boolean;
   onClose: (menu: IItem) => void;
 }
 
 export function EditItemDialog(props: editItemDialogProps) {
-  const { onClose, menu, open } = props;
+  const { onClose, item, open } = props;
 
   const handleClose = () => {
-    edit(
-      menu.title,
-      menu.price,
-      menu.idRestaurant,
-      menu.description
+    editItem(
+        item.title,
+        item.price,
+        item.idRestaurant,
+        item.description
     );
-    onClose(menu);
+    onClose(item);
   };
 
   const dispatch = useDispatch<AppDispatch>();
-  const items = useSelector((state: RootState) => state.item.items);
-  useEffect(() => {
-    if (menu._id) dispatch(getMenuItems(menu._id));
-  }, [dispatch, menu._id]);
 
-  let idMenu: string;
-  if (menu._id) {
-    idMenu = menu._id;
-  }
 
-  const handleDeleteItem = (idItem: string | undefined) => {
-    if (menu._id && idItem)
-      dispatch(deleteMenuItem({ idMenu, idItem }));
-  };
-
-  const handleAddItem = () => {
-    
-  };
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Edition de l'article {menu.title}</DialogTitle>
+      <DialogTitle>Edition de l'article {item.title}</DialogTitle>
     </Dialog>
   );
 }

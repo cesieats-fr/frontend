@@ -32,11 +32,11 @@ export function AddItemDialog({ onClose, open, idRestaurant }: addItemDialogProp
 
   return (
     <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Ajout d'un menu</DialogTitle>
+      <DialogTitle>Ajout d'un article</DialogTitle>
       <TextField label="Titre"          variant="outlined" className="w-full" required margin="dense" value={title}         onChange={(e) => setTitle(e.target.value)}              />
       <TextField label="Description"    variant="outlined" className="w-full" required margin="dense" value={description}   onChange={(e) => setDescription(e.target.value)}        />
       <TextField label="Prix"           variant="outlined" className="w-full" required margin="dense" value={price}         onChange={(e) => setPrice(parseInt(e.target.value))}    type="number"/>
-      <Button onClick={handleValidate}>Ajouter le menu</Button>
+      <Button onClick={handleValidate}>Ajouter l'article'</Button>
     </Dialog>
   );
 }

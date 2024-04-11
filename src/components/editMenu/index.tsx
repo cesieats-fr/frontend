@@ -56,7 +56,7 @@ export function EditMenuDialog(props: editMenuDialogProps) {
       <DialogTitle>Edition du menu {menu.title}</DialogTitle>
       <Title>Liste des items :</Title>
       <List className="pt-0">
-        {items.map((item: IItem) => (
+        {items && items.map((item: IItem) => (
           <ListItem
             key={menu._id}
             onClick={() => {

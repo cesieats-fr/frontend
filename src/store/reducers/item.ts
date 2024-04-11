@@ -38,6 +38,11 @@ export const deleteMenu = createAsyncThunk('item/deleteMenu', async (idMenu: str
     return response.data;
 });
 
+export const deleteItem = createAsyncThunk('item/deletItem', async (idItem: string) => {
+    const response = await itemAPI.deleteItem(idItem);
+    return response.data;
+});
+
 export const getItemsByRestaurantId = createAsyncThunk('item/getItemsByRestaurantId', async (idRestaurant: string) => {
     const response = await itemAPI.getItemsByRestaurantId(idRestaurant);
     return response.data;
@@ -53,7 +58,10 @@ export const addMenu = createAsyncThunk('item/addMenu', async (menu: IMenu) => {
     return response.data;
 });
 
-
+export const addItem = createAsyncThunk('item/addItem', async (item: IItem) => {
+    const response = await itemAPI.addItem(item.title, item.price, item.idRestaurant, item.description, item.imageUrl);
+    return response.data;
+});
 
 const itemSlice = createSlice({
     name: 'item',
@@ -73,6 +81,12 @@ const itemSlice = createSlice({
         builder.addCase(getItemsByRestaurantId.fulfilled, (state, { payload }) => {
             state.items = payload;
         });
+        builder.addCase(deleteItem.fulfilled, (state, { payload }) => {
+            const itemPayload: IItem = JSON.parse(payload);
+            state.items = state.items.filter( (item) => {
+                item._id !== itemPayload._id
+            });
+        });
         builder.addCase(getMenusByRestaurantId.fulfilled, (state, { payload }) => {
             state.menus = payload;
         });
@@ -84,6 +98,9 @@ const itemSlice = createSlice({
         });
         builder.addCase(addMenu.fulfilled, (state, { payload }) => {
             state.menus.push(payload);
+        });
+        builder.addCase(addItem.fulfilled, (state, { payload }) => {
+            state.items.push(payload);
         });
     }
 });

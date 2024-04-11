@@ -54,7 +54,7 @@ export const getAllItems = async (idRestaurant?: string) => {
     return response.data;
 };
 
-export const deleteItem = async (idItem: number) => {
+export const deleteItem = async (idItem: string) => {
     const response = await axios.delete(`${BASE_URL}/deleteItem`, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
