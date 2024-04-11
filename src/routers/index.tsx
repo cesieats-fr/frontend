@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HeaderFooter from "../layout";
 import Home from "../pages/home";
-import OrderPage from "../pages/order";
+import OrderPage from "../pages/order/index";
 import Orders from "../pages/orders";
 import Account from "../pages/account";
 import Deliveries from "../pages/deliveries";
 import Register from "../pages/register";
 import Login from "../pages/login";
 import DeliveryPage from "../pages/delivery";
-import Restaurant from "../pages/restaurant";
+import Restaurant from "../pages/restaurant/index";
 import RestrictedPage from "../pages/restricted";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";

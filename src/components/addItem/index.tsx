@@ -2,18 +2,18 @@ import { useState } from "react";
 import Button from "@mui/material/Button";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
 import { TextField } from "@mui/material";
 import { addItem } from "../../store/reducers/item";
 
 export interface addItemDialogProps {
   open: boolean;
-  idRestaurant: string;
   onClose: () => void;
 }
 
-export function AddItemDialog({ onClose, open, idRestaurant }: addItemDialogProps) {
+export function AddItemDialog({ onClose, open}: addItemDialogProps) {
+  const restaurant = useSelector((state: RootState) => state.restaurant.accountRestaurant);
 
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState(0);
@@ -26,7 +26,7 @@ export function AddItemDialog({ onClose, open, idRestaurant }: addItemDialogProp
   };
 
   const handleValidate = () => {
-    dispatch(addItem({title, price, idRestaurant, description}));
+    dispatch(addItem({title, price, idRestaurant: restaurant._id!, description}));
     onClose();
   }
 

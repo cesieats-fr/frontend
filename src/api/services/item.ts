@@ -63,7 +63,7 @@ export const deleteItem = async (idItem: string) => {
             id: idItem
         }
     });
-    return response.data;
+    return response;
 }
 
 export const addMenu = async (title: string, price: number, idRestaurant: string, description?: string, imageUrl?: string) => {
@@ -178,5 +178,5 @@ export const getItemsByRestaurantId = async (idRestaurant: string) => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         }
     });
-    return response.data;
+    return response;
 }

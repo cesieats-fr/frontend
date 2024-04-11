@@ -1,40 +1,16 @@
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { CardMedia, Grid } from "@mui/material";
+import { Card, CardContent, Typography, Grid } from "@mui/material";
 import { IMenu } from "cesieats-service-types/src/item";
-// import { getMenuItems } from "../../api/services/item";
-import { EditMenuDialog } from "../editMenu";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { deleteMenu } from "../../store/reducers/item";
-import { AppDispatch } from "../../store";
+import { ReactElement } from "react";
 
 interface IMenuProps {
   menu: IMenu;
+  actions: ReactElement
 }
 
-function MenuCard({ menu }: IMenuProps) {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleDelete = () => {
-    if(menu._id)
-      dispatch(deleteMenu(menu._id))
-  };
+function MenuCard({ menu, actions }: IMenuProps) {
   
   return (
-    <Grid item xs={4}>
+    <Grid item xs={4} className="min-w-64">
       <Card>
         <CardContent>
           <Typography gutterBottom>
@@ -46,15 +22,7 @@ function MenuCard({ menu }: IMenuProps) {
 
         <Typography>{ menu.price.toString() + "€"}</Typography>
       </CardContent>
-      <CardActions className="flex justify-center">
-        <Button variant="contained" className="" size="small" onClick={handleClickOpen}>
-          Editer
-        </Button>
-        <Button variant="contained" className="" size="small" onClick={handleDelete}>
-          Supprimer
-        </Button>
-        <EditMenuDialog menu={menu} open={open} onClose={handleClose} />
-      </CardActions>
+      { actions }
     </Card>
     </Grid>
   );
