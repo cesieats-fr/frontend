@@ -18,13 +18,12 @@ export const addItem = async ( title: string, price: number, idRestaurant: strin
     return response;
 };
 
-export const editItem = async ( title: string, price: number, idRestaurant: string, description?: string, imageUrl?: string) => {
+export const editItem = async ( title: string, price: number, description?: string, imageUrl?: string) => {
     const response = await axios.post(`${BASE_URL}/editItem`, {
         title,
         description,
         imageUrl,
         price,
-        idRestaurant
     }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -81,13 +80,12 @@ export const addMenu = async (title: string, price: number, idRestaurant: string
     return response;
 };
 
-export const editMenu = async ( title: string, price: number, idRestaurant: string, description?: string, imageUrl?: string) => {
+export const editMenu = async ( title: string, price: number, description?: string, imageUrl?: string) => {
     const response = await axios.post(`${BASE_URL}/editMenu`, {
         title,
         description,
         imageUrl,
         price,
-        idRestaurant
     }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`

@@ -48,12 +48,22 @@ export const getMenusByRestaurantId = createAsyncThunk('item/getMenusByRestauran
 });
 
 export const addMenu = createAsyncThunk('item/addMenu', async (menu: IMenu) => {
-    const response = await itemAPI.addMenu(menu.title, menu.price, menu.idRestaurant, menu.description);
+    const response = await itemAPI.addMenu(menu.title, menu.price, menu.idRestaurant!, menu.description);
     return response.data;
 });
 
 export const addItem = createAsyncThunk('item/addItem', async (item: IItem) => {
-    const response = await itemAPI.addItem(item.title, item.price, item.idRestaurant, item.description, item.imageUrl);
+    const response = await itemAPI.addItem(item.title, item.price, item.idRestaurant!, item.description);
+    return response.data;
+});
+
+export const editItem = createAsyncThunk('item/editItem', async (item: IItem) => {
+    const response = await itemAPI.editItem(item.title, item.price, item.description);
+    return response.data;
+});
+
+export const editMenu = createAsyncThunk('item/editMenu', async (menu: IMenu) => {
+    const response = await itemAPI.editMenu(menu.title, menu.price, menu.description);
     return response.data;
 });
 
@@ -87,6 +97,12 @@ const itemSlice = createSlice({
         });
         builder.addCase(addItem.fulfilled, (state, { payload }) => {
             state.items.push(payload);
+        });
+        builder.addCase(editItem.fulfilled, (state, { payload }) => {
+            state.items.map((i: IItem) => i._id !== payload._id ? i : payload);
+        });
+        builder.addCase(editMenu.fulfilled, (state, { payload }) => {
+            state.menus.map((m: IMenu) => m._id !== payload._id ? m : payload);
         });
     }
 });

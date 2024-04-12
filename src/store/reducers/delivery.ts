@@ -31,7 +31,7 @@ const deliverySlice = createSlice({
             state.deliveries = payload 
         });
         builder.addCase(linkDelivery.fulfilled, (state, { payload }) => {
-            state.deliveries.map((delivery) => delivery._id !== payload._id ? delivery : payload);
+            state.deliveries = state.deliveries.map((delivery) => delivery._id !== payload._id ? delivery : payload);
         });
     }
 });
