@@ -3,8 +3,7 @@ import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import {
   ShoppingCartRounded,
   ReceiptRounded,
-  AccountCircleRounded,
-  SettingsRounded,
+  AccountCircleRounded,  
   DeliveryDiningRounded,
   StorefrontRounded,
   Login,

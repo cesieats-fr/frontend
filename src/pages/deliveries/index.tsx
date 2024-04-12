@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import Deliveries from "../../components/deliveries";
-import Chip from "@mui/material/Chip";
 import { IDelivery } from "cesieats-service-types/src/delivery";
 import { getDeliveries } from "../../store/reducers/delivery";
 import { useEffect } from "react";
