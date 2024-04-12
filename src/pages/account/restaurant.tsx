@@ -5,14 +5,16 @@ import { useEffect, useState } from "react";
 import { deleteAccount } from "../../api/services/account";
 import { editAccount, removeAccount } from "../../store/reducers/account";
 import { IAccount } from "cesieats-service-types/src/account";
-import { redirect } from "react-router-dom";
 import { IRestaurant } from "cesieats-service-types/src/restaurant";
 import { editAccountRestaurant } from "../../store/reducers/restaurant";
 import { notifySuccess } from "../../notification";
 import { useSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 
 function RestaurantAccount() {
   const dispatch = useDispatch<AppDispatch>();
+
+  const navigate = useNavigate();
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -73,11 +75,12 @@ function RestaurantAccount() {
     };
     dispatch(editAccountRestaurant(restaurant));
     notifySuccess(enqueueSnackbar, "Informations mises à jour avec succès");
+    navigate("/");
   };
   const handleDeleteAccount = async () => {
     await deleteAccount();
     dispatch(removeAccount());
-    redirect("/");
+    navigate("/");
   };
   return (
     <div className="w-full items-center flex flex-col">

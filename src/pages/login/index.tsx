@@ -3,14 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { login } from "../../api/services/account";
 import { setAccount } from "../../store/reducers/account";
-import { NavLink, redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { RootState } from "../../store";
 import { notifyError } from "../../notification";
 import { useSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 
 
 function Login() {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const { enqueueSnackbar } = useSnackbar();
   const isAuthenticated = useSelector(
     (state: RootState) => state.account.isAuthenticated
@@ -31,7 +35,7 @@ function Login() {
       if (res.status === 200) {
         localStorage.setItem("token", res.data.token);
         dispatch(setAccount(res.data.account));
-        redirect("/");
+        navigate("/");
       } else if (res.status === 404) {
         notifyError(enqueueSnackbar, "Email ou mot de passe incorrect");
       } else {

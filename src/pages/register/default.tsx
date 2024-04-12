@@ -5,9 +5,12 @@ import { useState } from "react";
 import { setAccount } from "../../store/reducers/account";
 import { register } from "../../api/services/account";
 import { IRegisterProps } from ".";
+import { useNavigate } from "react-router-dom";
 
 function DefaultAccount({ accountType }: IRegisterProps) {
   const dispatch = useDispatch<AppDispatch>();
+
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,6 +70,7 @@ function DefaultAccount({ accountType }: IRegisterProps) {
       const { token, account } = response.data;
       localStorage.setItem("token", token);
       dispatch(setAccount(account));
+      navigate('/');
     } else {
       alert(response.data);
     }

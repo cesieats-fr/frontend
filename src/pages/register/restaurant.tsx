@@ -7,9 +7,12 @@ import { register } from "../../api/services/account";
 import { addRestaurant } from "../../store/reducers/restaurant";
 import { IRegisterProps } from ".";
 import { IRestaurant } from "cesieats-service-types/src/restaurant";
+import { useNavigate } from "react-router-dom";
 
 function RestaurantAccount({ accountType }: IRegisterProps) {
   const dispatch = useDispatch<AppDispatch>();
+
+  const navigate = useNavigate();
 
   // Account
   const [email, setEmail] = useState("");
@@ -141,6 +144,7 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
       };
 
       dispatch(addRestaurant(restaurant));
+      navigate('/');
     } else {
       alert(response.data);
     }
