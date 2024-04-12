@@ -8,9 +8,14 @@ import { IAccount } from "cesieats-service-types/src/account";
 import { redirect } from "react-router-dom";
 import { IRestaurant } from "cesieats-service-types/src/restaurant";
 import { editAccountRestaurant } from "../../store/reducers/restaurant";
+import { notifySuccess } from "../../notification";
+import { useSnackbar } from "notistack";
 
 function RestaurantAccount() {
   const dispatch = useDispatch<AppDispatch>();
+
+  const { enqueueSnackbar } = useSnackbar();
+
   const account = useSelector((state: RootState) => state.account.account);
   const restaurant = useSelector(
     (state: RootState) => state.restaurant.accountRestaurant
@@ -67,6 +72,7 @@ function RestaurantAccount() {
       telephone: restaurantTelephone,
     };
     dispatch(editAccountRestaurant(restaurant));
+    notifySuccess(enqueueSnackbar, "Informations mises à jour avec succès");
   };
   const handleDeleteAccount = async () => {
     await deleteAccount();

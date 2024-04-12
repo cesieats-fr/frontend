@@ -8,9 +8,14 @@ import { IAccount } from 'cesieats-service-types/src/account';
 import { redirect } from "react-router-dom";
 import CopyToClipboardButton from "../../components/common/copyToClipboardButton"
 const type = ['Client','Livreur','Restaurant',"Service Commercial"];
+import { notifySuccess } from "../../notification";
+import { useSnackbar } from "notistack";
 
 function DefaultAccount() {
     const dispatch = useDispatch<AppDispatch>();
+
+    const { enqueueSnackbar } = useSnackbar();
+
     const account = useSelector((state: RootState) => state.account.account);
 
     const [email, setEmail] = useState('');
@@ -37,6 +42,7 @@ function DefaultAccount() {
             accountType: account.accountType
         }
         dispatch(editAccount(acc));
+        notifySuccess(enqueueSnackbar, "Informations mises à jour avec succès");
     }
     const handleDeleteAccount = async () => {
         await deleteAccount();

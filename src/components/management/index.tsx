@@ -10,7 +10,8 @@ import {
   Typography,
 } from "@mui/material";
 import { IAccount } from "cesieats-service-types/src/account";
-
+import { notifySuccess } from "../../notification";
+import { useSnackbar } from "notistack";
 import { Edit, Delete } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import {
@@ -27,6 +28,8 @@ interface IAccountCardProps {
 function ClientAccountCard({ account }: IAccountCardProps) {
   const dispatch = useDispatch<AppDispatch>();
   const accountType = ["CLIENT", "DELIVER", "RESTAURANT", "SALESDEPARTEMENT"];
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const [open, setOpen] = useState(false);
 
@@ -60,12 +63,14 @@ function ClientAccountCard({ account }: IAccountCardProps) {
     dispatch(editAccountByID(acc));
 
     setOpen(false);
+    notifySuccess(enqueueSnackbar, "Client mis à jour avec succès");
   };
 
   const handleDeleteClientAccount = async () => {
     console.log(account._id);
     await deleteAccountById(account._id!);
     dispatch(deleteAccountById(account._id!));
+    notifySuccess(enqueueSnackbar, "Compte supprimé avec succès");
   };
   return (
     <Stack>
