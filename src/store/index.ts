@@ -3,7 +3,6 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import accountReducer from './reducers/account';
 import deliveryReducer from './reducers/delivery';
 import orderReducer from './reducers/order';
-import orderCartReducer from './reducers/orderCart'
 import restaurantReducer from './reducers/restaurant';
 import itemReducer from './reducers/item';
 
@@ -11,7 +10,6 @@ const rootReducer = combineReducers({
     account: accountReducer,
     delivery: deliveryReducer,
     order: orderReducer,
-    orderCart: orderCartReducer,
     restaurant: restaurantReducer,
     item: itemReducer
 });

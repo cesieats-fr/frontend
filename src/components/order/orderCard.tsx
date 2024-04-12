@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { setRestaurantSelected } from "../../store/reducers/restaurant";
 import { getItemsByRestaurantId, getMenusByRestaurantId } from "../../store/reducers/item";
+import { changeRestaurant } from "../../store/reducers/order";
 
 interface IOrderCardProps {
     restaurant: IRestaurant
@@ -13,6 +14,7 @@ function OrderCard({ restaurant }: IOrderCardProps) {
     const dispatch = useDispatch<AppDispatch>();
 
     const handleClickOrder = () => {
+        dispatch(changeRestaurant(restaurant));
         dispatch(setRestaurantSelected(restaurant));
         dispatch(getItemsByRestaurantId(restaurant._id!));
         dispatch(getMenusByRestaurantId(restaurant._id!));

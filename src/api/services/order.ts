@@ -1,18 +1,25 @@
 import axios from "axios";
+import { IOrderItems, IOrderMenus } from "cesieats-service-types/src/order";
 
 const BASE_URL = import.meta.env.VITE_API_ORDER_URL;
 
 export const addOrder = async (
-  idClient: number,
-  idRestaurant: number,
-  idDelivery?: number
+  idRestaurant: string,
+  price: number,
+  restaurantName: string,
+  restaurantAddress: string,
+  restaurantTelephone: string,
+  idAccountRestaurant: string,
 ) => {
   const response = await axios.post(
     `${BASE_URL}/addOrder`,
     {
-      idClient,
       idRestaurant,
-      idDelivery,
+      price,
+      restaurantName,
+      restaurantAddress,
+      restaurantTelephone,
+      idAccountRestaurant,
     },
     {
       headers: {
@@ -20,8 +27,40 @@ export const addOrder = async (
       },
     }
   );
-  return response.data;
+  return response;
 };
+
+export const addOrderItems = async (
+  orderItems: IOrderItems[]
+) => {
+  const response = await axios.post(`${BASE_URL}/addOrderItems`, 
+    {
+      orderItems
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }
+    }
+  );
+  return response;
+}
+
+export const addOrderMenus = async (
+  orderMenus: IOrderMenus[]
+) => {
+  const response = await axios.post(`${BASE_URL}/addOrderMenus`, 
+    {
+      orderMenus
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      }
+    }
+  );
+  return response;
+}
 
 export const updateOrderState = async (id: number, orderState: number) => {
   const response = await axios.post(
