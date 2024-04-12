@@ -38,16 +38,6 @@ function OrderPage() {
       alignItems="center"
       className="h-full"
     >
-      <Typography variant="body1" color="text.primary" gutterBottom>
-        Argent gagné:{" "}
-        {deliveries.length > 0
-          ? deliveries.reduce(
-              (acc, delivery) =>
-                acc + (typeof delivery.price === "number" ? delivery.price : 0),
-              0
-            ) + "€"
-          : "0€"}
-      </Typography>
       <DividedMenu dividedMenuParts={dividedMenuParts} />
     </Stack>
   );
