@@ -67,6 +67,7 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
       forname,
       name,
       accountType,
+      address,
     });
     if (response.status === 200) {
       const { token, account } = response.data;
