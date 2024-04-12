@@ -116,10 +116,14 @@ const orderSlice = createSlice({
                 price: payload.deliveryPrice,
             } as IOrderCart;
             state.orderCart.restaurant = payload;
-        }
+        },
+        addOrderReducer: (state, { payload }) => {
+            state.orders.push(payload);
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(getAllClientOrders.fulfilled, (state, { payload }) => {
+            console.log(payload);
             state.orders = payload;
         });
         builder.addCase(getAllRestaurantOrders.fulfilled, (state, { payload }) => {
@@ -128,6 +132,6 @@ const orderSlice = createSlice({
     }
 });
 
-export const { addMenuToCart, addItemToCart, removeItemFromCart, removeMenuFromCart, deleteItemFromCart, deleteMenuFromCart, emptyCart, changeRestaurant } = orderSlice.actions;
+export const { addMenuToCart, addItemToCart, removeItemFromCart, removeMenuFromCart, deleteItemFromCart, deleteMenuFromCart, emptyCart, changeRestaurant, addOrderReducer } = orderSlice.actions;
 
 export default orderSlice.reducer;

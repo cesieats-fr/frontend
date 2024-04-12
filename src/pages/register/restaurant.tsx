@@ -147,6 +147,7 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
               label="Adresse"
               variant="outlined"
               margin="dense"
+              required
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               multiline
@@ -171,7 +172,6 @@ function RestaurantAccount({ accountType }: IRegisterProps) {
               margin="dense"
               value={restaurantDescription}
               onChange={(e) => setRestaurantDescription(e.target.value)}
-              type="password"
               // error={!!DescriptionRestaurantError}
               // helperText={DescriptionRestaurantError}
             />

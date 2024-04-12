@@ -45,7 +45,7 @@ function DefaultAccount({ accountType }: IRegisterProps) {
                     <TextField label="Mot de passe" variant="outlined" className="w-full" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
                     <TextField label="Nom"          variant="outlined" className="w-full" required margin="dense" value={name}      onChange={(e) => setName(e.target.value)}/>
                     <TextField label="Prénom"       variant="outlined" className="w-full" required margin="dense" value={forname}   onChange={(e) => setForname(e.target.value)}/>
-                    <TextField label="Adresse"      variant="outlined" className="w-full"          margin="dense" value={address}    onChange={(e) => setAddress(e.target.value)}   multiline       rows={4}/>
+                    <TextField label="Adresse"      variant="outlined" className="w-full" required margin="dense" value={address}    onChange={(e) => setAddress(e.target.value)}   multiline       rows={4}/>
                 </Stack>
                 <Stack direction="row" alignItems="center" justifyContent="center">
                     <Button variant="contained" onClick={() => { handleRegister() }}>Créer le compte</Button>

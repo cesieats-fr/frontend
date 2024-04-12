@@ -28,7 +28,7 @@ function Orders() {
           color="text.primary"
           gutterBottom
         >
-          Historiques des commandes en cours:
+          Commandes en cours:
         </Typography>
 
         <div className="flex flex-wrap justify-center gap-4 min-h-64">
@@ -49,7 +49,7 @@ function Orders() {
           color="text.primary"
           gutterBottom
         >
-          Historiques des commandes :
+          Historique des commandes :
         </Typography>
 
         <div className="flex flex-wrap justify-center gap-4 ">

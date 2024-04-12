@@ -125,6 +125,7 @@ function RestaurantAccount() {
               label="Adresse"
               variant="outlined"
               margin="dense"
+              required
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               multiline

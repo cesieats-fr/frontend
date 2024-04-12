@@ -10,6 +10,8 @@ export const addOrder = async (
   restaurantAddress: string,
   restaurantTelephone: string,
   idAccountRestaurant: string,
+  clientAddress: string,
+  clientName: string,
 ) => {
   const response = await axios.post(
     `${BASE_URL}/addOrder`,
@@ -20,6 +22,8 @@ export const addOrder = async (
       restaurantAddress,
       restaurantTelephone,
       idAccountRestaurant,
+      clientAddress,
+      clientName,
     },
     {
       headers: {
@@ -27,6 +31,7 @@ export const addOrder = async (
       },
     }
   );
+  console.log(response);
   return response;
 };
 
@@ -93,7 +98,7 @@ export const getAllClientOrders = async () => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
-  return response.data;
+  return response;
 };
 
 export const getAllRestaurantOrders = async () => {
@@ -102,7 +107,7 @@ export const getAllRestaurantOrders = async () => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
-  return response.data;
+  return response;
 };
 
 export const deleteOrder = async (idOrder: number) => {

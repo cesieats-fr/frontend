@@ -1,16 +1,19 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { accountAPI, restaurantAPI } from './api';
 import { useEffect } from 'react';
 import { setAccount } from './store/reducers/account';
 import { setAccountRestaurant } from './store/reducers/restaurant';
 import RouterPage from './routers';
 import './index.css';
+import { RootState } from './store';
 
 
 
 function App(): React.ReactElement {
   const dispatch = useDispatch();
+  const isAuthentificated = useSelector((state: RootState) => state.account.isAuthenticated);
+
   useEffect(() => {
     if(localStorage.getItem('token') === null) return;
     accountAPI.loginWithToken()
@@ -26,7 +29,7 @@ function App(): React.ReactElement {
     .catch(() => {
       localStorage.removeItem('token');
     });
-  }, [dispatch]);
+  }, [dispatch, isAuthentificated]);
 
   return (
     <RouterPage />

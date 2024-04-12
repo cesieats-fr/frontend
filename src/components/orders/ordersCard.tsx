@@ -7,7 +7,7 @@ interface IOrderCardProps {
 
 function OrdersCard({ order }: IOrderCardProps) {
   return (
-    <Card variant="elevation">
+    <Card variant="elevation" className="min-w-64">
       <CardContent>
         <Typography variant="h6" color="text.primary" gutterBottom>
           {order.orderState}
