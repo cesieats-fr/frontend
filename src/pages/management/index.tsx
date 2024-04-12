@@ -5,6 +5,7 @@ import { useEffect } from "react";
 
 import { Stack, Divider, Typography } from "@mui/material";
 import ClientAccountCard from "../../components/management/";
+import { EAccountType } from "../../enums";
 
 function Management() {
   const dispatch = useDispatch<AppDispatch>();
@@ -34,7 +35,7 @@ function Management() {
 
         <div className="flex flex-wrap justify-center gap-4 ">
           {clientAccounts &&
-            clientAccounts.map((account, index) => (
+            clientAccounts.filter((account) => account.accountType === EAccountType.CLIENT).map((account, index) => (
               <ClientAccountCard account={account} key={index} />
             ))}
         </div>
