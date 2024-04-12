@@ -33,7 +33,7 @@ function Parameters() {
         <div>
             <Stack direction="column" alignItems="center" justifyContent="center" spacing={3}>
                 <TextField
-                    label="durée des notifications"
+                    label="durée des notifications (en secondes)"
                     variant="outlined"
                     margin="dense"
                     value={notificationDuration}
