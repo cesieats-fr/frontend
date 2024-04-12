@@ -9,31 +9,26 @@ function Socket() {
 
     const { enqueueSnackbar } = useSnackbar();
     const isAuthenticated = useSelector((state: RootState) => state.account.isAuthenticated);
-    const accountId = useSelector((state: RootState) => state.account.account._id);
+    const account = useSelector((state: RootState) => state.account.account);
 
     useEffect(() => {
         if(isAuthenticated) {
-            console.log('authenticated')
-            console.log(accountId);
-            notifySuccess(enqueueSnackbar, (String)(accountId))
+            // notifySuccess(enqueueSnackbar, (String)(account._id))
 
             const socket = io(import.meta.env.VITE_SOCKET_URL, {
-                query: { accountId }
+                query: { accountId: account._id }
             });
 
             socket.on('connect', () => {
-                console.log('connected to socket.io server')
-                notifySuccess(enqueueSnackbar, "connected to socket.io server")
+                notifySuccess(enqueueSnackbar, `Bienvenue ${account.forname} !`)
             });
 
             socket.on('test', (data) => {
-                console.log('data:', data)
-                notifySuccess(enqueueSnackbar, "test")
-
+                notifySuccess(enqueueSnackbar, data)
             });
 
         }
-    }, [isAuthenticated, accountId])
+    }, [isAuthenticated, account, enqueueSnackbar])
 
     return null
 }

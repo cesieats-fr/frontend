@@ -25,7 +25,6 @@ export const editAccountByID = createAsyncThunk('account/editAccountByID', async
 });
 export const getAllClientAccounts = createAsyncThunk('account/getAllClientAccounts', async () => {
     const response = await accountAPI.getAllClientAccounts();
-    console.log('response.data : ', response);
     return response.data;
 });
 
@@ -59,7 +58,6 @@ const accountSlice = createSlice({
             state.accounts = state.accounts.filter((account) => account._id !== payload._id);
         });
         builder.addCase(editAccountByID.fulfilled, (state, { payload }) => {
-            console.log('payload : ', payload);
             state.accounts = state.accounts.map((account) => {
                 if (account._id === payload._id) {
                     return payload;

@@ -31,7 +31,6 @@ export const addOrder = async (
       },
     }
   );
-  console.log(response);
   return response;
 };
 

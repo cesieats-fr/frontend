@@ -67,7 +67,6 @@ function ClientAccountCard({ account }: IAccountCardProps) {
   };
 
   const handleDeleteClientAccount = async () => {
-    console.log(account._id);
     await deleteAccountById(account._id!);
     dispatch(deleteAccountById(account._id!));
     notifySuccess(enqueueSnackbar, "Compte supprimé avec succès");

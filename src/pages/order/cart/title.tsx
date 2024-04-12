@@ -24,8 +24,6 @@ function CartTitle() {
     const orderMenus: IOrderMenus[] = orderCart.menus.map((menu) => { return { idMenu: menu.menu._id!, idOrder, amount: menu.amount } });
     addOrderItems(orderItems);
     addOrderMenus(orderMenus);
-    console.log(orderItems);
-    console.log(orderMenus);
   }
 
   const handleDeleteCart = () => {

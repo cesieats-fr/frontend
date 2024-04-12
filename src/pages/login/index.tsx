@@ -29,7 +29,6 @@ function Login() {
 
     login(email, password).then( (res) => {
       if (res.status === 200) {
-        console.log(res);
         localStorage.setItem("token", res.data.token);
         dispatch(setAccount(res.data.account));
         redirect("/");
