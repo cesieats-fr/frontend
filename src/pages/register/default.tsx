@@ -15,9 +15,16 @@ function DefaultAccount({ accountType }: IRegisterProps) {
     const [name, setName] = useState('');
     const [forname, setForname] = useState('');
     const [address, setAddress] = useState('');
+    const [emailError, setEmailError] = useState("");
 
     const handleRegister = async () => {
         const response = await register({ email, password, forname, name, accountType });
+            // Validation de l'email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+            setEmailError("Veuillez entrer une adresse e-mail valide");
+            return; // Sortir de la fonction si l'email est invalide
+            }
         if(response.status === 200) {
             const { token, account } = response.data;
             localStorage.setItem('token', token);
@@ -32,7 +39,7 @@ function DefaultAccount({ accountType }: IRegisterProps) {
             <Stack direction="column" spacing={4} className="pt-5">
                 <Typography className="m-3 text-center">Infos et modifications du compte</Typography>
                 <Stack direction="column" spacing={2} justifyContent="space-around">
-                    <TextField label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)} type="email"/>
+                    <TextField label="E-mail"       variant="outlined" className="w-full" required margin="dense" value={email}     onChange={(e) => setEmail(e.target.value)} type="email" error={!!emailError} helperText={emailError}/>
                     <TextField label="Mot de passe" variant="outlined" className="w-full" required margin="dense" value={password}  onChange={(e) => setPassword(e.target.value)} type="password" />
                     <TextField label="Nom"          variant="outlined" className="w-full" required margin="dense" value={name}      onChange={(e) => setName(e.target.value)}/>
                     <TextField label="Prénom"       variant="outlined" className="w-full" required margin="dense" value={forname}   onChange={(e) => setForname(e.target.value)}/>
