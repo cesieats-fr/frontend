@@ -2,8 +2,13 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
-import { LinkedIn } from "@mui/icons-material";
+import { LinkedIn, GitHub } from "@mui/icons-material";
 import { Box } from "@mui/material";
+
+const largeIcon = {
+    height: 40, 
+    width: 40,
+}
 
 function Footer() {
     return (
@@ -37,7 +42,8 @@ function Footer() {
                         <Typography variant="h6" className="text-primaryClassic" gutterBottom>
                         Nous suivre
                         </Typography>
-                        <Link href="https://www.linkedin.com/in/tolgabeylik" color="inherit"><LinkedIn /></Link>
+                        <Link href="https://www.linkedin.com/in/tolgabeylik" color="inherit"><LinkedIn sx={largeIcon} /></Link>
+                        <Link href="https://github.com/cesieats-fr" color="inherit"><GitHub sx={largeIcon} /></Link>
                     </Grid>
                 </Grid>
                 <Box mt={2}>
