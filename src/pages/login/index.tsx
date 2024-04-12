@@ -5,11 +5,13 @@ import { login } from "../../api/services/account";
 import { setAccount } from "../../store/reducers/account";
 import { NavLink, redirect } from "react-router-dom";
 import { RootState } from "../../store";
-
+import { notifyError } from "../../notification";
+import { useSnackbar } from "notistack";
 
 
 function Login() {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const isAuthenticated = useSelector(
     (state: RootState) => state.account.isAuthenticated
   );
@@ -25,16 +27,26 @@ function Login() {
       return; // Sortir de la fonction si l'email est invalide
     }
 
-    const { status, data } = await login(email, password);
-    if (status === 200) {
-      localStorage.setItem("token", data.token);
-      dispatch(setAccount(data.account));
-      redirect("/");
-    } else if (status === 404) {
-      alert("Email ou mot de passe incorrect");
-    } else {
-      alert("Connexion impossible!");
-    }
+    login(email, password).then( (res) => {
+      if (res.status === 200) {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        dispatch(setAccount(res.data.account));
+        redirect("/");
+      } else if (res.status === 404) {
+        notifyError(enqueueSnackbar, "Email ou mot de passe incorrect");
+      } else {
+        notifyError(enqueueSnackbar, "Connexion impossible!");
+      }
+    }).catch( (res) => {
+      if (res.response.status === 404) {
+        notifyError(enqueueSnackbar, "Email ou mot de passe incorrect");
+      } else {
+        notifyError(enqueueSnackbar, "Connexion impossible!");
+      }
+    });
+
+    
   };
 
   const getPage = () => {
