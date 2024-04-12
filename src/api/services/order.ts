@@ -67,7 +67,7 @@ export const addOrderMenus = async (
   return response;
 }
 
-export const updateOrderState = async (id: number, orderState: number) => {
+export const updateOrderState = async (id: string, orderState: number) => {
   const response = await axios.post(
     `${BASE_URL}/updateOrderState`,
     {

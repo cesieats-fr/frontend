@@ -15,6 +15,8 @@ import { RootState } from "../store";
 import { EAccountType } from "../enums";
 import Mangement from "../pages/management";
 import Parameters from "../pages/parameters";
+import Management from "../pages/management";
+import RestaurantOrders from "../pages/restaurantOrders";
 
 interface ProtectedRouteProps {
   element: React.ElementType;
@@ -89,7 +91,11 @@ const RouterPage: React.FC = () => {
           />
            <Route
             path="/management"
-            element={<ProtectedRoute element={Mangement} />}
+            element={<ProtectedRoute element={Management} />}
+          />
+          <Route
+            path="/restaurantOrders"
+            element={<ProtectedRoute element={RestaurantOrders} />}
           />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

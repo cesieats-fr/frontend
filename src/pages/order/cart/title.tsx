@@ -2,7 +2,7 @@ import { Button, Stack, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../store";
 import { useMemo } from "react";
-import { addOrderReducer, emptyCart } from "../../../store/reducers/order";
+import { addClientOrder, emptyCart } from "../../../store/reducers/order";
 import { addOrder, addOrderItems, addOrderMenus } from "../../../api/services/order";
 import { IOrder, IOrderItems, IOrderMenus } from "cesieats-service-types/src/order";
 
@@ -18,7 +18,7 @@ function CartTitle() {
   const handleAddOrder = async () => {
     const response = await addOrder(orderCart.restaurant._id!, orderCart.price, orderCart.restaurant.name, orderCart.restaurant.address, orderCart.restaurant.telephone, orderCart.restaurant.idAccount!, account.address!, account.name);
     const order: IOrder = response.data;
-    dispatch(addOrderReducer(order));
+    dispatch(addClientOrder(order));
     const idOrder = order._id!;
     const orderItems: IOrderItems[] = orderCart.items.map((item) => { return { idItem: item.item._id!, idOrder, amount: item.amount } });
     const orderMenus: IOrderMenus[] = orderCart.menus.map((menu) => { return { idMenu: menu.menu._id!, idOrder, amount: menu.amount } });
