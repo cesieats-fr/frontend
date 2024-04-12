@@ -57,6 +57,11 @@ export const updateOrderStateRestaurant = createAsyncThunk('order/updateOrderSta
     return response.data;
 });
 
+export const linkDelivery = createAsyncThunk('order/linkDelivery', async ({ orderId, deliveryId }: { orderId: string, deliveryId: string }) => {
+    const response = await orderAPI.linkDelivery(orderId, deliveryId);
+    return response.data;
+});
+
 const orderSlice = createSlice({
     name: 'order',
     initialState,

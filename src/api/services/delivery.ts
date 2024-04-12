@@ -12,22 +12,23 @@ export const addDelivery = async (delivery: IDelivery) => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         },
     });
-    return response.data;
+    return response;
 };
 
-export const updateDeliveryState = async (state: EDeliveryState) => {
+export const updateDeliveryState = async (orderId: string, state: EDeliveryState) => {
     const response = await axios.put(`${BASE_URL}/updateDeliveryState`, {
-        state
+        state,
+        orderId,
     }, {
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`
         },
     });
-    return response.data;
+    return response;
 };
 
-export const linkDelivery = async (id: string) => {
-    const response = await axios.put(`${BASE_URL}/linkDelivery`, {
+export const linkDeliver = async (id: string) => {
+    const response = await axios.put(`${BASE_URL}/linkDeliver`, {
         id
     }, {
         headers: {

@@ -121,3 +121,17 @@ export const deleteOrder = async (idOrder: number) => {
   });
   return response.data;
 };
+
+export const linkDelivery = async (orderId: string, deliveryId: string) => {
+  const response = await axios.post(`${BASE_URL}/linkDelivery`, {
+    orderId,
+    deliveryId,
+  }, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response;
+};
+
+

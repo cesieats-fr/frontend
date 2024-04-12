@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import AcceptedDelivery from "../../../components/delivery/AcceptedDelivery";
+import AcceptedDelivery from "../../../components/delivery/acceptedDelivery";
 import { IDelivery } from "cesieats-service-types/src/delivery";
 import { RootState } from "../../../store";
 import { EDeliveryState } from "../../../enums";
