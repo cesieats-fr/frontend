@@ -9,6 +9,7 @@ import {
   Login,
   Logout,
   ManageAccounts,
+  Settings,
 } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
@@ -46,6 +47,11 @@ const clientHeader = [
     navigation: "/orders",
   },
   {
+    name: "Paramètres",
+    icon: <Settings style={large} />,
+    navigation: "/parameters",
+  },
+  {
     name: "Compte",
     icon: <AccountCircleRounded style={large} />,
     navigation: "/account",
@@ -74,6 +80,11 @@ const deliveryHeader = [
     navigation: "/deliveries",
   },
   {
+    name: "Paramètres",
+    icon: <Settings style={large} />,
+    navigation: "/parameters",
+  },
+  {
     name: "Compte",
     icon: <AccountCircleRounded style={large} />,
     navigation: "/account",
@@ -95,6 +106,11 @@ const restaurantHeader = [
     name: "Restaurant",
     icon: <StorefrontRounded style={large} />,
     navigation: "/restaurant",
+  },
+  {
+    name: "Paramètres",
+    icon: <Settings style={large} />,
+    navigation: "/parameters",
   },
   {
     name: "Compte",
@@ -131,6 +147,11 @@ const salesDepartementHeader = [
     name: "Gestion clients",
     icon: <ManageAccounts  style={large} />,
     navigation: "/management",
+  },
+  {
+    name: "Paramètres",
+    icon: <Settings style={large} />,
+    navigation: "/parameters",
   },
   {
     name: "Compte",

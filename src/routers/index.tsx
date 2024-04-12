@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { EAccountType } from "../enums";
 import Mangement from "../pages/management";
+import Parameters from "../pages/parameters";
 
 interface ProtectedRouteProps {
   element: React.ElementType;
@@ -81,6 +82,10 @@ const RouterPage: React.FC = () => {
           <Route
             path="/restaurant"
             element={<ProtectedRoute element={Restaurant} />}
+          />
+          <Route
+            path="/parameters"
+            element={<ProtectedRoute element={Parameters} />}
           />
            <Route
             path="/management"
