@@ -108,14 +108,14 @@ const restaurantHeader = [
     navigation: "/restaurant",
   },
   {
-    name: "Paramètres",
-    icon: <Settings style={large} />,
-    navigation: "/parameters",
-  },
-  {
     name: "Commandes",
     icon: <ReceiptRounded style={large} />,
     navigation: "/restaurantOrders"
+  },
+  {
+    name: "Paramètres",
+    icon: <Settings style={large} />,
+    navigation: "/parameters",
   },
   {
     name: "Compte",
