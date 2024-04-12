@@ -25,5 +25,4 @@ function DeliveryPage() {
     </div>
   );
 }
-
 export default DeliveryPage;

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Delivery from "../../../components/delivery";
+import AcceptedDelivery from "../../../components/delivery/AcceptedDelivery";
 import { IDelivery } from "cesieats-service-types/src/delivery";
 import { RootState } from "../../../store";
 import { EDeliveryState } from "../../../enums";
@@ -20,7 +20,7 @@ function DeliveryPage() {
                 delivery.state === EDeliveryState.GoingToRestaurant
             )
             .map((delivery: IDelivery, index: number) => (
-              <Delivery key={index} delivery={delivery} />
+              <AcceptedDelivery key={index} delivery={delivery} />
             ))}
       </div>
     </div>

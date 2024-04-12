@@ -12,7 +12,9 @@ import { useEffect } from "react";
 
 function OrderPage() {
   const dispatch = useDispatch<AppDispatch>();
-  const account = useSelector((state: RootState) => state.account.account);
+  const deliveries = useSelector(
+    (state: RootState) => state.delivery.deliveries
+  );
 
   useEffect(() => {
     dispatch(getDeliveries());
@@ -37,7 +39,14 @@ function OrderPage() {
       className="h-full"
     >
       <Typography variant="body1" color="text.primary" gutterBottom>
-        Argent gagné: {account.address}
+        Argent gagné:{" "}
+        {deliveries.length > 0
+          ? deliveries.reduce(
+              (acc, delivery) =>
+                acc + (typeof delivery.price === "number" ? delivery.price : 0),
+              0
+            ) + "€"
+          : "0€"}
       </Typography>
       <DividedMenu dividedMenuParts={dividedMenuParts} />
     </Stack>
