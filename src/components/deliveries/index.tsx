@@ -32,9 +32,6 @@ const Delivery: React.FC<IDeliveryProps> = ({ delivery }) => {
               {delivery.clientAddress}             
             </Typography>
           </Stack>
-          <Stack direction="row" spacing={2} justifyContent="center">
-            <Typography variant="body1">{delivery.price}€</Typography>
-          </Stack>
         </Stack>
       </CardContent>
     </Card>

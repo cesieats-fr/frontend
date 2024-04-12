@@ -13,7 +13,6 @@ import RestrictedPage from "../pages/restricted";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { EAccountType } from "../enums";
-import Mangement from "../pages/management";
 import Parameters from "../pages/parameters";
 import Management from "../pages/management";
 import RestaurantOrders from "../pages/restaurantOrders";
