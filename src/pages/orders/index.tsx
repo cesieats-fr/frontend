@@ -9,7 +9,7 @@ import { EOrderState } from "../../enums";
 
 function Orders() {
   const dispatch = useDispatch<AppDispatch>();
-  const orders = useSelector((state: RootState) => state.order.orders);
+  const orders = useSelector((state: RootState) => state.order.clientOrders);
 
   useEffect(() => {
     dispatch(getAllClientOrders());

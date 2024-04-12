@@ -13,7 +13,8 @@ import RestrictedPage from "../pages/restricted";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import { EAccountType } from "../enums";
-import Mangement from "../pages/management";
+import Management from "../pages/management";
+import RestaurantOrders from "../pages/restaurantOrders";
 
 interface ProtectedRouteProps {
   element: React.ElementType;
@@ -82,9 +83,13 @@ const RouterPage: React.FC = () => {
             path="/restaurant"
             element={<ProtectedRoute element={Restaurant} />}
           />
-           <Route
+          <Route
             path="/management"
-            element={<ProtectedRoute element={Mangement} />}
+            element={<ProtectedRoute element={Management} />}
+          />
+          <Route
+            path="/restaurantOrders"
+            element={<ProtectedRoute element={RestaurantOrders} />}
           />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

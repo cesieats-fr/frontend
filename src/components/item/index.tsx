@@ -22,8 +22,8 @@ function ItemCard({ item, actions }: IItemProps) {
           </Typography>
         <Typography>{ item.price.toString() + "€"}</Typography>
       </CardContent>
-      { actions }
-    </Card>
+        { actions }
+      </Card>
     </Grid>
   );
 }

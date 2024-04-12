@@ -97,6 +97,11 @@ const restaurantHeader = [
     navigation: "/restaurant",
   },
   {
+    name: "Commandes",
+    icon: <ReceiptRounded style={large} />,
+    navigation: "/restaurantOrders"
+  },
+  {
     name: "Compte",
     icon: <AccountCircleRounded style={large} />,
     navigation: "/account",

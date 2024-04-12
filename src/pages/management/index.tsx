@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { Stack, Divider, Typography } from "@mui/material";
 import ClientAccountCard from "../../components/management/";
 
-function Orders() {
+function Management() {
   const dispatch = useDispatch<AppDispatch>();
   const clientAccounts = useSelector(
     (state: RootState) => state.account.accounts
@@ -43,4 +43,4 @@ function Orders() {
   );
 }
 
-export default Orders;
+export default Management;

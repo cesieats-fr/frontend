@@ -3,6 +3,7 @@ import { IItem, IMenu } from 'cesieats-service-types/src/item';
 import { orderAPI } from '../../api';
 import { IRestaurant } from 'cesieats-service-types/src/restaurant';
 import { IOrder } from 'cesieats-service-types/src/order';
+import { EOrderState } from '../../enums';
 
 interface IOrderCart {
     restaurant: IRestaurant;
@@ -22,12 +23,14 @@ export interface IMenuAmount {
 }
 
 interface IOrderCartState {
-    orders: IOrder[];
+    clientOrders: IOrder[];
+    restaurantOrders: IOrder[];
     orderCart: IOrderCart;
 }
 
 const initialState: IOrderCartState = {
-    orders: [] as IOrder[],
+    clientOrders: [] as IOrder[],
+    restaurantOrders: [] as IOrder[],
     orderCart: {
         restaurant: {} as IRestaurant,
         items: [] as IItemAmount[],
@@ -46,6 +49,11 @@ export const getAllClientOrders = createAsyncThunk(
 
 export const getAllRestaurantOrders = createAsyncThunk('order/getAllRestaurantOrders', async () => {
     const response = await orderAPI.getAllRestaurantOrders();
+    return response.data;
+});
+
+export const updateOrderStateRestaurant = createAsyncThunk('order/updateOrderState', async ({ orderId, orderState }: { orderId: string, orderState: EOrderState }) => {
+    const response = await orderAPI.updateOrderState(orderId, orderState);
     return response.data;
 });
 
@@ -117,21 +125,26 @@ const orderSlice = createSlice({
             } as IOrderCart;
             state.orderCart.restaurant = payload;
         },
-        addOrderReducer: (state, { payload }) => {
-            state.orders.push(payload);
+        addClientOrder: (state, { payload }) => {
+            state.clientOrders.push(payload);
+        },
+        addRestaurantOrder: (state, { payload }) => {
+            state.restaurantOrders.push(payload);
         },
     },
     extraReducers: (builder) => {
         builder.addCase(getAllClientOrders.fulfilled, (state, { payload }) => {
-            console.log(payload);
-            state.orders = payload;
+            state.clientOrders = payload;
         });
         builder.addCase(getAllRestaurantOrders.fulfilled, (state, { payload }) => {
-            state.orders = payload;
+            state.restaurantOrders = payload;
+        });
+        builder.addCase(updateOrderStateRestaurant.fulfilled, (state, { payload }) => {
+            state.restaurantOrders = state.restaurantOrders.map((order) => order._id === payload._id ? payload : order);
         });
     }
 });
 
-export const { addMenuToCart, addItemToCart, removeItemFromCart, removeMenuFromCart, deleteItemFromCart, deleteMenuFromCart, emptyCart, changeRestaurant, addOrderReducer } = orderSlice.actions;
+export const { addMenuToCart, addItemToCart, removeItemFromCart, removeMenuFromCart, deleteItemFromCart, deleteMenuFromCart, emptyCart, changeRestaurant, addClientOrder, addRestaurantOrder } = orderSlice.actions;
 
 export default orderSlice.reducer;

@@ -4,8 +4,8 @@ import Items from "./items";
 import ItemsTitle from "./items/title";
 import Menus from "./menus";
 import MenusTitle from "./menus/title"
-import MenuItems from "./menuItems";
-import MenuItemsTitle from "./menuItems/title";
+// import MenuItems from "./menuItems";
+// import MenuItemsTitle from "./menuItems/title";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useEffect } from "react";
@@ -20,10 +20,10 @@ const dividedMenuParts: IDividedMenuPart[] = [
     titleComponent: <ItemsTitle />,
     component: <Items />,
   },
-  {
-    titleComponent: <MenuItemsTitle />,
-    component: <MenuItems />,
-  }
+  // {
+  //   titleComponent: <MenuItemsTitle />,
+  //   component: <MenuItems />,
+  // }
 ]
 
 function Restaurant() {
