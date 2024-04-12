@@ -19,11 +19,12 @@ function MenuCard({ menu, actions }: IMenuProps) {
           <Typography color="text.secondary">
           { menu.description }
           </Typography>
-
-        <Typography>{ menu.price.toString() + "€"}</Typography>
-      </CardContent>
-      { actions }
-    </Card>
+          <Typography>
+            { menu.price.toString() + "€"}
+          </Typography>
+        </CardContent>
+        { actions }
+      </Card>
     </Grid>
   );
 }

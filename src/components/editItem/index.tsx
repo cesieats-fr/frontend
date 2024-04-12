@@ -1,45 +1,33 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
-import { IItem, IMenu } from "cesieats-service-types/src/item";
-import { editItem } from "../../api/services/item";
-import { getMenuItems, deleteMenuItem } from "../../store/reducers/item";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../../store";
-import { Title } from "@mui/icons-material";
+import { IItem } from "cesieats-service-types/src/item";
+import { editItem } from "../../store/reducers/item"
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
 import { TextField } from "@mui/material";
 
 export interface editItemDialogProps {
   item: IItem;
   open: boolean;
-  onClose: (menu: IItem) => void;
+  onClose: () => void;
 }
 
-export function EditItemDialog(props: editItemDialogProps) {
-  const { onClose, item, open } = props;
+export function EditItemDialog({ onClose, item, open }: editItemDialogProps) {
+  const dispatch = useDispatch<AppDispatch>();
 
   const [title, setTitle] = useState(item.title);
   const [price, setPrice] = useState(item.price);
   const [description, setDescription] = useState(item.description);
   
   const handleClose = () => {
-    onClose(item);
+    onClose();
   };
   const handleValidate = () => {
-    editItem(
-      item.title,
-      item.price,
-      item.idRestaurant,
-      item.description
-  );
-    onClose(item);
+    dispatch(editItem({ title, price, description }));
+    onClose();
   }
-
-  const dispatch = useDispatch<AppDispatch>();
 
 
   return (
