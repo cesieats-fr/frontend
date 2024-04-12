@@ -18,13 +18,15 @@ function DefaultAccount({ accountType }: IRegisterProps) {
     const [emailError, setEmailError] = useState("");
 
     const handleRegister = async () => {
-        const response = await register({ email, password, forname, name, accountType });
-            // Validation de l'email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
+        // Validation de l'email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
             setEmailError("Veuillez entrer une adresse e-mail valide");
             return; // Sortir de la fonction si l'email est invalide
-            }
+        }
+        
+        const response = await register({ email, password, forname, name, accountType });
+          
         if(response.status === 200) {
             const { token, account } = response.data;
             localStorage.setItem('token', token);
