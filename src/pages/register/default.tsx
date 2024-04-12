@@ -48,7 +48,7 @@ function DefaultAccount({ accountType }: IRegisterProps) {
         setFornameError("");
       }
 
-      if (!addressError.trim()) {
+      if (!address.trim()) {
         setAddressError("Veuillez entrer une addresse.");
       } else {
         setAddressError("");
