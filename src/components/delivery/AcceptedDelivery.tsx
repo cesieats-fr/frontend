@@ -1,25 +1,19 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { IDelivery } from "cesieats-service-types/src/delivery";
 import { Stack, Divider } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
-import { linkDelivery } from "../../store/reducers/delivery";
+
 
 interface IDeliveryProps {
   delivery: IDelivery;
 }
 
-const AcceptedDelivery: React.FC<IDeliveryProps> = ({ delivery }) => {
-
-  const dispatch = useDispatch<AppDispatch>();
-  const handleAcceptDelivery = () => {
-    dispatch(linkDelivery(delivery._id!));    
-    }
-
+const AcceptedDelivery: React.FC<IDeliveryProps> = ({ delivery }) => {  
+ 
+  const deliveriesState = ["En Attente", "En route vers le restaurant", "Livraison en cours", "Livraison terminée"]
+  
   return (   
     <Card>
     <CardContent>
@@ -47,11 +41,9 @@ const AcceptedDelivery: React.FC<IDeliveryProps> = ({ delivery }) => {
         <Stack direction="row" spacing={2} justifyContent="center">
           <Typography variant="body1">{delivery.price}€</Typography>
         </Stack>
-      <Stack direction="row" spacing={2} justifyContent="center">
-        <Button color="error" variant="contained" className="" size="small" onClick={handleAcceptDelivery}>
-          Refuser la livraison
-        </Button>
-        </Stack>
+        <Stack direction="row" spacing={2} justifyContent="center">
+          <Typography variant="body1">{deliveriesState[delivery.state]}</Typography>
+        </Stack>     
       </Stack>
     </CardContent>
   </Card>
