@@ -70,7 +70,7 @@ const deliveryHeader = [
     navigation: "/delivery",
   },
   {
-    name: "Historique",
+    name: "Historiques",
     icon: <ReceiptRounded style={large} />,
     navigation: "/deliveries",
   },
