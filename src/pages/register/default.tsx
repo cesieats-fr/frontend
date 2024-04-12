@@ -24,8 +24,8 @@ function DefaultAccount({ accountType }: IRegisterProps) {
             setEmailError("Veuillez entrer une adresse e-mail valide");
             return; // Sortir de la fonction si l'email est invalide
         }
-        
-        const response = await register({ email, password, forname, name, accountType });
+
+        const response = await register({ email, password, forname, name, accountType, address });
           
         if(response.status === 200) {
             const { token, account } = response.data;
